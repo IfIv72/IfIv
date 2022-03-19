@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IfIv">
         <activity
+            android:name=".prubasFechas"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
