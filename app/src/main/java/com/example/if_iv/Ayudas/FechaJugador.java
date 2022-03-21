@@ -20,12 +20,20 @@ public class FechaJugador {
         return str;
     }
 
-    public static Date deStringAFecha(String str) throws ParseException {
+    public static Date deStringAFecha(String str) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = sdf.parse(str);
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = sdf.parse(str);
+            return date;
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
 
-        return date;
     }
 
 }

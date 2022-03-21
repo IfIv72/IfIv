@@ -15,6 +15,8 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
                                     	"'puntos'	INTEGER"+
                                     ");";
 
+    private String createCapitulo=;
+
     public BBDDSQLiteHelper(@Nullable Context context) {
         super(context, "BBDD", null, 1);
     }

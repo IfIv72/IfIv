@@ -1,5 +1,7 @@
 package com.example.if_iv.model;
 
+import com.example.if_iv.Ayudas.FechaJugador;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
@@ -28,16 +30,11 @@ public class Jugador
 //    }
 
 
-//    DateFormat format= new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-//    String da= format.format(new Date());
-    public Jugador(String nombre, String capitulo, String comienzoCAp, int puntos) {
+    public Jugador(String nombre, String capitulo, String comienzoCap, int puntos) {
         this.nombre = nombre;
         this.capitulo = capitulo;
         this.puntos = puntos;
-
-        DateFormat format= new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String date= format.format(new Date());
-
+        this.comienzoCap= FechaJugador.deStringAFecha(comienzoCap);
     }
 
     public String getNombre() {
