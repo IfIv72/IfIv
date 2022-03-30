@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="oval"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <gradient
+        android:angle="90"
+        android:endColor="#6C8EF3"
+        android:startColor="#11252121"
+        android:type="linear" />
+    <size
+        android:width="150dp"
+        android:height="150dp"></size>
+
+</shape>
+
+<!--
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</androidx.constraintlayout.widget.ConstraintLayout>-->

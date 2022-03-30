@@ -14,6 +14,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void irMinijuegos(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        startActivity(intent);
+    }
+
+    public void irCapitulos(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        startActivity(intent);
+    }
+
+    public void irPersonajes(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        startActivity(intent);
+    }
+
+    public void jugar(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        startActivity(intent);
+    }
+
     public void abrirPrueba(View v)
     {
         Intent intent = new Intent(MainActivity.this, prubasFechas.class);
