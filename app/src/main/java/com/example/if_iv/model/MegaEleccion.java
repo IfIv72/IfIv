@@ -1,5 +1,7 @@
 package com.example.if_iv.model;
 
+import com.example.if_iv.Ayudas.Boolean01;
+
 public class MegaEleccion
 {
 
@@ -7,7 +9,15 @@ public class MegaEleccion
     private boolean hecha;
     private String rutaFic; //Escena extra o capitulo correspondiente siguiente
 
-    public MegaEleccion(String rutaFic) {
+    public MegaEleccion(String decision, boolean hecha, String rutaFic) {
+        this.decision = decision;
+        this.hecha = hecha;
+        this.rutaFic = rutaFic;
+    }
+
+    public MegaEleccion(String decision, int hecha, String rutaFic) {
+        this.decision = decision;
+        this.hecha = Boolean01.gestionInt(hecha);
         this.rutaFic = rutaFic;
     }
 

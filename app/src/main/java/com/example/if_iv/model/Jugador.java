@@ -37,6 +37,13 @@ public class Jugador
         this.comienzoCap= FechaJugador.deStringAFecha(comienzoCap);
     }
 
+    public Jugador(String nombre, String capitulo, Date comienzoCap, int puntos) {
+        this.nombre = nombre;
+        this.capitulo = capitulo;
+        this.puntos = puntos;
+        this.comienzoCap= comienzoCap;
+    }
+
     public String getNombre() {
         return nombre;
     }

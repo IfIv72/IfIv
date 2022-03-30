@@ -61,7 +61,7 @@ public class CapituloDao {
 
         }
 
-        return null;
+        return capitulo;
     }
 
 }
