@@ -55,4 +55,15 @@ public class Dios {
     public void setMitologia(String mitologia) {
         this.mitologia = mitologia;
     }
+
+    @Override
+    public String toString() {
+        return "Dios{" +
+                "nombre='" + nombre + '\'' +
+                ", afinidad=" + afinidad +
+                ", info='" + info + '\'' +
+                ", rutaImg='" + rutaImg + '\'' +
+                ", mitologia='" + mitologia + '\'' +
+                '}';
+    }
 }

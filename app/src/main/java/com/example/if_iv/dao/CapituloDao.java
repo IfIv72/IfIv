@@ -14,13 +14,16 @@ import java.util.ArrayList;
 //find
 public class CapituloDao {
 
+    //BBDD
     private SQLiteDatabase db;
 
+    //Constructor donde crea el acceso a la BBDD
     public CapituloDao(Context context)
     {
         db= new BBDDSQLiteHelper(context).getWritableDatabase();
     }
 
+    //Devuelve todos los Capitulos de la BBDD
     public ArrayList<Capitulo> findAll()
     {
         ArrayList<Capitulo> capitulos = new ArrayList<Capitulo>();
@@ -46,6 +49,8 @@ public class CapituloDao {
         return capitulos;
     }
 
+    //Devuelve el capitulo que tenga el mismo nombre que el Capitulo que se le pasa como parametro
+    //Devuelve null si no lo encuentra
     public Capitulo find(Capitulo cap)
     {
         Capitulo capitulo=null;

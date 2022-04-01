@@ -16,13 +16,16 @@ import java.util.ArrayList;
 public class DiosDao
 {
 
+    //BBDD
     private SQLiteDatabase db;
 
+    //Constructor donde crea el acceso a la BBDD
     public DiosDao(Context context)
     {
         db= new BBDDSQLiteHelper(context).getWritableDatabase();
     }
 
+    //Devuelve todos los Dioses de la BBDD
     public ArrayList<Dios> findAll()
     {
         ArrayList<Dios> dioses = new ArrayList<Dios>();
@@ -49,10 +52,12 @@ public class DiosDao
         return dioses;
     }
 
+    //Devuelve el Dios que tenga el mismo nombre que el Dios que se le pasa como parametro
+    //Devuelve null si no lo encuentra
     public Dios find(Dios d)
     {
         Dios dios=null;
-        Cursor c=db.rawQuery("select nombre, rutaFic, hecho from Capitulo where nombre=?", new String[]{dios.getNombre()});
+        Cursor c=db.rawQuery("select nombre, afinidad, info, rutaImg, mitologia from Dios where nombre=?", new String[]{d.getNombre()});
         if(c.moveToFirst())
         {
             String nombre=c.getString(0);
@@ -66,6 +71,13 @@ public class DiosDao
         }
 
         return dios;
+    }
+
+    //Se le establecera al Dios que tenga el mismo nombre que el que se le pasa como parametro la afinidad de este
+    public void updateAfinidad(Dios d)
+    {
+        String query="update Dios set afinidad="+d.getAfinidad()+" where nombre='"+d.getNombre()+"'";
+        db.execSQL(query);
     }
 
 }

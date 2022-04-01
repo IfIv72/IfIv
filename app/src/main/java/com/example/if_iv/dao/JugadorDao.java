@@ -15,13 +15,17 @@ import java.util.Date;
 public class JugadorDao
 {
 
+    //BBDD
     private SQLiteDatabase db;
 
+    //Constructor donde crea el acceso a la BBDD
     public JugadorDao(Context context)
     {
         db= new BBDDSQLiteHelper(context).getWritableDatabase();
     }
 
+    //Devuelve al jugador
+    //Devuelve null si no lo encuentra
     public Jugador find()
     {
 
@@ -44,6 +48,7 @@ public class JugadorDao
         return jugador;
     }
 
+    //Cambia todos los artibutos del jugador que no sean null (o -1 en puntos) en el parametro por los de este
     public void update(Jugador j)
     {
         String query=queryUpdate(j);
@@ -52,6 +57,7 @@ public class JugadorDao
 
     }
 
+    //Crea la query update dependiendo de los campos null
     private String queryUpdate(Jugador j)
     {
         String query=null;
