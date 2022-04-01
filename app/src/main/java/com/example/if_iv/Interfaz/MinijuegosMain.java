@@ -1,4 +1,4 @@
-package com.example.if_iv;
+package com.example.if_iv.Interfaz;
 
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Minijuegos_main extends AppCompatActivity {
+import com.example.if_iv.R;
+
+public class MinijuegosMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

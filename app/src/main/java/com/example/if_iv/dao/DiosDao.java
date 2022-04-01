@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.if_iv.Ayudas.Boolean01;
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
-import com.example.if_iv.model.Capitulo;
 import com.example.if_iv.model.Dios;
 
 import java.util.ArrayList;

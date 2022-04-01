@@ -1,6 +1,6 @@
 package com.example.if_iv.model;
 
-import com.example.if_iv.Ayudas.Boolean01;
+import com.example.if_iv.util.Boolean01;
 
 public class MegaEleccion
 {

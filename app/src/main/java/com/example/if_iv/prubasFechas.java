@@ -3,16 +3,11 @@ package com.example.if_iv;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import com.example.if_iv.Ayudas.FechaJugador;
+import com.example.if_iv.util.FechaJugador;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class prubasFechas extends AppCompatActivity {
