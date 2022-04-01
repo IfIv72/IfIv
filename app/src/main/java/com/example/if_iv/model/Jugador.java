@@ -1,10 +1,7 @@
 package com.example.if_iv.model;
 
-import com.example.if_iv.Ayudas.FechaJugador;
+import com.example.if_iv.util.FechaJugador;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 //CREATE TABLE "Jugador" (

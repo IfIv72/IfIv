@@ -3,15 +3,14 @@ package com.example.if_iv;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.if_iv.Ayudas.FechaJugador;
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.dao.DiosDao;
 import com.example.if_iv.model.Dios;
+import com.example.if_iv.util.FechaJugador;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
