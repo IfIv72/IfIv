@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IfIv">
         <activity
-            android:name=".prubasFechas"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -21,6 +18,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".prubasFechas"
+            android:exported="false" />
+        <activity
+            android:name=".Interfaz.MinijuegosMain"
+            android:exported="false" />
+        <activity
+            android:name=".Interfaz.PersonajesMain"
+            android:exported="false" />
+        <activity
+            android:name=".Interfaz.CapitulosMain"
+            android:exported="false" />
+
+        <activity
+            android:name=".Minijuegos.CofresMinijuego"
+            android:exported="false" />
+        <activity
+            android:name=".Minijuegos.CartasMinijuego"
+            android:exported="false" />
+        <activity
+            android:name=".Minijuegos.CasinoMinijuego"
+            android:exported="false" />
+        <activity
+            android:name=".Minijuegos.PreguntassMinijuego"
+            android:exported="false" />
+
+
     </application>
 
 </manifest>

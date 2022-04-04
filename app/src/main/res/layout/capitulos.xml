@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/cap0"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:layout_margin="6dp"
+                android:text="Cap 0"
+                android:background="@drawable/shape_bordes_redondos"/>
+
+            <TextView
+                android:id="@+id/cap1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/cap0"
+                android:padding="5dp"
+                android:layout_margin="6dp"
+                android:text="Cap 1"
+                android:background="@drawable/shape_bordes_redondos"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/cap0"
+                android:background="@drawable/shape_bordes_redondos"/>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
