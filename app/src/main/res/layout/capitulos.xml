@@ -4,18 +4,18 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/cap0"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
                 android:padding="5dp"
                 android:layout_margin="6dp"
                 android:text="Cap 0"
@@ -26,17 +26,60 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_below="@+id/cap0"
+                android:layout_alignLeft="@id/cap0"
                 android:padding="5dp"
                 android:layout_margin="6dp"
                 android:text="Cap 1"
                 android:background="@drawable/shape_bordes_redondos"/>
-            <Button
+            <TextView
+                android:id="@+id/bloqCap1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_below="@id/cap0"
+                android:layout_alignLeft="@id/cap0"
+                android:padding="5dp"
+                android:layout_margin="6dp"
                 android:background="@drawable/shape_bordes_redondos"/>
 
+            <TextView
+                android:id="@+id/cap2_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/cap1"
+                android:layout_toLeftOf="@id/bloqCap1"
+                android:padding="5dp"
+                android:layout_margin="6dp"
+                android:text="Cap 2_1"
+                android:background="@drawable/shape_bordes_redondos"/>
+            <TextView
+                android:id="@+id/bloqCap2_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/cap1"
+                android:layout_toLeftOf="@id/bloqCap1"
+                android:padding="5dp"
+                android:layout_margin="6dp"
+                android:background="@drawable/shape_bordes_redondos"/>
 
+           <TextView
+                android:id="@+id/cap2_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/cap1"
+               android:layout_toRightOf="@id/bloqCap1"
+                android:padding="5dp"
+                android:layout_margin="6dp"
+                android:text="Cap 2_2"
+                android:background="@drawable/shape_bordes_redondos"/>
+            <TextView
+                android:id="@+id/bloqCap2_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/cap1"
+                android:layout_toRightOf="@id/bloqCap1"
+                android:padding="5dp"
+                android:layout_margin="6dp"
+                android:background="@drawable/shape_bordes_redondos"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

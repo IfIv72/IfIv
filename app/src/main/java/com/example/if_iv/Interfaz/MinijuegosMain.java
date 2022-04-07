@@ -69,7 +69,7 @@ public class MinijuegosMain extends AppCompatActivity {
         //actualiza los puntos
         lblPuntos.setText(puntosGanados+" puntos de "+TOPE);
         GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
-        draw.setColor(ContextCompat.getColor(this,R.color.bloqueado));
+        draw.setColor(ContextCompat.getColor(this,R.color.capitulo));
         draw.setCornerRadius(15);
         lblPuntos.setBackground(draw);
 
@@ -98,7 +98,7 @@ public class MinijuegosMain extends AppCompatActivity {
     {
         //consulta sobre el proceso de la historia
         String sql;
-        if(!bloqueado)
+        if(bloqueado)
         {
             bloqCartas.setVisibility(View.GONE);
             btnCartas.setEnabled(true);

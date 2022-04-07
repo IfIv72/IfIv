@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.if_iv.Ayudas.FechaJugador;
+import com.example.if_iv.util.FechaJugador;
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.dao.DiosDao;
 import com.example.if_iv.model.Dios;
