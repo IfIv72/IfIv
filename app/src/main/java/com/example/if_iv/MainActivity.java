@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.if_iv.Interfaz.CapitulosMain;
+import com.example.if_iv.Interfaz.MinijuegosMain;
+import com.example.if_iv.Interfaz.PersonajesMain;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,26 +20,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void irMinijuegos(View v)
     {
-        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        Intent intent = new Intent(MainActivity.this, MinijuegosMain.class);
         startActivity(intent);
     }
 
     public void irCapitulos(View v)
     {
-        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        Intent intent = new Intent(MainActivity.this, CapitulosMain.class);
         startActivity(intent);
     }
 
     public void irPersonajes(View v)
     {
-        Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        Intent intent = new Intent(MainActivity.this, PersonajesMain.class);
         startActivity(intent);
     }
 
     public void jugar(View v)
     {
         Intent intent = new Intent(MainActivity.this, prubasFechas.class);
-        startActivity(intent);
+        //startActivity(intent);
     }
 
     public void abrirPrueba(View v)

@@ -3,12 +3,12 @@
     android:shape="rectangle"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners/> <!--
-        android:bottomLeftRadius="15dp"
+    <corners
+        android:bottomLeftRadius="0dp"
         android:bottomRightRadius="15dp"
         android:topLeftRadius="15dp"
-        android:topRightRadius="15dp"
-    -->
+        android:topRightRadius="0dp"/>
+
 
     <stroke/> <!--
         android:color="@color/teal_200"
@@ -19,5 +19,9 @@
         android:width="150dp"
         android:height="50dp"
      -->
-
+    <padding
+        android:left="7dp"
+        android:top="7dp"
+        android:right="7dp"
+        android:bottom="7dp"/>
 </shape>
