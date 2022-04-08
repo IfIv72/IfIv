@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat;
 
 import com.example.if_iv.R;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CapitulosMain extends AppCompatActivity {
@@ -38,8 +37,9 @@ public class CapitulosMain extends AppCompatActivity {
 
         for(TextView cap : caps.keySet())
         {
-            String nom = cap.getText().toString();  // nombre del capitulo  ej:(Cap0)
+            cap.setTextColor(ContextCompat.getColor(this,R.color.white));
 
+            String nom = cap.getText().toString();  // nombre del capitulo  ej:(Cap0)
             //consulta si el capitulo esta bloqueado
             String sql = "";
 
@@ -55,6 +55,10 @@ public class CapitulosMain extends AppCompatActivity {
             if(bloqueado == false)
             {
                 bloqueo.setVisibility(View.GONE);
+                cap.setTextColor(ContextCompat.getColor(this,R.color.black));
+                cap.setOnClickListener(view -> {
+                    Toast.makeText(CapitulosMain.this, cap.getText().toString(), Toast.LENGTH_SHORT).show();
+                });
             }
         }
     }
