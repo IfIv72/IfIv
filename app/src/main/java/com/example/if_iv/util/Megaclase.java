@@ -6,8 +6,9 @@ import com.example.if_iv.R;
 // tiene metodos staticos que ayudaran al resto de clases para ahorrar lineas de codigo
 public class Megaclase
 {
+  /////  IMAGENES y COLORES
     public static int imgSegunDios(String dios, String estado)
-    {
+    {// descomentar al añadir las imagenes
         /*switch(dios)
         {
             case "Loki":
@@ -101,7 +102,45 @@ public class Megaclase
             default:
                 return R.drawable.silueta;
         }*/
-        return R.drawable.cofre;
+        return R.drawable.hoguera;
     }
+
+
+    public static int colorSegunDios(String dios)
+    {
+        switch(dios) {
+            case "Loki":
+                return R.color.loki;
+            case "Freya":
+                return R.color.freya;
+            case "Anubis":
+                return R.color.anubis;
+            case "Isis":
+                return R.color.isis;
+            case "Apolo":
+                return R.color.apolo;
+            case "Hermes":
+                return R.color.hermes;
+            case "Dionisio":
+                return R.color.dionisio;
+            case "iv":
+                return R.color.iv;
+            default:
+                return R.color.black;
+        }
+    }
+
+
+
+
+ ///// CONVERSORES (sqlite)
+  /// Fechas
+
+
+
+
+    //Booleans
+
+
 
 }

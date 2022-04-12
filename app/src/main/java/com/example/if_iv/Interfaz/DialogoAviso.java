@@ -19,64 +19,20 @@ import com.example.if_iv.R;
 
 public class DialogoAviso extends DialogFragment {
 
-        private EditText lblTexto;
-        private ImageView img;
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialogo_aviso, null))
+                .setPositiveButton("Aceptar",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+        return builder.create();
+    }
 
-        // Interfaz de comunicación
-        DialogoAviso.OnDialogoConfirmacionListener listener;
-
-        @NonNull
-        @Override
-        public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-            //return super.onCreateDialog(savedInstanceState);
-
-            //Creamos Alert Dialog personalizado
-            AlertDialog.Builder builder =new AlertDialog.Builder(getActivity());
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.dialogo_aviso, null);
-            builder.setView(dialogView)
-                    .setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            listener.onPossitiveButtonClick();
-                            dialog.cancel();
-                        }
-                    })
-                    .setNegativeButton("Cancelar",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            listener.onNegativeButtonClick();
-                            dialog.cancel();
-                        }
-                    });
-
-            lblTexto = dialogView.findViewById(R.id.lblTexto);
-            img = dialogView.findViewById(R.id.imgChibi);
-
-
-            Dialog dialog =  builder.create();
-
-            dialog.setCanceledOnTouchOutside(false);
-            return dialog;
-        }
-
-
-        public void setLblTexto(String str){ lblTexto.setText(str); }
-        public void setImg(Drawable draw){ img.setImageDrawable(draw); }
-
-
-        //Interfaz para los botones Aceptar y Cancelar
-        public interface OnDialogoConfirmacionListener{
-            void onPossitiveButtonClick(); //Eventos Botón Positivos
-            void onNegativeButtonClick();  //Eventos Botón Negativo
-        }
-
-
-        //Se debe añadir la interfaz para no tener el error
-        @Override
-        public void onAttach(Context context) {
-            super.onAttach(context);
-            try{listener = (DialogoAviso.OnDialogoConfirmacionListener) context;
-            } catch (ClassCastException e) {
-                throw new ClassCastException(context.toString() +" no Implemento OnDialogoConfirmacionListener");
-            }
-        }
 }

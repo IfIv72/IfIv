@@ -7,6 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bloqueado">#D8162837</color>
-    <color name="capitulo">#6C8EF3</color>
+
+    <color name="bloqueado">#D818354E</color>
+    <color name="capitulo">#EE91ABF6</color>
+
+    <color name="apolo">#F3832B</color>
+    <color name="dionisio">#E1163F</color>
+    <color name="hermes">#59F392</color>
+    <color name="anubis">#F1F11A</color>
+    <color name="isis">#FAD9E6</color>
+    <color name="freya">#8640EC</color>
+    <color name="loki">#6C8EF3</color>
+    <color name="loki2">#1CAC03</color>
+    <color name="iv">#BF9271</color>
 </resources>
