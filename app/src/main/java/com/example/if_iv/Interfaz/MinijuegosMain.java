@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -132,6 +133,7 @@ public class MinijuegosMain extends AppCompatActivity {
             Intent intento = new Intent(MinijuegosMain.this, CofresMinijuego.class);
             startActivity(intento);
         });
+
         btnPreguntas.setOnClickListener(view -> {
             if(preguntasJugado)
                 Toast.makeText(MinijuegosMain.this,"Solo UNA vez por dia",Toast.LENGTH_LONG).show();

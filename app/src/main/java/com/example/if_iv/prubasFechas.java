@@ -45,7 +45,7 @@ public class prubasFechas extends AppCompatActivity {
         DiosDao dd= new DiosDao(this.getBaseContext());
         ArrayList<Dios> dios=dd.findAll();
         txt.setText(str+"\n"+date.toString()+"\n"+s+"\n"+dios.get(0));
-        Dios d= new Dios("RA",895,""," ","mito");
+        Dios d= new Dios("Loki",-1,""," ","mito");
         dd.updateAfinidad(d);
         txt.setText(dd.find(d).toString());
 
