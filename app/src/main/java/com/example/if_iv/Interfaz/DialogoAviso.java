@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,19 +20,40 @@ import com.example.if_iv.R;
 
 public class DialogoAviso extends DialogFragment {
 
+    private TextView lblTexto, lblTitulo;
+    private ImageView img;
+    private String auxTxt, auxTit;
+    private int auxImg;
+
+    public DialogoAviso(String texto, String titulo, int img)
+    {
+        auxTxt = texto;
+        auxTit = titulo;
+        auxImg = img;
+    }
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialogo_aviso, null))
-                .setPositiveButton("Aceptar",
+        View v = inflater.inflate(R.layout.dialogo_aviso, null);
+        builder.setView(v)/*.setPositiveButton("Aceptar",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }
-                        });
+                        });*/
+        ;
+        lblTitulo = v.findViewById(R.id.lblTitulo);
+        lblTitulo.setText(auxTit);
+        lblTexto = v.findViewById(R.id.lblTexto);
+        lblTexto.setText(auxTxt);
+        img = v.findViewById(R.id.imgChibi);
+        img.setImageResource(auxImg);
+
         return builder.create();
     }
 

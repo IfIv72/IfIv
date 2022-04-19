@@ -10,14 +10,15 @@
 
     <color name="bloqueado">#D818354E</color>
     <color name="capitulo">#EE91ABF6</color>
+    <color name="fondo_shape">#7CDCDCDC</color>
 
     <color name="apolo">#F3832B</color>
     <color name="dionisio">#E1163F</color>
     <color name="hermes">#59F392</color>
-    <color name="anubis">#F1F11A</color>
+    <color name="anubis">#EAEA33</color>
     <color name="isis">#FAD9E6</color>
     <color name="freya">#8640EC</color>
     <color name="loki">#6C8EF3</color>
     <color name="loki2">#1CAC03</color>
-    <color name="iv">#BF9271</color>
+    <color name="iv">#E0B08C</color>
 </resources>

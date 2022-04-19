@@ -19,6 +19,7 @@ import com.example.if_iv.Minijuegos.CasinoMinijuego;
 import com.example.if_iv.Minijuegos.CofresMinijuego;
 import com.example.if_iv.Minijuegos.PreguntassMinijuego;
 import com.example.if_iv.R;
+import com.example.if_iv.util.Megaclase;
 
 public class MinijuegosMain extends AppCompatActivity {
 
@@ -68,9 +69,7 @@ public class MinijuegosMain extends AppCompatActivity {
     {
         //actualiza los puntos
         lblPuntos.setText(puntosGanados+" puntos de "+TOPE);
-        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
-        draw.setColor(ContextCompat.getColor(this,R.color.capitulo));
-        draw.setCornerRadius(15);
+        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_dialogo);
         lblPuntos.setBackground(draw);
 
 
@@ -111,7 +110,10 @@ public class MinijuegosMain extends AppCompatActivity {
         // click lblPuntos
         lblPuntos.setOnClickListener(view -> {
             // se abre dialogo explicando las condiciones
-            Toast.makeText(MinijuegosMain.this,"explicacion tope",Toast.LENGTH_SHORT).show();
+            String texto = getString(R.string.codicion_tope_puntos);
+            int img = Megaclase.imgSegunDios("Isis","chibi");
+            dialogoAviso = new DialogoAviso(texto,"Control de puntos", img);
+            dialogoAviso.show(getSupportFragmentManager(), "dialogo_control_puntos");
         });
 
 

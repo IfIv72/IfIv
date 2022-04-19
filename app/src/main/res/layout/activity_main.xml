@@ -16,7 +16,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ajustes"
-        android:background="@drawable/shape_bordes_redondos"/>
+        android:background="@drawable/shape_relleno"/>
 
     <!-- Botones: Minijuegos, Personajes y Capituloa -->
     <RelativeLayout

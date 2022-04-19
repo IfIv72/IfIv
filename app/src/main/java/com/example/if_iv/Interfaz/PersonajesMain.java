@@ -1,6 +1,7 @@
 package com.example.if_iv.Interfaz;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class PersonajesMain extends AppCompatActivity {
     {
         nombres[0] = new Dios("Apolo",20,"info","ruta","griego");
         nombres[1] = new Dios("Loki",50,"info","ruta","nordico");
-        nombres[2] = new Dios("Anubis",100,"info","ruta","egipcio");
+        nombres[2] = new Dios("Anubis",80,"info","ruta","egipcio");
         dioses = new HashMap<String, Dios>();
     }
 
@@ -74,28 +75,31 @@ public class PersonajesMain extends AppCompatActivity {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View item = inflater.inflate(R.layout.listitem_personaje, null);
 
+            // nombre dios
             TextView lblNombre = (TextView) item.findViewById(R.id.lblNombreP);
             lblNombre.setText(nombres[pos].getNombre());
             Log.i("I", nombres[pos].getNombre());
 
+            // imagen dios
             ImageView img = (ImageView) item.findViewById(R.id.imgPer);
-            //img.setImageResource(R.drawable.cofre);
             img.setImageResource(Megaclase.imgSegunDios(nombres[pos].getNombre(),"chibi"));
-            //img.setImageResource(dioses[pos].getRutaImg());
+
+            // barra afinidad (fondo)
+            GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_dialogo);
 
             TextView lblProgresoFondo = item.findViewById(R.id.lblEntero);
             int anchoPantalla = getResources().getDisplayMetrics().widthPixels;
-            int anchoFondo = anchoPantalla - 100 - 40 ; // ancho_pantalla - (ancho_imagen + margen)
+            int anchoFondo = anchoPantalla - 100 - 45 ; // ancho_pantalla - (ancho_imagen + margen)
             lblProgresoFondo.setWidth(anchoFondo);
+            lblProgresoFondo.setBackground(draw);
 
+            // barra afinidad (relleno)
             TextView lblProgreso = item.findViewById(R.id.lblProgreso);
             int progreso = (nombres[pos].getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
             lblProgreso.setWidth(progreso);  // varia segun la afinidad con el dios
+            draw = (GradientDrawable) getDrawable(R.drawable.shape_relleno);
+            draw.setColor(Megaclase.colorSegunDios(nombres[pos].getNombre()));
             lblProgreso.setBackgroundColor(Megaclase.colorSegunDios(nombres[pos].getNombre()));
-
-            item.setOnClickListener(view -> {
-                // abrir dialogo con la info del dios
-            });
 
             return (item);
         }

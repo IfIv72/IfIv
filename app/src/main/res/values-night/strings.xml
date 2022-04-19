@@ -1,4 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">If-Iv</string>
     <string name="codicion_tope_puntos">Solo se pueden ganar un máximo de 200 puntos por dia. Aunque llegues podrás seguir jugando los minijuegos</string>
 </resources>

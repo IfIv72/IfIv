@@ -7,10 +7,12 @@
     <TextView
         android:id="@+id/lblPuntos"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_margin="25dp"
-        android:background="@drawable/shape_bordes_redondos"/>
+        android:textAlignment="center"
+        android:paddingTop="5dp"
+        android:background="@drawable/shape_dialogo"/>
 
 
     <RelativeLayout
@@ -31,14 +33,13 @@
             android:id="@+id/titCofre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
             android:layout_alignBottom="@+id/btnMCofres"
             android:layout_alignLeft="@+id/btnMCofres"
             android:layout_marginTop="-20dp"
             android:layout_marginLeft="-15dp"
             android:text="Cofres"
             android:textSize="18dp"
-            android:background="@drawable/shape_bordes_redondos"/>
+            android:background="@drawable/shape_titulos"/>
 
 
         <!-- Minijuego Preguntas -->
@@ -60,8 +61,8 @@
             android:layout_marginTop="-20dp"
             android:layout_marginLeft="-15dp"
             android:text="Preguntas"
-            android:textSize="18dp"
-            android:background="@drawable/shape_bordes_redondos"/>
+            android:textSize="16dp"
+            android:background="@drawable/shape_titulos"/>
 
 
         <!-- Minijuego Casino -->
@@ -84,7 +85,7 @@
             android:layout_marginLeft="-15dp"
             android:text="Casino"
             android:textSize="18dp"
-            android:background="@drawable/shape_bordes_redondos"/>
+            android:background="@drawable/shape_titulos"/>
 
         <RelativeLayout
             android:id="@+id/layBloqCasino"
@@ -117,7 +118,7 @@
             android:layout_marginLeft="-15dp"
             android:text="Cartas"
             android:textSize="18dp"
-            android:background="@drawable/shape_bordes_redondos"/>
+            android:background="@drawable/shape_titulos"/>
 
         <RelativeLayout
             android:id="@+id/layBloqCartas"
