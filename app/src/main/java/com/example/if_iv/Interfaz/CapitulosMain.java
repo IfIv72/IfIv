@@ -22,6 +22,9 @@ public class CapitulosMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capitulos);
 
+        getSupportActionBar().hide();
+
+
         //caps.put(findViewById(R.id.cap0),findViewById(R.id.cap0));
         caps.put(findViewById(R.id.cap1),findViewById(R.id.bloqCap1));
         caps.put(findViewById(R.id.cap2_1),findViewById(R.id.bloqCap2_1));

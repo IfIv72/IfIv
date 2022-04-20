@@ -22,6 +22,9 @@
             android:name=".prubasFechas"
             android:exported="false" />
         <activity
+            android:name=".Interfaz.JuegoMain"
+            android:exported="false" />
+        <activity
             android:name=".Interfaz.MinijuegosMain"
             android:exported="false" />
         <activity

@@ -37,6 +37,8 @@ public class PersonajesMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personajes_main);
 
+        getSupportActionBar().hide();
+
         list = findViewById(R.id.listPer);
         nombres = new Dios[3];
         llenarDioses();

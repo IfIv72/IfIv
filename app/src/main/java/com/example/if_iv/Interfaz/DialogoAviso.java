@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,14 +46,19 @@ public class DialogoAviso extends DialogFragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }
-                        });*/
-        ;
+                        });*/;
+
         lblTitulo = v.findViewById(R.id.lblTitulo);
         lblTitulo.setText(auxTit);
         lblTexto = v.findViewById(R.id.lblTexto);
         lblTexto.setText(auxTxt);
         img = v.findViewById(R.id.imgChibi);
         img.setImageResource(auxImg);
+
+        //Se cierra al tocarlo
+        v.setOnClickListener(view -> {
+            dismiss();
+        });
 
         return builder.create();
     }

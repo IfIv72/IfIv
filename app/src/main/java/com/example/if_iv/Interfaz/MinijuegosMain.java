@@ -36,12 +36,15 @@ public class MinijuegosMain extends AppCompatActivity {
 
     // borrar una vez se hagan consultando la bbdd
     private boolean bloqueado = true;
-    private boolean preguntasJugado = false;
+    private boolean preguntasJugado = false;  // guardado como variable o cambiara segun el ultimo dia completado o asi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.minijuegos_main);
+
+        getSupportActionBar().hide();
+
 
         lblPuntos = findViewById(R.id.lblPuntos);
 
@@ -49,8 +52,6 @@ public class MinijuegosMain extends AppCompatActivity {
         btnPreguntas = findViewById(R.id.btnMPreguntas);
         btnCasino = findViewById(R.id.btnMCasino);
         btnCartas = findViewById(R.id.btnMCartas);
-        btnCofre.setEnabled(false);     // se habilita mas adelante
-        btnCartas.setEnabled(false);    // se habilita mas adelante
 
         titCofre = findViewById(R.id.titCofre);
         titPregunta = findViewById(R.id.titPreguntas);
@@ -81,14 +82,10 @@ public class MinijuegosMain extends AppCompatActivity {
     {
         if(puntosGanados >= TOPE)
         {
-            /*
-            fragmentManager = getSupportFragmentManager();
-            dialogoAviso = new DialogoAviso();
-            dialogoAviso.setLblTexto("Has alcanzado el tope de puntos. Ya no ganaras " +
-                    "más puntos pero puedes seguir jugando");
-            dialogoAviso.show(fragmentManager,"Dialogo");
-             */
-            Toast.makeText(MinijuegosMain.this,"tope alcanzado",Toast.LENGTH_SHORT).show();
+            String texto = getString(R.string.tope_alcanzado);
+            int img = Megaclase.imgSegunDios("Loki","chibi");
+            dialogoAviso = new DialogoAviso(texto,"Tope alcanzado", img);
+            dialogoAviso.show(getSupportFragmentManager(), "dialogo_tope_alcanzado");
         }
     }
 
@@ -101,7 +98,6 @@ public class MinijuegosMain extends AppCompatActivity {
         if(bloqueado)
         {
             bloqCartas.setVisibility(View.GONE);
-            btnCartas.setEnabled(true);
         }
     }
 

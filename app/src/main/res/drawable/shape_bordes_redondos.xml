@@ -18,7 +18,7 @@
 
     <stroke
         android:color="@color/capitulo"
-        android:width="6dp"/>
+        android:width="4dp"/>
 
     <size/><!--
         android:width="150dp"
