@@ -59,6 +59,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
         creates.add(createDios);
         creates.add(createJugador);
         creates.add(createMegaEleccion);
+
     }
 
     //Creacion de la base de datos
@@ -72,7 +73,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        //Se borran rodas las tablas
+        //Se borran todas las tablas
         db.execSQL("drop table if exists Dios");
         db.execSQL("drop table if exists Capitulo");
         db.execSQL("drop table if exists Jugador");
@@ -83,6 +84,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
 
     }
 
+    //Metodo en el que se crean las tablas y les inserta los datos
     public void crearBBDD(SQLiteDatabase db)
     {
         for (String create: creates)
@@ -92,21 +94,27 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
         insertData(db);
     }
 
+    //Metodo en el que se insertan los datos que esten en ela rchivo assets/data.sql
+    //Ese archivo tiene que estar en sql y no tener comentarios
     public void insertData(SQLiteDatabase db)
     {
         try
         {
+            //Lee el fichero
             BufferedReader br= new BufferedReader(new InputStreamReader(this.context.getAssets().open("data.sql")));
+            //Prepara la bbdd
             db.beginTransaction();
             String line= br.readLine();
             while(line!=null)
             {
                 if(line.length()>0)
                 {
+                    //ejecuta la linea leida en el fichero en la bbdd
                     db.execSQL(line);
-                    line=br.readLine();
                 }
+                line=br.readLine();
             }
+            //cierra la bbdd
             db.setTransactionSuccessful();
             db.endTransaction();
         }

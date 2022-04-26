@@ -5,12 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- lista de grupos -->
-        <ListView
-            android:id="@+id/listPer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawSelectorOnTop="false"/>
-
+    <ListView
+        android:id="@+id/listPer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false" />
 
 </LinearLayout>

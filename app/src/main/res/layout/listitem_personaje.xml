@@ -19,7 +19,8 @@
         android:layout_toRightOf="@+id/imgPer"
         android:layout_alignTop="@+id/lblEntero"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/lblProgreso"
@@ -33,8 +34,16 @@
         android:id="@+id/lblEntero"
         android:layout_width="210dp"
         android:layout_height="20dp"
-        android:layout_toRightOf="@+id/imgPer"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/imgPer" />
+
+    <TextView
+        android:id="@+id/lblInfoP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgPer"
+        android:layout_below="@id/lblEntero"
+        />
 
 </RelativeLayout>
