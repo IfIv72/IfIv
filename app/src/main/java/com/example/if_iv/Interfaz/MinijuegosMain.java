@@ -1,10 +1,8 @@
 package com.example.if_iv.Interfaz;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -12,13 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.if_iv.Minijuegos.CartasMinijuego;
 import com.example.if_iv.Minijuegos.CasinoMinijuego;
 import com.example.if_iv.Minijuegos.CofresMinijuego;
-import com.example.if_iv.Minijuegos.PreguntassMinijuego;
+import com.example.if_iv.Minijuegos.PreguntasMinijuego;
 import com.example.if_iv.R;
 import com.example.if_iv.util.Megaclase;
 
@@ -136,7 +133,7 @@ public class MinijuegosMain extends AppCompatActivity {
             else
             {
                 comprobarPuntos();
-                Intent intento = new Intent(MinijuegosMain.this, PreguntassMinijuego.class);
+                Intent intento = new Intent(MinijuegosMain.this, PreguntasMinijuego.class);
                 startActivity(intento);
                 preguntasJugado = true;
             }

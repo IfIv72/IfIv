@@ -130,7 +130,7 @@ public class JuegoMain extends AppCompatActivity {
             fraw.close();
         }
         catch (IOException ex) {
-            Log.e ("Ficheros", "ERROR!!! al LEER fichero");
+            Log.e ("Ficheros", "ERROR!!! al LEER--> "+nomFich);
             Log.e("EXCEPTION",ex.getMessage());
         }
     }

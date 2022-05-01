@@ -44,7 +44,7 @@
             android:name=".Minijuegos.CasinoMinijuego"
             android:exported="false" />
         <activity
-            android:name=".Minijuegos.PreguntassMinijuego"
+            android:name=".Minijuegos.PreguntasMinijuego"
             android:exported="false" />
 
 
