@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -84,6 +85,7 @@ public class JuegoMain extends AppCompatActivity {
     // carga el fichero en conversaciones
     public void llenarConversacion(String nomFich)
     {
+        Log.i("Fichero","LLENANDO...");
         conversacion = new HashMap<String, Dialogo>();
         try
         {
@@ -128,7 +130,7 @@ public class JuegoMain extends AppCompatActivity {
             fraw.close();
         }
         catch (IOException ex) {
-            Log.e ("Ficheros", "ERROR!!! al LEER recurso direcciones");
+            Log.e ("Ficheros", "ERROR!!! al LEER fichero");
             Log.e("EXCEPTION",ex.getMessage());
         }
     }
@@ -160,16 +162,16 @@ public class JuegoMain extends AppCompatActivity {
     {
         if(tipoCon == 'a') // llama a un metodo
         {
-
+            Toast.makeText(JuegoMain.this,"metodo: "+con,Toast.LENGTH_LONG).show();
         }
         if(tipoCon == 'b') // actualiza la bbdd
         {
-
+            Toast.makeText(JuegoMain.this,"bbdd: "+con,Toast.LENGTH_LONG).show();
         }
         if(tipoCon == 'c')  // carga el diccionario con un fichero nuevo
         {
             // comprobar si cambia de capitulo
-
+            Toast.makeText(JuegoMain.this,"fichero: "+con,Toast.LENGTH_LONG).show();
         }
     }
 

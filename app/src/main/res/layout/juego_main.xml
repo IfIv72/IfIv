@@ -18,6 +18,8 @@
         android:layout_above="@+id/layPadre"
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="-3dp"
+        android:paddingTop="3dp"
+        android:textAlignment="center"
         android:background="@drawable/shape_bordes_redondos"/>
 
     <LinearLayout
@@ -26,6 +28,7 @@
         android:layout_height="210dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/shape_dialogo"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -47,11 +50,16 @@
             <TextView
                 android:id="@+id/resp1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="105dp"
+                android:layout_marginBottom="2dp"
+                android:padding="3dp"
+                android:background="@color/eleccion"/>
             <TextView
                 android:id="@+id/resp2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="105dp"
+                android:padding="3dp"
+                android:background="@color/eleccion"/>
         </LinearLayout>
     </LinearLayout>
 

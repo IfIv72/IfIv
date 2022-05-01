@@ -1,0 +1,9 @@
+0-1-1;d;Admin;feliz;Primer dialogo;0-1-2
+0-1-2;d;Admin;normal;Lo siguiente es una eleccion;0-1-3
+0-1-3;e;Admin;Llamar un metodo;a;m;0-1-4;seguir probando;d;n;0-1-5
+0-1-4;d;Admin;normal;Has llamado a un metodo;0-1-2
+0-1-5;e;Admin;cambio en bbdd;b;insert into Megaeleccion;0-1-6;seguir probando;d;n;0-1-7
+0-1-6;d;Admin;normal;Cambio en la bbdd;0-1-2
+0-1-7;e;Admin;cambio de fichero;c;ficheroNuevo;0-1-8;Terminar pruebas;d;n;0-1-9
+0-1-8;d;Admin;normal;cambiando fichero;0-1-2
+0-1-9;d;Anubis;normal;fin de las pruebas;0-1-1
