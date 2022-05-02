@@ -83,7 +83,7 @@ public class JuegoMain extends AppCompatActivity {
     }
 
     // carga el fichero en conversaciones
-    public void llenarConversacion(String nomFich)
+    public boolean llenarConversacion(String nomFich)
     {
         Log.i("Fichero","LLENANDO...");
         conversacion = new HashMap<String, Dialogo>();
@@ -132,7 +132,9 @@ public class JuegoMain extends AppCompatActivity {
         catch (IOException ex) {
             Log.e ("Ficheros", "ERROR!!! al LEER--> "+nomFich);
             Log.e("EXCEPTION",ex.getMessage());
+            return false;
         }
+        return true;
     }
 
 
@@ -170,8 +172,18 @@ public class JuegoMain extends AppCompatActivity {
         }
         if(tipoCon == 'c')  // carga el diccionario con un fichero nuevo
         {
-            // comprobar si cambia de capitulo
-            Toast.makeText(JuegoMain.this,"fichero: "+con,Toast.LENGTH_LONG).show();
+            if(con.charAt(0) == actual.getCod().charAt(0))  // si es el mismo capitulo
+            {
+                // comprobar si cambia de capitulo
+                if(!llenarConversacion(con))
+                    Toast.makeText(JuegoMain.this,"fichero: "+con,Toast.LENGTH_LONG).show();
+            }
+            else  // cambia de capitulo
+            {
+                Toast.makeText(JuegoMain.this,"fichero: "+con,Toast.LENGTH_LONG).show();
+            }
+
+
         }
     }
 
