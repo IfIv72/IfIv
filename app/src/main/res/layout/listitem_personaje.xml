@@ -10,7 +10,7 @@
         android:id="@+id/imgPer"
         android:layout_width="82dp"
         android:layout_height="82dp"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true" />
 
     <TextView
         android:id="@+id/lblNombreP"

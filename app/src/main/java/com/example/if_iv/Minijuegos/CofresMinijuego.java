@@ -14,7 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.if_iv.R;
+import com.example.if_iv.util.Megaclase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +30,7 @@ public class CofresMinijuego extends AppCompatActivity
 
     private GridLayout glCofres;
     private TextView txtIntentos;
+
 
     //Botones y si son los que tienen premio
     private HashMap<ImageButton, Integer> btsPremio;
@@ -86,8 +90,8 @@ public class CofresMinijuego extends AppCompatActivity
             ImageButton imgbt= new ImageButton(this.getBaseContext());
 
             //Imagen y fondo
-            imgbt.setImageResource(R.drawable.cofre_m);
-            imgbt.setBackgroundColor(getResources().getColor(R.color.white));
+            imgbt.setImageResource(R.drawable.puerta);
+            imgbt.setBackgroundColor(getResources().getColor(R.color.nada));
             imgbt.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
             //ID
@@ -152,7 +156,7 @@ public class CofresMinijuego extends AppCompatActivity
 
                             //Muestra mensaje
                             Toast.makeText(getBaseContext(),"PERDISTE",Toast.LENGTH_SHORT).show();
-
+                            borrarPuertas(Techniques.Shake,2);
                             //Cierra el minijuego al medio segundo
                             Handler handler= new Handler();
                             handler.postDelayed(new Runnable() {
@@ -172,15 +176,16 @@ public class CofresMinijuego extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         actualizarIntentos();
-                        imgbt.setImageResource(R.drawable.cofre);
+                        cambiarImg(imgbt);
                         Toast.makeText(getBaseContext(),"GANASTE",Toast.LENGTH_SHORT).show();
+                        borrarPuertas(Techniques.FadeOutDown,0);
                         Handler handler= new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 finish();
                             }
-                        }, 500);
+                        }, 1200);
                     }
                 });
             }
@@ -213,6 +218,44 @@ public class CofresMinijuego extends AppCompatActivity
     {
         iHechos++;
         txtIntentos.setText((intentos-iHechos)+msj);
+    }
+
+    private void cambiarImg(ImageButton imgbt)
+    {
+        int[] diosesPremio=Megaclase.diosesPremio;
+        int i= (int) (Math.random()* diosesPremio.length);
+        imgbt.setImageResource(diosesPremio[i]);
+        GridLayout.LayoutParams lp= new GridLayout.LayoutParams();
+        lp.width=imgbt.getWidth()+100;
+        lp.height=imgbt.getHeight()+100;
+        imgbt.setLayoutParams(lp);
+
+        YoYo.with(Techniques.ZoomIn)
+                .duration(600)
+                .repeat(0)
+                .playOn(imgbt);
+        YoYo.with(Techniques.Swing)
+                .duration(500)
+                .repeat(1)
+                .playOn(imgbt);
+    }
+
+    private void borrarPuertas(Techniques technique, int repeat)
+    {
+        Set imgbts=btsPremio.keySet();
+
+        Iterator<ImageButton> iterator=imgbts.iterator();
+        while (iterator.hasNext()) {
+            ImageButton imgbt = iterator.next();
+
+            if (btsPremio.get(imgbt) == 0) {
+                YoYo.with(technique)
+                        .duration(500)
+                        .repeat(repeat)
+                        .playOn(imgbt);
+            }
+
+        }
     }
 
 }

@@ -88,18 +88,22 @@ public class PersonajesMain extends AppCompatActivity {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View item = inflater.inflate(R.layout.listitem_personaje, null);
 
+            //Estaria bien guardar aqui el dios
+
+            Dios d= ds.get(pos);
+
             // nombre dios
             TextView lblNombre = (TextView) item.findViewById(R.id.lblNombreP);
-            lblNombre.setText(ds.get(pos).getNombre());
-//            Log.i("I", ds.get(pos).getNombre());
+            lblNombre.setText(d.getNombre());
+//            Log.i("I", d.getNombre());
 
             // imagen dios
             ImageView img = (ImageView) item.findViewById(R.id.imgPer);
-            img.setImageResource(Megaclase.imgSegunDios(ds.get(pos).getNombre(),"chibi"));
+            img.setImageResource(Megaclase.imgSegunDios(d.getNombre(),"normal"));
 
             //info dios
             TextView lblInfoP = item.findViewById(R.id.lblInfoP);
-            lblInfoP.setText(ds.get(pos).getInfo());
+            lblInfoP.setText(d.getInfo());
 
             // barra afinidad (fondo)
             GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_dialogo);
@@ -112,11 +116,11 @@ public class PersonajesMain extends AppCompatActivity {
 
             // barra afinidad (relleno)
             TextView lblProgreso = item.findViewById(R.id.lblProgreso);
-            int progreso = (ds.get(pos).getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
+            int progreso = (d.getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
             lblProgreso.setWidth(progreso);  // varia segun la afinidad con el dios
             draw = (GradientDrawable) getDrawable(R.drawable.shape_relleno);
-            draw.setColor(Megaclase.colorSegunDios(ds.get(pos).getNombre()));
-            lblProgreso.setBackgroundColor(Megaclase.colorSegunDios(ds.get(pos).getNombre()));
+            draw.setColor(Megaclase.colorSegunDios(d.getNombre()));
+            lblProgreso.setBackgroundColor(Megaclase.colorSegunDios(d.getNombre()));
 
             return (item);
         }

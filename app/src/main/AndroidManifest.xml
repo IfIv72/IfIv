@@ -47,7 +47,6 @@
             android:name=".Minijuegos.PreguntasMinijuego"
             android:exported="false" />
 
-
     </application>
 
 </manifest>
