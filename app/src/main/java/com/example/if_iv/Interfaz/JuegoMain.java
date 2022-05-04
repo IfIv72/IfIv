@@ -148,11 +148,11 @@ public class JuegoMain extends AppCompatActivity {
         lblNombre.setText(nomDios);
         // cambiar color segun el dios
         GradientDrawable draw = (GradientDrawable) lblNombre.getBackground();
-        draw.setStroke(6, meg.colorSegunDios(nomDios,context));
+        draw.setStroke(6, meg.colorSegun(nomDios,context));
         lblNombre.setBackground(draw);
         draw = (GradientDrawable) layContenedor.getBackground();
-        draw.setStroke(6, meg.colorSegunDios(nomDios,context));
-        meg.colorSegunDios(nomDios,context);
+        draw.setStroke(6, meg.colorSegun(nomDios,context));
+        meg.colorSegun(nomDios,context);
         layContenedor.setBackground(draw);
 
         if(actual.getTipo() == 'd')  //dialogo normal

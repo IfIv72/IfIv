@@ -110,8 +110,8 @@ public class PersonajesMain extends AppCompatActivity {
             int progreso = (d.getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
             lblProgreso.setWidth(progreso);  // varia segun la afinidad con el dios
             draw = (GradientDrawable) getDrawable(R.drawable.shape_relleno);
-            draw.setColor(meg.colorSegunDios(d.getNombre(),context));
-            lblProgreso.setBackgroundColor(meg.colorSegunDios(d.getNombre(),context));
+            draw.setColor(meg.colorSegun(d.getNombre(),context));
+            lblProgreso.setBackgroundColor(meg.colorSegun(d.getNombre(),context));
 
             return (item);
         }

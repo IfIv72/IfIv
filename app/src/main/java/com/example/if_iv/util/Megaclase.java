@@ -112,9 +112,15 @@ public class Megaclase extends AppCompatActivity
     }
 
    ///// COLORES
-    public int colorSegunDios(String dios, Context context)
+    public int colorSegun(String dios, Context context)
     {
         switch(dios) {
+            case "griega":
+                return ContextCompat.getColor(context,R.color.griega);
+            case "nordica":
+                return ContextCompat.getColor(context,R.color.nordica);
+            case "egipcia":
+                return ContextCompat.getColor(context,R.color.egipcia);
             case "eleccion":
                 return ContextCompat.getColor(context,R.color.eleccion);
             case "Loki":
