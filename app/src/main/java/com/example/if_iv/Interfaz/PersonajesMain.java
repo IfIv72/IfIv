@@ -24,17 +24,17 @@ import com.example.if_iv.model.Dios;
 import com.example.if_iv.util.Megaclase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PersonajesMain extends AppCompatActivity {
 
     //lista
     private ListView list;
-//    private Dios[] nombres;
-//    private HashMap<String, Dios> dioses;  // <Nombre, dios>
 
     private DiosDao diosDao;
-    private ArrayList<Dios> ds;
+    private ArrayList<Dios> dioses;
+    private DialogoPersonajes dialogo;
+    private Megaclase meg = new Megaclase();
+    private Context context;
 
     private final int MAX_AFINIDAD = 100;
 
@@ -44,34 +44,26 @@ public class PersonajesMain extends AppCompatActivity {
         setContentView(R.layout.personajes_main);
 
         getSupportActionBar().hide();
+        context = this.getBaseContext();
 
         diosDao= new DiosDao(getBaseContext());
+        dioses =  diosDao.findAll();
 
         list = findViewById(R.id.listPer);
-//        nombres = new Dios[3];
-        llenarDioses();
-        AdaptadorDioses adaptador=new AdaptadorDioses(this, ds);
+        AdaptadorDioses adaptador=new AdaptadorDioses(this, dioses);
         list.setAdapter(adaptador);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
                 // abrir dialogo con la info del dios
-                int posDios = list.getSelectedItemPosition();
-                Dios seleccionado = ds.get(i);
+                Dios seleccionado = dioses.get(i);
+                dialogo = new DialogoPersonajes(seleccionado,meg,context);
+                dialogo.show(getSupportFragmentManager(), "dialogo_"+seleccionado.getNombre());
                 Log.i("dios seleccionado",seleccionado.getNombre());
                 Toast.makeText(getBaseContext(),seleccionado.getNombre()+":\n"+seleccionado.getInfo(),Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    // llena el array de dioses con los datos de la bbdd
-    public void llenarDioses()
-    {
-        ds= diosDao.findAll();
-//        nombres[0] = new Dios("Apolo",20,"info","ruta","griego");
-//        nombres[1] = new Dios("Loki",50,"info","ruta","nordico");
-//        nombres[2] = new Dios("Anubis",80,"info","ruta","egipcio");
-//        dioses = new HashMap<String, Dios>();
     }
 
     class AdaptadorDioses extends ArrayAdapter <Dios>
@@ -89,8 +81,7 @@ public class PersonajesMain extends AppCompatActivity {
             View item = inflater.inflate(R.layout.listitem_personaje, null);
 
             //Estaria bien guardar aqui el dios
-
-            Dios d= ds.get(pos);
+            Dios d= dioses.get(pos);
 
             // nombre dios
             TextView lblNombre = (TextView) item.findViewById(R.id.lblNombreP);
@@ -100,11 +91,11 @@ public class PersonajesMain extends AppCompatActivity {
             // imagen dios
             ImageView img = (ImageView) item.findViewById(R.id.imgPer);
             img.setImageResource(Megaclase.imgSegunDios(d.getNombre(),"normal"));
-
+        /*
             //info dios
             TextView lblInfoP = item.findViewById(R.id.lblInfoP);
             lblInfoP.setText(d.getInfo());
-
+        */
             // barra afinidad (fondo)
             GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_dialogo);
 
@@ -119,8 +110,8 @@ public class PersonajesMain extends AppCompatActivity {
             int progreso = (d.getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
             lblProgreso.setWidth(progreso);  // varia segun la afinidad con el dios
             draw = (GradientDrawable) getDrawable(R.drawable.shape_relleno);
-            draw.setColor(Megaclase.colorSegunDios(d.getNombre()));
-            lblProgreso.setBackgroundColor(Megaclase.colorSegunDios(d.getNombre()));
+            draw.setColor(meg.colorSegunDios(d.getNombre(),context));
+            lblProgreso.setBackgroundColor(meg.colorSegunDios(d.getNombre(),context));
 
             return (item);
         }

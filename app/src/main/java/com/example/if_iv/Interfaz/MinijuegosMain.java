@@ -26,7 +26,7 @@ public class MinijuegosMain extends AppCompatActivity {
     private FragmentManager fragmentManager;
 
     private ImageButton btnCofre, btnPreguntas,btnCasino, btnCartas;
-    private TextView titCofre, titPregunta,titCasino,titCartas, lblPuntos;
+    private TextView lblPuntos;
     private RelativeLayout bloqCasino,bloqCartas;  //aparecen cuando el minijuego esta bloqueado
     private int TOPE = 200;
     private int puntosGanados=52;
@@ -49,11 +49,6 @@ public class MinijuegosMain extends AppCompatActivity {
         btnPreguntas = findViewById(R.id.btnMPreguntas);
         btnCasino = findViewById(R.id.btnMCasino);
         btnCartas = findViewById(R.id.btnMCartas);
-
-        titCofre = findViewById(R.id.titCofre);
-        titPregunta = findViewById(R.id.titPreguntas);
-        titCasino = findViewById(R.id.titCasino);
-        titCartas = findViewById(R.id.titCartas);
 
         bloqCasino = findViewById(R.id.layBloqCasino);
         bloqCartas = findViewById(R.id.layBloqCartas);

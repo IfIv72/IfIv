@@ -1,6 +1,7 @@
 package com.example.if_iv.Interfaz;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,12 +25,12 @@ import java.util.HashMap;
 public class JuegoMain extends AppCompatActivity {
 
     private LinearLayout layDialogo, layEleccion, layContenedor;
-    private TextView lblDialogo, lblNombre, lblResp1, lblResp2;
+    private TextView lblNombre, lblDialogo, lblResp1, lblResp2;
     private ImageView imgDios;
     private HashMap<String, Dialogo> conversacion;
     private Dialogo actual;
     private Context context;
-
+    private Megaclase meg = new Megaclase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class JuegoMain extends AppCompatActivity {
         setContentView(R.layout.juego_main);
 
         getSupportActionBar().hide();
+
+        context = this.getBaseContext();
 
         layContenedor = findViewById(R.id.layPadre);
         lblNombre = findViewById(R.id.lblNombre);
@@ -49,12 +52,13 @@ public class JuegoMain extends AppCompatActivity {
         lblResp1 = findViewById(R.id.resp1);
         lblResp2 = findViewById(R.id.resp2);
 
+        // eventos
         layDialogo.setOnClickListener(view ->{
             // avanza al siguiente dialogo
             actual = conversacion.get(actual.getSiguiente());
             prepararDialogo();
         });
-
+            //pasar dialogos
         lblResp1.setOnClickListener(view ->{
 
             // tratar la consecuencia
@@ -89,7 +93,6 @@ public class JuegoMain extends AppCompatActivity {
         conversacion = new HashMap<String, Dialogo>();
         try
         {
-            context = this.getBaseContext();
             boolean primero = true;
             InputStreamReader fraw = new InputStreamReader(this.context.getAssets().open(nomFich));
             BufferedReader brin = new BufferedReader( fraw );
@@ -140,15 +143,24 @@ public class JuegoMain extends AppCompatActivity {
 
     public void prepararDialogo()
     {
-        lblNombre.setText(actual.getHablante());
+        String nomDios = actual.getHablante();
+
+        lblNombre.setText(nomDios);
         // cambiar color segun el dios
+        GradientDrawable draw = (GradientDrawable) lblNombre.getBackground();
+        draw.setStroke(6, meg.colorSegunDios(nomDios,context));
+        lblNombre.setBackground(draw);
+        draw = (GradientDrawable) layContenedor.getBackground();
+        draw.setStroke(6, meg.colorSegunDios(nomDios,context));
+        meg.colorSegunDios(nomDios,context);
+        layContenedor.setBackground(draw);
 
         if(actual.getTipo() == 'd')  //dialogo normal
         {
             layEleccion.setVisibility(View.GONE);
             layDialogo.setVisibility(View.VISIBLE);
             lblDialogo.setText(actual.getTexto());
-            imgDios.setImageResource(Megaclase.imgSegunDios(actual.getHablante(),actual.getEstado()));
+            imgDios.setImageResource(Megaclase.imgSegunDios(nomDios,actual.getEstado()));
         }
         else  // eleccion
         {

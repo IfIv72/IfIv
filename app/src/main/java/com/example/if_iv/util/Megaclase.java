@@ -3,6 +3,9 @@ package com.example.if_iv.util;
 
 import android.content.Context;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.example.if_iv.R;
 import com.example.if_iv.dao.DiosDao;
 import com.example.if_iv.model.Dios;
@@ -10,12 +13,15 @@ import com.example.if_iv.model.Dios;
 import java.util.ArrayList;
 
 // tiene metodos staticos que ayudaran al resto de clases para ahorrar lineas de codigo
-public class Megaclase
+public class Megaclase extends AppCompatActivity
 {
+    public static final int[] diosesPremio={
+            R.drawable.isis_feliz,
+            R.drawable.apolo_feliz,
+            R.drawable.anubis_feliz,
+            R.drawable.dionisio_feliz};
 
-    public static final int[] diosesPremio={R.drawable.isis_feliz, R.drawable.apolo_feliz, R.drawable.anubis_feliz, R.drawable.dionisio_feliz};
-
-  /////  IMAGENES y COLORES
+  /////  IMAGENES
     public static int imgSegunDios(String dios, String estado)
     {// descomentar al añadir las imagenes
         switch(dios)
@@ -105,28 +111,30 @@ public class Megaclase
         }
     }
 
-
-    public static int colorSegunDios(String dios)
+   ///// COLORES
+    public int colorSegunDios(String dios, Context context)
     {
         switch(dios) {
+            case "eleccion":
+                return ContextCompat.getColor(context,R.color.eleccion);
             case "Loki":
-                return R.color.loki;
+                return ContextCompat.getColor(context,R.color.loki);
             case "Freya":
-                return R.color.freya;
+                return ContextCompat.getColor(context,R.color.freya);
             case "Anubis":
-                return R.color.anubis;
+                return ContextCompat.getColor(context,R.color.anubis);
             case "Isis":
-                return R.color.isis;
+                return ContextCompat.getColor(context,R.color.isis);
             case "Apolo":
-                return R.color.apolo;
+                return ContextCompat.getColor(context,R.color.apolo);
             case "Hermes":
-                return R.color.hermes;
+                return ContextCompat.getColor(context,R.color.hermes);
             case "Dionisio":
-                return R.color.dionisio;
+                return ContextCompat.getColor(context,R.color.dionisio);
             case "iv":
-                return R.color.iv;
+                return ContextCompat.getColor(context,R.color.iv);
             default:
-                return R.color.black;
+                return ContextCompat.getColor(context,R.color.black);
         }
     }
 
