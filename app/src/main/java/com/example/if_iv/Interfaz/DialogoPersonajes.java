@@ -22,7 +22,7 @@ import com.example.if_iv.util.Megaclase;
 public class DialogoPersonajes extends DialogFragment {
 
     private RelativeLayout rel;
-    private TextView lblTexto, lblNombre;
+    private TextView lblTexto, lblNombre, lblMito;
     private ImageView img;
     private Dios dios;
     private Megaclase meg;
@@ -42,7 +42,7 @@ public class DialogoPersonajes extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        View v = inflater.inflate(R.layout.dialogo_aviso, null);
+        View v = inflater.inflate(R.layout.dialogo_personajes, null);
         builder.setView(v)/*.setPositiveButton("Aceptar",
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -52,17 +52,22 @@ public class DialogoPersonajes extends DialogFragment {
                         });*/;
 
         // colocar textos e imagenes
-        lblNombre = v.findViewById(R.id.lblTitulo);
+        lblNombre = v.findViewById(R.id.titNombre);
         lblNombre.setText(dios.getNombre());
+
+        lblMito = v.findViewById(R.id.lblMito);
+        lblMito.setText("dios "+dios.getMitologia());
+        lblMito.setTextColor(meg.colorSegun(dios.getMitologia(),context));
+
         lblTexto = v.findViewById(R.id.lblTexto);
         lblTexto.setText(dios.getInfo());
-        img = v.findViewById(R.id.imgChibi);
+        img = v.findViewById(R.id.imgDios);
         img.setImageResource(Megaclase.imgSegunDios(dios.getNombre(), "normal"));
 
         // cambiar el color segun el dios
         rel = v.findViewById(R.id.relative);
-        GradientDrawable draw = (GradientDrawable) rel.getBackground();
-        draw.setStroke(4, meg.colorSegunDios(dios.getNombre(), context));
+        GradientDrawable draw = (GradientDrawable) rel.getBackground();  //nullPointerException
+        draw.setStroke(4, meg.colorSegun(dios.getNombre(), context));
         rel.setBackground(draw);
 
         //Se cierra al tocarlo

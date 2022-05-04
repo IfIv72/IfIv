@@ -4,24 +4,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_dialogo">
+    android:background="@drawable/shape_dialogo"
+    android:padding="2dp">
 
     <ImageView
         android:id="@+id/imgDios"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_width="136dp"
+        android:layout_height="368dp"/>
 
-    <TextView
-        android:id="@+id/titNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imgDios"
-        android:layout_marginRight="26dp"/>
-
-    <TextView
-        android:id="@+id/lblTexto"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imgDios"/>
+        android:layout_toRightOf="@+id/imgDios">
+        <TextView
+            android:id="@+id/titNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="12dp"
+            android:textSize="23dp"/>
 
+        <TextView
+            android:id="@+id/lblMito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titNombre"/>
+        <TextView
+            android:id="@+id/lblTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblMito"/>
+    </RelativeLayout>
 </RelativeLayout>
