@@ -22,6 +22,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
                                     	"'capitulo'	TEXT,"+
                                     	"'comienzoCap'	TEXT,"+
                                     	"'puntos'	INTEGER"+
+                                        "'preguntas' TEXT"+
                                     ");";
 
     private final String createDios="CREATE TABLE 'Dios' (" +

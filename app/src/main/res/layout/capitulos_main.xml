@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <me.jagar.mindmappingandroidlibrary.Views.MindMappingView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mindMap"
+        android:background="@color/white"
+        />
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            &lt;!&ndash; CAP 0 &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/cap0"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="6dp"-->
+<!--                android:text="Cap 0"-->
+<!--                android:background="@drawable/shape_bordes_redondos"/>-->
+
+<!--            &lt;!&ndash; CAP 1 &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/cap1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@+id/cap0"-->
+<!--                android:layout_alignLeft="@id/cap0"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="6dp"-->
+<!--                android:text="Cap 1"-->
+<!--                android:background="@drawable/shape_bordes_redondos"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/bloqCap1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@id/cap0"-->
+<!--                android:layout_alignLeft="@id/cap0"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="6dp"-->
+<!--                android:background="@drawable/shape_bordes_redondos"/>-->
+
+<!--            &lt;!&ndash; CAP 2_1 &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/cap2_1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@+id/cap1"-->
+<!--                android:layout_toLeftOf="@id/cap1"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="6dp"-->
+<!--                android:text="Cap 2_1"-->
+<!--                android:background="@drawable/shape_bordes_redondos"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/bloqCap2_1"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@id/cap1"-->
+<!--                android:layout_marginStart="6dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:layout_marginEnd="6dp"-->
+<!--                android:layout_marginBottom="6dp"-->
+<!--                android:layout_toLeftOf="@id/cap1"-->
+<!--                android:background="@drawable/shape_bordes_redondos"-->
+<!--                android:padding="5dp" />-->
+
+<!--            &lt;!&ndash; CAP 2_2 &ndash;&gt;-->
+<!--           <TextView-->
+<!--                android:id="@+id/cap2_2"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@+id/cap1"-->
+<!--               android:layout_toRightOf="@id/cap1"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="6dp"-->
+<!--                android:text="Cap 2_2"-->
+<!--                android:background="@drawable/shape_bordes_redondos"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/bloqCap2_2"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@id/cap1"-->
+<!--                android:layout_toRightOf="@id/cap1"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="6dp"-->
+<!--                android:background="@drawable/shape_bordes_redondos"/>-->
+<!--        </RelativeLayout>-->
+<!--    </ScrollView>-->
+</RelativeLayout>

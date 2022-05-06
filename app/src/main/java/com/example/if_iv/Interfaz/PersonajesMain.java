@@ -33,7 +33,7 @@ public class PersonajesMain extends AppCompatActivity {
     private DiosDao diosDao;
     private ArrayList<Dios> dioses;
     private DialogoPersonajes dialogo;
-    private Megaclase meg = new Megaclase();
+    private Megaclase meg = new Megaclase(); //A Ainara esto no le gusta
     private Context context;
 
     private final int MAX_AFINIDAD = 100;

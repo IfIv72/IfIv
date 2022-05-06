@@ -11,6 +11,7 @@
         android:endColor="@color/fondo_shape"
         android:startColor="@color/fondo_shape"
         android:type="radial"
+        android:gradientRadius="50"
         />
 
     <stroke

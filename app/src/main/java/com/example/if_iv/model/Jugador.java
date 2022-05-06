@@ -18,6 +18,7 @@ public class Jugador
     private String capitulo; //Proceso
     private Date comienzoCap; //Fecha comienzo capitulo
     private int puntos; //Puntos que tiene
+    private Date preguntas;
 
 //    public Jugador(String nombre, String capitulo, Date comienzoCap, int puntos) {
 //        this.nombre = nombre;
@@ -27,18 +28,20 @@ public class Jugador
 //    }
 
 
-    public Jugador(String nombre, String capitulo, String comienzoCap, int puntos) {
+    public Jugador(String nombre, String capitulo, String comienzoCap, int puntos, String preguntas) {
         this.nombre = nombre;
         this.capitulo = capitulo;
         this.puntos = puntos;
         this.comienzoCap= FechaJugador.deStringAFecha(comienzoCap);
+        this.preguntas= FechaJugador.deStringAFecha(preguntas);
     }
 
-    public Jugador(String nombre, String capitulo, Date comienzoCap, int puntos) {
+    public Jugador(String nombre, String capitulo, Date comienzoCap, int puntos, Date preguntas) {
         this.nombre = nombre;
         this.capitulo = capitulo;
         this.puntos = puntos;
         this.comienzoCap= comienzoCap;
+        this.preguntas= preguntas;
     }
 
     public String getNombre() {
@@ -73,4 +76,11 @@ public class Jugador
         this.puntos = puntos;
     }
 
+    public Date getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(Date preguntas) {
+        this.preguntas = preguntas;
+    }
 }

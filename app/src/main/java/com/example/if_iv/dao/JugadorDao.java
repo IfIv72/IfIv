@@ -30,7 +30,7 @@ public class JugadorDao
     {
 
         Jugador jugador=null;
-        Cursor c=db.rawQuery("select nombre, capitulo, comienzoCap, puntos from Usuario", null);
+        Cursor c=db.rawQuery("select nombre, capitulo, comienzoCap, puntos, preguntas from Usuario", null);
 
         if(c.moveToFirst())
         {
@@ -42,7 +42,10 @@ public class JugadorDao
 
             int puntos=c.getInt(3);
 
-            jugador= new Jugador(nombre,capitulo,comienzoCap,puntos);
+            String p=c.getString(4);
+            Date preguntas = FechaJugador.deStringAFecha(p);
+
+            jugador= new Jugador(nombre,capitulo,comienzoCap,puntos, preguntas);
         }
 
         return jugador;

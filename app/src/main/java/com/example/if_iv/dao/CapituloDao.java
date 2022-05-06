@@ -39,6 +39,10 @@ public class CapituloDao {
 
                 Capitulo capitulo=new Capitulo(nombre, rutaFic, hecho);
 
+                ArrayList<Capitulo> hijos=findHijos(capitulo);
+                if(hijos!=null)
+                    capitulo.setHijos(hijos);
+
                 capitulos.add(capitulo);
 
             }while(c.moveToNext());
@@ -54,7 +58,7 @@ public class CapituloDao {
     public Capitulo find(Capitulo cap)
     {
         Capitulo capitulo=null;
-        Cursor c=db.rawQuery("select nombre, rutaFic, hecho from Capitulo where nombre=?", new String[]{capitulo.getNombre()});
+        Cursor c=db.rawQuery("select nombre, rutaFic, hecho from Capitulo where nombre=?", new String[]{cap.getNombre()});
         if(c.moveToFirst())
         {
                 String nombre=c.getString(0);
@@ -67,6 +71,31 @@ public class CapituloDao {
         }
 
         return capitulo;
+    }
+
+    public ArrayList findHijos(Capitulo cap)
+    {
+        ArrayList<Capitulo> hijos = new ArrayList<Capitulo>();
+
+        Cursor c=db.rawQuery("select nombre, rutaFic, hecho from Capitulo where nombre like '%"+cap.getNombre()+"-"+"%' order by nombre", null);
+        if(c.moveToFirst())
+        {
+            do {
+                String nombre=c.getString(0);
+                String rutaFic=c.getString(1);
+                Integer h=c.getInt(2);
+                Boolean hecho= Boolean01.gestionInt(h);
+
+                Capitulo capitulo=new Capitulo(nombre, rutaFic, hecho);
+
+                hijos.add(capitulo);
+
+            }while(c.moveToNext());
+        }
+
+        if(hijos.size()<=0)
+            hijos=null;
+        return hijos;
     }
 
 }
