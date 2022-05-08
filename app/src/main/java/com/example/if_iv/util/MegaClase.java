@@ -10,10 +10,14 @@ import com.example.if_iv.R;
 import com.example.if_iv.dao.DiosDao;
 import com.example.if_iv.model.Dios;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 // tiene metodos staticos que ayudaran al resto de clases para ahorrar lineas de codigo
-public class Megaclase extends AppCompatActivity
+public class MegaClase extends AppCompatActivity
 {
     public static final int[] diosesPremio={
             R.drawable.isis_feliz,
@@ -145,13 +149,48 @@ public class Megaclase extends AppCompatActivity
     }
 
  ///// CONVERSORES (sqlite)
-  /// Fechas
-
-
-
 
     //Booleans
+//Esto nos va a dar problemas a la hora de hacer las pruebas por que siempre da un valor valido jeje
+    public static boolean gestionInt(Integer inte)
+    {
+        if(inte==0)
+            return false;
+        return true;
+    }
 
+    public static Integer gestionBoolean(Boolean boo)
+    {
+        if(boo)
+            return 1;
+        return 0;
+    }
+
+    //Fechas
+    //yyyy-mm-dd hh:mm:ss
+
+    public static String deFechaAString(Date date)
+    {
+        DateFormat format= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String str= format.format(date);
+        return str;
+    }
+
+    public static Date deStringAFecha(String str) {
+
+        try
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = sdf.parse(str);
+            return date;
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 
 
 }

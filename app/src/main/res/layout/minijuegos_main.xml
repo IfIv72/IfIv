@@ -29,23 +29,26 @@
             android:id="@+id/btnMCofres"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
-            android:src="@drawable/cofre" />
+            android:backgroundTint="@color/nada"
+            android:scaleType="fitCenter"
+            android:src="@drawable/minigame" />
+
         <TextView
             android:id="@+id/titCofre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/btnMCofres"
             android:layout_alignLeft="@+id/btnMCofres"
-            android:layout_marginTop="-20dp"
+            android:layout_alignBottom="@+id/btnMCofres"
             android:layout_marginLeft="-15dp"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/shape_titulos"
             android:text="Cofres"
-            android:textSize="18dp"
-            android:background="@drawable/shape_titulos"/>
+            android:textSize="18dp" />
 
 
         <!-- Minijuego Preguntas -->
@@ -53,22 +56,37 @@
             android:id="@+id/btnMPreguntas"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_marginLeft="20dp"
             android:layout_alignParentEnd="true"
-            android:layout_margin="15dp"
-            android:src="@drawable/cofre"/>
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/nada"
+            android:scaleType="fitCenter"
+            android:src="@drawable/minigame" />
+
         <TextView
             android:id="@+id/titPreguntas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_alignBottom="@+id/btnMPreguntas"
             android:layout_alignLeft="@+id/btnMPreguntas"
-            android:layout_marginTop="-20dp"
+            android:layout_alignBottom="@+id/btnMPreguntas"
             android:layout_marginLeft="-15dp"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/shape_titulos"
+            android:padding="7dp"
             android:text="Preguntas"
-            android:textSize="16dp"
-            android:background="@drawable/shape_titulos"/>
+            android:textSize="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/layBloqPreguntas"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_alignBottom="@id/btnMPreguntas"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_bloqueado" />
 
 
         <!-- Minijuego Casino -->
@@ -76,55 +94,62 @@
             android:id="@+id/btnMCasino"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_marginLeft="20dp"
-            android:layout_margin="15dp"
             android:layout_below="@+id/btnMCofres"
-            android:src="@drawable/cofre"/>
+            android:layout_margin="15dp"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="@color/nada"
+            android:scaleType="fitCenter"
+            android:src="@drawable/minigame" />
+
         <TextView
             android:id="@+id/titCasino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_alignBottom="@+id/btnMCasino"
             android:layout_alignLeft="@+id/btnMCasino"
+            android:layout_alignBottom="@+id/btnMCasino"
+            android:layout_marginLeft="-10dp"
             android:layout_marginTop="-20dp"
-            android:layout_marginLeft="-15dp"
+            android:background="@drawable/shape_titulos"
             android:text="Casino"
-            android:textSize="18dp"
-            android:background="@drawable/shape_titulos"/>
+            android:textSize="18dp" />
 
         <RelativeLayout
             android:id="@+id/layBloqCasino"
             android:layout_width="150dp"
             android:layout_height="140dp"
             android:layout_alignBottom="@id/btnMCasino"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/shape_bloqueado" />
 
 
-
-        <!-- Minijuego Cartas -->
+                <!-- Minijuego Cartas -->
         <ImageButton
             android:id="@+id/btnMCartas"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="15dp"
             android:layout_below="@+id/btnMPreguntas"
-            android:src="@drawable/cofre"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/nada"
+            android:scaleType="fitCenter"
+            android:src="@drawable/minigame" />
+
         <TextView
             android:id="@+id/titCartas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_alignBottom="@+id/btnMCartas"
             android:layout_alignLeft="@+id/btnMCartas"
-            android:layout_marginTop="-20dp"
+            android:layout_alignBottom="@+id/btnMCartas"
             android:layout_marginLeft="-15dp"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/shape_titulos"
+            android:padding="7dp"
             android:text="Cartas"
-            android:textSize="18dp"
-            android:background="@drawable/shape_titulos"/>
+            android:textSize="18dp" />
 
         <RelativeLayout
             android:id="@+id/layBloqCartas"
@@ -132,7 +157,7 @@
             android:layout_height="140dp"
             android:layout_alignBottom="@id/btnMCartas"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="12dp"
-            android:background="@drawable/shape_bloqueado"/>
+            android:layout_marginRight="20dp"
+            android:background="@drawable/shape_bloqueado" />
     </RelativeLayout>
 </RelativeLayout>

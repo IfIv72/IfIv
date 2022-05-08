@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.if_iv.R;
 import com.example.if_iv.model.Dialogo;
 import com.example.if_iv.model.Respuesta;
-import com.example.if_iv.util.Megaclase;
+import com.example.if_iv.util.MegaClase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class JuegoMain extends AppCompatActivity {
     private HashMap<String, Dialogo> conversacion;
     private Dialogo actual;
     private Context context;
-    private Megaclase meg = new Megaclase();
+    private MegaClase meg = new MegaClase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +160,7 @@ public class JuegoMain extends AppCompatActivity {
             layEleccion.setVisibility(View.GONE);
             layDialogo.setVisibility(View.VISIBLE);
             lblDialogo.setText(actual.getTexto());
-            imgDios.setImageResource(Megaclase.imgSegunDios(nomDios,actual.getEstado()));
+            imgDios.setImageResource(MegaClase.imgSegunDios(nomDios,actual.getEstado()));
         }
         else  // eleccion
         {

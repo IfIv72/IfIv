@@ -1,6 +1,6 @@
 package com.example.if_iv.model;
 
-import com.example.if_iv.util.FechaJugador;
+import com.example.if_iv.util.MegaClase;
 
 import java.util.Date;
 
@@ -32,8 +32,8 @@ public class Jugador
         this.nombre = nombre;
         this.capitulo = capitulo;
         this.puntos = puntos;
-        this.comienzoCap= FechaJugador.deStringAFecha(comienzoCap);
-        this.preguntas= FechaJugador.deStringAFecha(preguntas);
+        this.comienzoCap= MegaClase.deStringAFecha(comienzoCap);
+        this.preguntas= MegaClase.deStringAFecha(preguntas);
     }
 
     public Jugador(String nombre, String capitulo, Date comienzoCap, int puntos, Date preguntas) {

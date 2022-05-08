@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.if_iv.R;
 import com.example.if_iv.dao.DiosDao;
 import com.example.if_iv.model.Dios;
-import com.example.if_iv.util.Megaclase;
+import com.example.if_iv.util.MegaClase;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class PersonajesMain extends AppCompatActivity {
     private DiosDao diosDao;
     private ArrayList<Dios> dioses;
     private DialogoPersonajes dialogo;
-    private Megaclase meg = new Megaclase(); //A Ainara esto no le gusta
+    private MegaClase meg = new MegaClase(); //A Ainara esto no le gusta
     private Context context;
 
     private final int MAX_AFINIDAD = 100;
@@ -90,7 +90,7 @@ public class PersonajesMain extends AppCompatActivity {
 
             // imagen dios
             ImageView img = (ImageView) item.findViewById(R.id.imgPer);
-            img.setImageResource(Megaclase.imgSegunDios(d.getNombre(),"normal"));
+            img.setImageResource(MegaClase.imgSegunDios(d.getNombre(),"normal"));
         /*
             //info dios
             TextView lblInfoP = item.findViewById(R.id.lblInfoP);

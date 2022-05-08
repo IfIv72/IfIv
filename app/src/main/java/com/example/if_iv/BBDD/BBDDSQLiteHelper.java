@@ -21,7 +21,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
                                     	"'nombre'	TEXT,"+
                                     	"'capitulo'	TEXT,"+
                                     	"'comienzoCap'	TEXT,"+
-                                    	"'puntos'	INTEGER"+
+                                    	"'puntos'	INTEGER,"+
                                         "'preguntas' TEXT"+
                                     ");";
 

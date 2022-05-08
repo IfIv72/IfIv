@@ -1,6 +1,6 @@
 package com.example.if_iv.model;
 
-import com.example.if_iv.util.Boolean01;
+import com.example.if_iv.util.MegaClase;
 
 public class MegaEleccion
 {
@@ -17,7 +17,7 @@ public class MegaEleccion
 
     public MegaEleccion(String decision, int hecha, String rutaFic) {
         this.decision = decision;
-        this.hecha = Boolean01.gestionInt(hecha);
+        this.hecha = MegaClase.gestionInt(hecha);
         this.rutaFic = rutaFic;
     }
 

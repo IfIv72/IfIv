@@ -5,16 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.if_iv.util.FechaJugador;
-import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.dao.DiosDao;
 import com.example.if_iv.model.Dios;
-import com.example.if_iv.util.FechaJugador;
+import com.example.if_iv.util.MegaClase;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,9 +33,9 @@ public class prubasFechas extends AppCompatActivity {
     {
         TextView txt=findViewById(R.id.txtFecha);
 
-        String str= FechaJugador.deFechaAString(new Date());
-        Date date=FechaJugador.deStringAFecha("2021-11-07 12:41:01");
-        String s=FechaJugador.deFechaAString(date);
+        String str= MegaClase.deFechaAString(new Date());
+        Date date=MegaClase.deStringAFecha("2021-11-07 12:41:01");
+        String s=MegaClase.deFechaAString(date);
 
         DiosDao dd= new DiosDao(this.getBaseContext());
         ArrayList<Dios> dios=dd.findAll();
