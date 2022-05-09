@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class JuegoMain extends AppCompatActivity {
 
     private LinearLayout layDialogo, layEleccion, layContenedor;
-    private TextView lblNombre, lblDialogo, lblResp1, lblResp2;
+    private TextView lblNombre, lblDialogo, lblResp1, lblResp2, lblResp3;
     private ImageView imgDios;
     private HashMap<String, Dialogo> conversacion;
     private Dialogo actual;
@@ -51,6 +51,7 @@ public class JuegoMain extends AppCompatActivity {
         layEleccion = findViewById(R.id.layEleccion);
         lblResp1 = findViewById(R.id.resp1);
         lblResp2 = findViewById(R.id.resp2);
+        lblResp3 = findViewById(R.id.resp3);
 
         // eventos
         layDialogo.setOnClickListener(view ->{
@@ -60,7 +61,6 @@ public class JuegoMain extends AppCompatActivity {
         });
             //pasar dialogos
         lblResp1.setOnClickListener(view ->{
-
             // tratar la consecuencia
             char tipoCon = actual.getResp1().getTipoCon();
             String consecuencia = actual.getResp1().getConsecuencia();
@@ -79,6 +79,17 @@ public class JuegoMain extends AppCompatActivity {
 
             // avanza al siguiente dialogo
             actual = conversacion.get(actual.getResp2().getSiguiente());
+            prepararDialogo();
+        });
+        lblResp3.setOnClickListener(view ->{
+
+            // tratar la consecuencia
+            char tipoCon = actual.getResp3().getTipoCon();
+            String consecuencia = actual.getResp3().getConsecuencia();
+            gestionarConsecuencia(tipoCon,consecuencia);
+
+            // avanza al siguiente dialogo
+            actual = conversacion.get(actual.getResp3().getSiguiente());
             prepararDialogo();
         });
 
@@ -118,7 +129,8 @@ public class JuegoMain extends AppCompatActivity {
                 {
                     Respuesta resp1 = new Respuesta(aux[3],aux[4].charAt(0),aux[5], aux[6]);
                     Respuesta resp2 = new Respuesta(aux[7],aux[8].charAt(0),aux[9], aux[10]);
-                    dialogo = new Dialogo(cod,tipo,hablante, resp1, resp2);
+                    Respuesta resp3 = new Respuesta(aux[11],aux[12].charAt(0),aux[13], aux[14]);
+                    dialogo = new Dialogo(cod,tipo,hablante, resp1, resp2, resp3);
                 }
 
                 if(primero)  // guarda el primer dialogo
@@ -144,8 +156,8 @@ public class JuegoMain extends AppCompatActivity {
     public void prepararDialogo()
     {
         String nomDios = actual.getHablante();
-
         lblNombre.setText(nomDios);
+
         // cambiar color segun el dios
         GradientDrawable draw = (GradientDrawable) lblNombre.getBackground();
         draw.setStroke(6, meg.colorSegun(nomDios,context));
@@ -168,6 +180,7 @@ public class JuegoMain extends AppCompatActivity {
             layEleccion.setVisibility(View.VISIBLE);
             lblResp1.setText(actual.getResp1().getTexto());
             lblResp2.setText(actual.getResp2().getTexto());
+            lblResp3.setText(actual.getResp3().getTexto());
         }
     }
 
@@ -182,7 +195,7 @@ public class JuegoMain extends AppCompatActivity {
         {
             Toast.makeText(JuegoMain.this,"bbdd: "+con,Toast.LENGTH_LONG).show();
         }
-        if(tipoCon == 'c')  // carga el diccionario con un fichero nuevo
+        if(tipoCon == 'c')  // carga un fichero nuevo
         {
             if(con.charAt(0) == actual.getCod().charAt(0))  // si es el mismo capitulo
             {
