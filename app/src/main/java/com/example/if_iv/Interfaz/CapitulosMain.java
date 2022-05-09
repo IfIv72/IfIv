@@ -59,7 +59,7 @@ public class CapitulosMain extends AppCompatActivity {
 
     public void comprobarBloqueos()
     {
-        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
+        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_nombre);
         draw.setCornerRadius(15);
 
         for(TextView cap : caps.keySet())

@@ -80,7 +80,7 @@ public class MinijuegosMain extends AppCompatActivity {
     {
         //actualiza los puntos
         recargarPuntos();
-        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_dialogo);
+        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
         lblPuntos.setBackground(draw);
 
 

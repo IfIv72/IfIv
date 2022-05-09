@@ -9,9 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="nada">#00FFFFFF</color>
 
-    <color name="bloqueado">#D818354E</color>
+    <color name="bloqueado">#B91E4261</color>
     <color name="capitulo">#EE91ABF6</color>
-    <color name="fondo_shape">#A4DCDCDC</color>
+    <color name="fondo_shape">#AEEDE3E3</color>
     <color name="eleccion">#83E0B08C</color>
 
     <color name="griega">#05B0C5</color>

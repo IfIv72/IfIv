@@ -61,7 +61,7 @@ public class PersonajesMain extends AppCompatActivity {
                 dialogo = new DialogoPersonajes(seleccionado,meg,context);
                 dialogo.show(getSupportFragmentManager(), "dialogo_"+seleccionado.getNombre());
                 Log.i("dios seleccionado",seleccionado.getNombre());
-                Toast.makeText(getBaseContext(),seleccionado.getNombre()+":\n"+seleccionado.getInfo(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(),seleccionado.getNombre()+":\n"+seleccionado.getInfo(),Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -80,7 +80,7 @@ public class PersonajesMain extends AppCompatActivity {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View item = inflater.inflate(R.layout.listitem_personaje, null);
 
-            //Estaria bien guardar aqui el dios
+            //guardar el dios
             Dios d= dioses.get(pos);
 
             // nombre dios
@@ -91,13 +91,10 @@ public class PersonajesMain extends AppCompatActivity {
             // imagen dios
             ImageView img = (ImageView) item.findViewById(R.id.imgPer);
             img.setImageResource(MegaClase.imgSegunDios(d.getNombre(),"normal"));
-        /*
-            //info dios
-            TextView lblInfoP = item.findViewById(R.id.lblInfoP);
-            lblInfoP.setText(d.getInfo());
-        */
+
+
             // barra afinidad (fondo)
-            GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_dialogo);
+            GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
 
             TextView lblProgresoFondo = item.findViewById(R.id.lblEntero);
             int anchoPantalla = getResources().getDisplayMetrics().widthPixels;

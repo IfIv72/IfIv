@@ -32,7 +32,9 @@ public class PreguntasMinijuego extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.preguntas_minijuegos);
+
         getSupportActionBar().hide();
+        context = this.getBaseContext();
 
         cantPregun = 1;
         aciertos = 0;
