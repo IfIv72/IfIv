@@ -1,6 +1,7 @@
 package com.example.if_iv.Minijuegos;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import android.content.Context;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.if_iv.R;
 import com.example.if_iv.model.Pregunta;
 
@@ -48,15 +51,15 @@ public class PreguntasMinijuego extends AppCompatActivity {
 
         lblOp1.setOnClickListener(view -> {
             Log.i("P",lblOp1.getText().toString());
-            comprobarRespuesta(lblOp1.getText().toString());
+            comprobarRespuesta(lblOp1.getText().toString(), lblOp1);
         });
         lblOp2.setOnClickListener(view -> {
             Log.i("P",lblOp2.getText().toString());
-            comprobarRespuesta(lblOp2.getText().toString());
+            comprobarRespuesta(lblOp2.getText().toString(), lblOp2);
         });
         lblOp3.setOnClickListener(view -> {
             Log.i("P",lblOp3.getText().toString());
-            comprobarRespuesta(lblOp3.getText().toString());
+            comprobarRespuesta(lblOp3.getText().toString() ,lblOp3);
         });
 
         llenarPreguntas();
@@ -101,25 +104,50 @@ public class PreguntasMinijuego extends AppCompatActivity {
         }
     }
 
-    public void comprobarRespuesta(String resp)
-    {
+    public void comprobarRespuesta(String resp, TextView op) {
         Log.i("cant:"," "+cantPregun);
         if(actual.getCorrecta().equals(resp))
         {
+            op.setTextColor(getColor(R.color.hermes));
             aciertos++;
-            Toast.makeText(PreguntasMinijuego.this,"acierto",Toast.LENGTH_SHORT).show();
+            YoYo.with(Techniques.Pulse).duration(1000).repeat(0).playOn(op);
+            Handler handler= new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    op.setTextColor(getColor(R.color.gray));
+                    //cuando pase el tiempo de bajo
+                    if(cantPregun < 3)  // responde 3 preguntas
+                        mostrarPregunta();
+                    else
+                        terminarJuego();
+                    cantPregun++;
+                }
+            }, 1200); // tiempo de la animacion
         }
-
-        if(cantPregun < 3)  // responde 3 preguntas
-            mostrarPregunta();
         else
-            terminarJuego();
-        cantPregun++;
+        {
+            YoYo.with(Techniques.Shake).duration(1000).repeat(0).playOn(op);
+            Handler handler= new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //cuando pase el tiempo de bajo
+                    if(cantPregun < 3)  // responde 3 preguntas
+                        mostrarPregunta();
+                    else
+                        terminarJuego();
+                    cantPregun++;
+                }
+            }, 1200); // tiempo de la animacion
+        }
     }
 
     public void terminarJuego()
     {
         Toast.makeText(PreguntasMinijuego.this,"Aciertos: "+aciertos,Toast.LENGTH_SHORT).show();
+        finish();
+        //////   AQUIIIIII
     }
 
     public void llenarPreguntas()

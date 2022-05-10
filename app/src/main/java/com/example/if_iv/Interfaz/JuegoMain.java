@@ -208,7 +208,6 @@ public class JuegoMain extends AppCompatActivity {
                 Toast.makeText(JuegoMain.this,"fichero: "+con,Toast.LENGTH_LONG).show();
             }
 
-
         }
     }
 
