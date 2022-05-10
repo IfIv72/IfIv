@@ -30,28 +30,24 @@ public class MegaClase extends AppCompatActivity
     {// descomentar al añadir las imagenes
         switch(dios)
         {
-//            case "Loki":
-//                if(estado.equals("chibi"))
-//                    return R.drawable.loki_chibi;
-//                if(estado.equals("feliz"))
-//                    return R.drawable.loki_feliz;
-//                if(estado.equals("triste"))
-//                    return R.drawable.loki_triste;
-//                if(estado.equals("enfadado"))
-//                    return R.drawable.loki_enfadado;
-//                if(estado.equals("normal"))
-//                    return R.drawable.loki;
-//            case "Freya":
-//                if(estado.equals("chibi"))
-//                    return R.drawable.freya_chibi;
-//                if(estado.equals("feliz"))
-//                    return R.drawable.freya_feliz;
-//                if(estado.equals("triste"))
-//                    return R.drawable.freya_triste;
-//                if(estado.equals("enfadado"))
-//                    return R.drawable.freya_enfadado;
-//                if(estado.equals("normal"))
-//                    return R.drawable.freya;
+            case "Loki":
+                if(estado.equals("feliz"))
+                    return R.drawable.loki_feliz;
+                if(estado.equals("triste"))
+                    return R.drawable.loki_triste;
+                if(estado.equals("enfadado"))
+                    return R.drawable.loki_enfadado;
+                if(estado.equals("normal"))
+                    return R.drawable.loki_normal;
+            case "Freya":
+                if(estado.equals("feliz"))
+                    return R.drawable.freya_feliz;
+                if(estado.equals("triste"))
+                    return R.drawable.freya_triste;
+                if(estado.equals("enfadado"))
+                    return R.drawable.freya_enfadado;
+                if(estado.equals("normal"))
+                    return R.drawable.freya_normal;
             case "Anubis":
                 if(estado.equals("feliz"))
                     return R.drawable.anubis_feliz;
@@ -79,17 +75,15 @@ public class MegaClase extends AppCompatActivity
                     return R.drawable.apolo_enfadado;
                 if(estado.equals("normal"))
                     return R.drawable.apolo_normal;
-//            case "Hermes":
-//                if(estado.equals("chibi"))
-//                    return R.drawable.hermes_chibi;
-//                if(estado.equals("feliz"))
-//                    return R.drawable.hermes_feliz;
-//                if(estado.equals("triste"))
-//                    return R.drawable.hermes_triste;
-//                if(estado.equals("enfadado"))
-//                    return R.drawable.hermes_enfadado;
-//                if(estado.equals("normal"))
-//                    return R.drawable.hermes;
+            case "Hermes":
+                if(estado.equals("feliz"))
+                    return R.drawable.hermes_feliz;
+                if(estado.equals("triste"))
+                    return R.drawable.hermes_triste;
+                if(estado.equals("enfadado"))
+                    return R.drawable.hermes_enfadado;
+                if(estado.equals("normal"))
+                    return R.drawable.hermes_normal;
             case "Dionisio":
                 if(estado.equals("feliz"))
                     return R.drawable.dionisio_feliz;

@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <me.jagar.mindmappingandroidlibrary.Views.MindMappingView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mindMap"
-        android:background="@color/white"
-        />
+        <me.jagar.mindmappingandroidlibrary.Views.MindMappingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mindMap"
+            android:background="@color/white"
+            />
 
 <!--    <ScrollView-->
 <!--        android:layout_width="match_parent"-->

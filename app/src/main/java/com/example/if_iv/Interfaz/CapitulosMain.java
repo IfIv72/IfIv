@@ -3,6 +3,7 @@ package com.example.if_iv.Interfaz;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import java.util.HashMap;
 import me.jagar.mindmappingandroidlibrary.Views.Item;
 import me.jagar.mindmappingandroidlibrary.Views.ItemLocation;
 import me.jagar.mindmappingandroidlibrary.Views.MindMappingView;
+import me.jagar.mindmappingandroidlibrary.Zoom.ZoomApi;
+import me.jagar.mindmappingandroidlibrary.Zoom.ZoomLayout;
 
 public class CapitulosMain extends AppCompatActivity {
 
@@ -51,6 +54,16 @@ public class CapitulosMain extends AppCompatActivity {
 
         colocados=new ArrayList<Item>();
         mindMap= findViewById(R.id.mindMap);
+//        mindMap.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if(event.getAction() == MotionEvent.Action_)
+//                {
+//
+//                }
+//                return false;
+//            }
+//        });
         items= new HashMap<Item, Capitulo>();
         cargarMindMap();
 
@@ -118,8 +131,8 @@ public class CapitulosMain extends AppCompatActivity {
 
     private Item item(Capitulo capitulo)
     {
-        Item i=new Item(CapitulosMain.this, "Capitulo: "+capitulo.getNombre(), "", true);
-        i.setBackgroundResource(R.drawable.shape_titulos);
+        Item i=new Item(CapitulosMain.this, capitulo.getNombre(),"", false);
+        i.setBackgroundResource(R.drawable.shape_dialogo);
         i.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
