@@ -15,22 +15,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.if_iv.R;
 import com.example.if_iv.model.Dialogo;
 import com.example.if_iv.model.Respuesta;
-import com.example.if_iv.util.Megaclase;
+import com.example.if_iv.util.MegaClase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JuegoMain extends AppCompatActivity {
 
     private LinearLayout layDialogo, layEleccion, layContenedor;
-    private TextView lblNombre, lblDialogo, lblResp1, lblResp2;
+    private TextView lblNombre, lblDialogo, lblResp1, lblResp2, lblResp3;
     private ImageView imgDios;
     private HashMap<String, Dialogo> conversacion;
     private Dialogo actual;
     private Context context;
-    private Megaclase meg = new Megaclase();
+    private MegaClase meg = new MegaClase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class JuegoMain extends AppCompatActivity {
         layEleccion = findViewById(R.id.layEleccion);
         lblResp1 = findViewById(R.id.resp1);
         lblResp2 = findViewById(R.id.resp2);
+        lblResp3 = findViewById(R.id.resp3);
 
         // eventos
         layDialogo.setOnClickListener(view ->{
@@ -60,7 +64,6 @@ public class JuegoMain extends AppCompatActivity {
         });
             //pasar dialogos
         lblResp1.setOnClickListener(view ->{
-
             // tratar la consecuencia
             char tipoCon = actual.getResp1().getTipoCon();
             String consecuencia = actual.getResp1().getConsecuencia();
@@ -81,6 +84,17 @@ public class JuegoMain extends AppCompatActivity {
             actual = conversacion.get(actual.getResp2().getSiguiente());
             prepararDialogo();
         });
+        lblResp3.setOnClickListener(view ->{
+
+            // tratar la consecuencia
+            char tipoCon = actual.getResp3().getTipoCon();
+            String consecuencia = actual.getResp3().getConsecuencia();
+            gestionarConsecuencia(tipoCon,consecuencia);
+
+            // avanza al siguiente dialogo
+            actual = conversacion.get(actual.getResp3().getSiguiente());
+            prepararDialogo();
+        });
 
         llenarConversacion("pruebaDialogo");
         prepararDialogo();
@@ -93,44 +107,23 @@ public class JuegoMain extends AppCompatActivity {
         conversacion = new HashMap<String, Dialogo>();
         try
         {
-            boolean primero = true;
-            InputStreamReader fraw = new InputStreamReader(this.context.getAssets().open(nomFich));
-            BufferedReader brin = new BufferedReader( fraw );
-            String linea = brin.readLine();
-            while (linea!=null)
-            {
-                Dialogo dialogo;
-                String[] aux = linea.split(";");
 
-                //construye el dialogo
-                String cod = aux[0];
-                char tipo = aux[1].charAt(0);
-                String hablante = aux[2];
+            //Lee el fichero y filtra las lineas en blanco
+            List<String> lines = new BufferedReader(new InputStreamReader(this.context.getAssets().open(nomFich)))
+                    .lines()
+                    .filter(l-> l.length() != 0)
+                    .collect(Collectors.toList());
 
-                if(tipo == 'd') // dialogo plano
-                {
-                    String estado = aux[3];
-                    String txt = aux[4];
-                    String siguiente = aux[5];
-                    dialogo = new Dialogo(cod,tipo,hablante,estado,txt,siguiente);
-                }
-                else // eleccion
-                {
-                    Respuesta resp1 = new Respuesta(aux[3],aux[4].charAt(0),aux[5], aux[6]);
-                    Respuesta resp2 = new Respuesta(aux[7],aux[8].charAt(0),aux[9], aux[10]);
-                    dialogo = new Dialogo(cod,tipo,hablante, resp1, resp2);
-                }
+            actual = contruirDialogo(lines.get(0));
+            conversacion.put(actual.getCod(),actual);
 
-                if(primero)  // guarda el primer dialogo
-                {
-                    actual = dialogo;
-                    primero = false;
-                }
+            lines = lines.subList(1,lines.size());
+            lines.forEach(linea -> {
+                Log.i("Fichero",linea);
+                Dialogo dialogo = contruirDialogo(linea);
+                conversacion.put(dialogo.getCod(),dialogo);  // aniade la linea convertida en Dialogo
+            });
 
-                conversacion.put(cod,dialogo);  // aniade la linea convertida en Dialogo
-                linea = brin.readLine();  // lee la siguiente linea
-            }
-            fraw.close();
         }
         catch (IOException ex) {
             Log.e ("Ficheros", "ERROR!!! al LEER--> "+nomFich);
@@ -140,12 +133,48 @@ public class JuegoMain extends AppCompatActivity {
         return true;
     }
 
+    private Dialogo contruirDialogo(String linea){
+
+        Dialogo dialogo;
+        String[] aux = linea.split(";");
+
+        //Si la linea está mal construida se la salta
+        if (aux.length < 6) {
+            Log.i("Fichero", "Linea mal construida");
+            return null;
+        }
+
+        //construye el dialogo
+        String cod = aux[0];
+        char tipo = aux[1].charAt(0);
+        String hablante = aux[2];
+
+        if(tipo == 'd') // dialogo plano
+        {
+            String estado = aux[3];
+            String txt = aux[4];
+            String siguiente = aux[5];
+            dialogo = new Dialogo(cod,tipo,hablante,estado,txt,siguiente);
+        }
+        else // eleccion
+        {
+            Respuesta resp1 = new Respuesta(aux[3],aux[4].charAt(0),aux[5], aux[6]);
+            Respuesta resp2 = new Respuesta(aux[7],aux[8].charAt(0),aux[9], aux[10]);
+            Respuesta resp3 = new Respuesta(aux[11],aux[12].charAt(0),aux[13], aux[14]);
+            dialogo = new Dialogo(cod,tipo,hablante, resp1, resp2, resp3);
+        }
+
+        return dialogo;
+
+    }
+
+
 
     public void prepararDialogo()
     {
         String nomDios = actual.getHablante();
-
         lblNombre.setText(nomDios);
+
         // cambiar color segun el dios
         GradientDrawable draw = (GradientDrawable) lblNombre.getBackground();
         draw.setStroke(6, meg.colorSegun(nomDios,context));
@@ -160,7 +189,7 @@ public class JuegoMain extends AppCompatActivity {
             layEleccion.setVisibility(View.GONE);
             layDialogo.setVisibility(View.VISIBLE);
             lblDialogo.setText(actual.getTexto());
-            imgDios.setImageResource(Megaclase.imgSegunDios(nomDios,actual.getEstado()));
+            imgDios.setImageResource(MegaClase.imgSegunDios(nomDios,actual.getEstado()));
         }
         else  // eleccion
         {
@@ -168,6 +197,7 @@ public class JuegoMain extends AppCompatActivity {
             layEleccion.setVisibility(View.VISIBLE);
             lblResp1.setText(actual.getResp1().getTexto());
             lblResp2.setText(actual.getResp2().getTexto());
+            lblResp3.setText(actual.getResp3().getTexto());
         }
     }
 
@@ -182,7 +212,7 @@ public class JuegoMain extends AppCompatActivity {
         {
             Toast.makeText(JuegoMain.this,"bbdd: "+con,Toast.LENGTH_LONG).show();
         }
-        if(tipoCon == 'c')  // carga el diccionario con un fichero nuevo
+        if(tipoCon == 'c')  // carga un fichero nuevo
         {
             if(con.charAt(0) == actual.getCod().charAt(0))  // si es el mismo capitulo
             {
@@ -194,7 +224,6 @@ public class JuegoMain extends AppCompatActivity {
             {
                 Toast.makeText(JuegoMain.this,"fichero: "+con,Toast.LENGTH_LONG).show();
             }
-
 
         }
     }

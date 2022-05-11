@@ -4,7 +4,7 @@ public class Dialogo {
 
     private String cod, hablante, texto, estado, codSiguiente;
     private char tipo;   // d: dialogo normal ,  e: eleccion
-    private Respuesta resp1, resp2;
+    private Respuesta resp1, resp2, resp3;
 
     public Dialogo(String cod, char tipo, String hablante, String est, String texto, String s)
     {
@@ -16,13 +16,14 @@ public class Dialogo {
         this.codSiguiente = s;
     }
 
-    public Dialogo(String cod, char tipo, String hablante, Respuesta resp1, Respuesta resp2)
+    public Dialogo(String cod, char tipo, String hablante, Respuesta r1, Respuesta r2, Respuesta r3)
     {
         this.cod = cod;
         this.hablante = hablante;
         this.tipo = tipo;
-        this.resp1 = resp1;
-        this.resp2 = resp2;
+        this.resp1 = r1;
+        this.resp2 = r2;
+        this.resp3 = r3;
     }
 
     public String getCod() { return cod; }
@@ -40,5 +41,7 @@ public class Dialogo {
     public Respuesta getResp1() { return resp1; }
 
     public Respuesta getResp2() { return resp2; }
+
+    public Respuesta getResp3() { return resp3; }
 
 }

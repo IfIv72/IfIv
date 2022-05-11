@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.if_iv.util.FechaJugador;
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.model.Jugador;
+import com.example.if_iv.model.MegaEleccion;
+import com.example.if_iv.util.MegaClase;
 
 import java.util.Date;
 
@@ -38,12 +39,12 @@ public class JugadorDao
             String capitulo=c.getString(1);
 
             String cc=c.getString(2);
-            Date comienzoCap= FechaJugador.deStringAFecha(cc);
+            Date comienzoCap= MegaClase.deStringAFecha(cc);
 
             int puntos=c.getInt(3);
 
             String p=c.getString(4);
-            Date preguntas = FechaJugador.deStringAFecha(p);
+            Date preguntas = MegaClase.deStringAFecha(p);
 
             jugador= new Jugador(nombre,capitulo,comienzoCap,puntos, preguntas);
         }
@@ -51,60 +52,56 @@ public class JugadorDao
         return jugador;
     }
 
-    //Cambia todos los artibutos del jugador que no sean null (o -1 en puntos) en el parametro por los de este
-    public void update(Jugador j)
+    public boolean jugadoHoyPreguntas()
     {
-        String query=queryUpdate(j);
-        if(query!=null)
-            db.execSQL(query);
+        String query="select preguntas from Jugador";
+        Cursor c= db.rawQuery(query, null);
+        if(c.moveToFirst())
+        {
+            String preguntas=c.getString(0);
+            Date ultima= MegaClase.deStringAFecha(preguntas);
+            Date hoy= new Date();
 
-    }
-
-    //Crea la query update dependiendo de los campos null
-    private String queryUpdate(Jugador j)
-    {
-        String query=null;
-
-        String nombre=j.getNombre();
-        String capitulo=j.getCapitulo();
-        Date comienzoCap=j.getComienzoCap();
-        int puntos=j.getPuntos();
-
-        if(nombre!=null || capitulo!=null || comienzoCap!=null || puntos!=-1) {
-
-            query = "update Jugador set ";
-
-            if (nombre != null) {
-                query = query + "nombre='" + nombre + "' ";
+            if(ultima.getYear()==hoy.getYear() && ultima.getMonth()==hoy.getMonth() && ultima.getDay()==hoy.getDay())
+            {
+                return true;
             }
-
-            if (capitulo != null) {
-                if (nombre != null)
-                    query = query + ",capitulo='" + capitulo + "' ";
-                else
-                    query = query + "capitulo='" + capitulo + "' ";
-            }
-
-            if (comienzoCap != null) {
-                String cc = FechaJugador.deFechaAString(comienzoCap);
-                if (nombre != null || capitulo != nombre)
-                    query = query + ",comienzoCap='" + cc + "' ";
-                else
-                    query = query + "comienzoCap='" + cc + "' ";
-            }
-
-            if (puntos != -1) {
-                if (nombre != null || capitulo != nombre || comienzoCap != null)
-                    query = query + ",puntos=" + puntos + " ";
-                else
-                    query = query + "puntos=" + puntos + " ";
-            }
-
-            query = query.substring(0, query.length() - 1) + ";";
 
         }
 
-        return query;
+        return false;
+    }
+
+    public void updatePreguntas(Date preguntas)
+    {
+        String query="update Jugador set preguntas="+MegaClase.deFechaAString(preguntas);
+        db.execSQL(query);
+    }
+
+    public void updatePreguntas(String preguntas)
+    {
+        String query="update Jugador set preguntas="+preguntas;
+        db.execSQL(query);
+    }
+
+    public void updateNombre()
+    {
+
+    }
+
+    public void updatePuntos()
+    {
+
+    }
+
+    public void updateCapitulo()
+    {
+
+    }
+
+    public void updateComienzoCap()
+    {
+
     }
 
 }

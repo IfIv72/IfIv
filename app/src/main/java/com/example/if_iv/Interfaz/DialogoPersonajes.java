@@ -17,7 +17,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.if_iv.R;
 import com.example.if_iv.model.Dios;
-import com.example.if_iv.util.Megaclase;
+import com.example.if_iv.util.MegaClase;
 
 public class DialogoPersonajes extends DialogFragment {
 
@@ -25,10 +25,10 @@ public class DialogoPersonajes extends DialogFragment {
     private TextView lblTexto, lblNombre, lblMito;
     private ImageView img;
     private Dios dios;
-    private Megaclase meg;
+    private MegaClase meg;
     private Context context;
 
-    public DialogoPersonajes(Dios d, Megaclase meg, Context con)
+    public DialogoPersonajes(Dios d, MegaClase meg, Context con)
     {
         this.dios = d;
         this.meg = meg;
@@ -62,7 +62,7 @@ public class DialogoPersonajes extends DialogFragment {
         lblTexto = v.findViewById(R.id.lblTexto);
         lblTexto.setText(dios.getInfo());
         img = v.findViewById(R.id.imgDios);
-        img.setImageResource(Megaclase.imgSegunDios(dios.getNombre(), "normal"));
+        img.setImageResource(MegaClase.imgSegunDios(dios.getNombre(), "normal"));
 
         // cambiar el color segun el dios
         rel = v.findViewById(R.id.relative);

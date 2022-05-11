@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,8 @@ import java.util.List;
 import me.jagar.mindmappingandroidlibrary.Views.Item;
 import me.jagar.mindmappingandroidlibrary.Views.ItemLocation;
 import me.jagar.mindmappingandroidlibrary.Views.MindMappingView;
+import me.jagar.mindmappingandroidlibrary.Zoom.ZoomApi;
+import me.jagar.mindmappingandroidlibrary.Zoom.ZoomLayout;
 
 public class CapitulosMain extends AppCompatActivity {
 
@@ -48,7 +51,6 @@ public class CapitulosMain extends AppCompatActivity {
         // Por cada capitulo, crear un item de interfaz y asociarlo al nombre
         capitulosInterfaz = new HashMap<>();
         capitulos.forEach(c -> capitulosInterfaz.put(c.getNombre(),item(c)));
-
         //crea padre fake
         Item padre = item(new Capitulo("-1","",false,"",""));
         capitulosInterfaz.put("-1",padre);
@@ -61,7 +63,7 @@ public class CapitulosMain extends AppCompatActivity {
 
     public void comprobarBloqueos()
     {
-        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
+        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_nombre);
         draw.setCornerRadius(15);
 
         for(TextView cap : caps.keySet())
@@ -151,10 +153,11 @@ public class CapitulosMain extends AppCompatActivity {
 
     private Item item(Capitulo capitulo)
     {
-        Item i=new Item(CapitulosMain.this, capitulo.getNombre(), "", true);
+        Item i=new Item(CapitulosMain.this, capitulo.getNombre(),"", false);
         i.setBackgroundResource(R.drawable.shape_titulos);
         i.setMinimumWidth(200);
 
+        i.setBackgroundResource(R.drawable.shape_dialogo);
         i.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

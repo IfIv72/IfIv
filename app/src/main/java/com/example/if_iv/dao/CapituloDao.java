@@ -4,9 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.if_iv.util.Boolean01;
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.model.Capitulo;
+import com.example.if_iv.util.MegaClase;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -37,7 +37,7 @@ public class CapituloDao {
                 String nombre = c.getString(0);
                  String rutaFic = c.getString(1);
                 Integer h = c.getInt(2);
-                Boolean hecho = Boolean01.gestionInt(h);
+                Boolean hecho = MegaClase.gestionInt(h);
                 String padre = c.getString(3);
                 String siguiente = c.getString(4);
 
@@ -69,9 +69,9 @@ public class CapituloDao {
                 String nombre=c.getString(0);
                 String rutaFic=c.getString(1);
                 Integer h=c.getInt(2);
-                Boolean hecho= Boolean01.gestionInt(h);  String padre = c.getString(3);
-                String siguiente = c.getString(4);
 
+                Boolean hecho= MegaClase.gestionInt(h);  String padre = c.getString(3);
+                String siguiente = c.getString(4);
                 capitulo = new Capitulo(nombre, rutaFic, hecho, siguiente, padre);
         }
 
@@ -89,9 +89,10 @@ public class CapituloDao {
                 String nombre=c.getString(0);
                 String rutaFic=c.getString(1);
                 Integer h=c.getInt(2);
-                Boolean hecho= Boolean01.gestionInt(h);
+                Boolean hecho= MegaClase.gestionInt(h);
                 String padre = c.getString(3);
                 String siguiente = c.getString(4);
+
 
                 Capitulo capitulo = new Capitulo(nombre, rutaFic, hecho, siguiente, padre);
                 hijos.add(capitulo);

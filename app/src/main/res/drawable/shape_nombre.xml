@@ -4,23 +4,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners
-        android:bottomLeftRadius="5dp"
-        android:bottomRightRadius="5dp"
-        android:topLeftRadius="5dp"
-        android:topRightRadius="5dp"/>
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="20dp"
+        android:topRightRadius="20dp"/>
 
-    <!--
     <gradient
         android:angle="0"
         android:endColor="@color/fondo_shape"
-        android:startColor="#959E9E9E"
-        android:type="radial"
-        android:gradientRadius="50"
-        />-->
-    <solid android:color="#f1f1f1"/>
+        android:startColor="@color/fondo_shape"
+        android:type="linear"
+        />
 
     <stroke
-        android:color="#404040"
+        android:color="@color/capitulo"
         android:width="4dp"/>
 
     <size/><!--

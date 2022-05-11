@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BBDDSQLiteHelper extends SQLiteOpenHelper {
+public class BBDDSQLiteHelper extends SQLiteOpenHelper
+{
 
     private Context context;
 
