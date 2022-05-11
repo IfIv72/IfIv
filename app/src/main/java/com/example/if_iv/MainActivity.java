@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.Interfaz.CapitulosMain;
+import com.example.if_iv.Interfaz.CapitulosMainPro;
 import com.example.if_iv.Interfaz.JuegoMain;
 import com.example.if_iv.Interfaz.MinijuegosMain;
 import com.example.if_iv.Interfaz.PersonajesMain;
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, CapitulosMain.class);
         startActivity(intent);
     }
+
+    public void irCapitulosPro(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, CapitulosMainPro.class);
+        startActivity(intent);
+    }
+
 
     public void irPersonajes(View v)
     {

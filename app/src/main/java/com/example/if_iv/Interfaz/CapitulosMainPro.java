@@ -1,10 +1,8 @@
 package com.example.if_iv.Interfaz;
 
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,16 +16,13 @@ import com.example.if_iv.model.Capitulo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import me.jagar.mindmappingandroidlibrary.Views.Item;
 import me.jagar.mindmappingandroidlibrary.Views.ItemLocation;
 import me.jagar.mindmappingandroidlibrary.Views.MindMappingView;
-import me.jagar.mindmappingandroidlibrary.Zoom.ZoomApi;
-import me.jagar.mindmappingandroidlibrary.Zoom.ZoomLayout;
 
-public class CapitulosMain extends AppCompatActivity {
+public class CapitulosMainPro extends AppCompatActivity {
 
     private HashMap<TextView,TextView> caps = new HashMap<>();
 
@@ -70,35 +65,7 @@ public class CapitulosMain extends AppCompatActivity {
      */
     public void comprobarBloqueos()
     {
-        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_nombre);
-        draw.setCornerRadius(15);
 
-        for(TextView cap : caps.keySet())
-        {
-            cap.setTextColor(ContextCompat.getColor(this,R.color.white));
-
-            String nom = cap.getText().toString();  // nombre del capitulo  ej:(Cap0)
-
-            //consulta si el capitulo esta bloqueado
-            String sql = "";
-
-            TextView bloqueo = caps.get(cap);  // se muestra si el capitulo esta bloqueado
-            draw.setColor(ContextCompat.getColor(this,R.color.bloqueado));
-            bloqueo.setBackground(draw);
-            bloqueo.setOnClickListener(view -> {
-                Toast.makeText(CapitulosMain.this,"Bloqueado",Toast.LENGTH_SHORT).show();
-            });
-
-            boolean bloqueado = true;
-            if(bloqueado == false)
-            {
-                bloqueo.setVisibility(View.GONE);
-                cap.setTextColor(ContextCompat.getColor(this,R.color.black));
-                cap.setOnClickListener(view -> {
-                    Toast.makeText(CapitulosMain.this, cap.getText().toString(), Toast.LENGTH_SHORT).show();
-                });
-            }
-        }
     }
 
     /**
@@ -176,7 +143,7 @@ public class CapitulosMain extends AppCompatActivity {
      */
     private Item item(Capitulo capitulo)
     {
-        Item i=new Item(CapitulosMain.this, capitulo.getNombre(),"", false);
+        Item i=new Item(CapitulosMainPro.this, capitulo.getNombre(),"", false);
         i.setBackgroundResource(R.drawable.shape_titulos);
         i.setMinimumWidth(150);
         i.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

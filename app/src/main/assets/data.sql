@@ -10,11 +10,11 @@ insert into Dios(nombre, afinidad, info, rutaImg, mitologia) values ('Loki',0,'Q
 insert into Dios(nombre, afinidad, info, rutaImg, mitologia) values ('Iv',0,'Ivinfo','IvImfruta','none');
 
 insert into Capitulo (nombre, rutaFic, hecho, padre, siguiente) values ('0','raw.C0',0,'-1','1');
-insert into Capitulo (nombre, rutaFic, hecho, padre) values ('1','raw.C1',0,'-1');
+insert into Capitulo (nombre, rutaFic, hecho, padre, siguiente) values ('1','raw.C1',0,'-1','2');
 insert into Capitulo (nombre, rutaFic, hecho, padre, siguiente) values ('1-1.0','raw.C1',0,'1','2');
 insert into Capitulo (nombre, rutaFic, hecho, padre, siguiente) values ('1-1.1','raw.C1',0,'1','2');
-insert into Capitulo (nombre, rutaFic, hecho, padre) values ('2','raw.C2',0,'-1');
-insert into Capitulo (nombre, rutaFic, hecho, padre) values ('3','raw.C3',0,'-1');
+insert into Capitulo (nombre, rutaFic, hecho, padre, siguiente) values ('2','raw.C2',0,'-1','3');
+insert into Capitulo (nombre, rutaFic, hecho, padre, siguiente) values ('3','raw.C3',0,'-1','4');
 insert into Capitulo (nombre, rutaFic, hecho, padre) values ('4','raw.C4',0,'-1');
 
 insert into MegaEleccion (decision, hecha, rutaFic) values ('d1',0,'raw.d1');

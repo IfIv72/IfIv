@@ -100,7 +100,13 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
             //Prepara la bbdd
             db.beginTransaction();
             lines.forEach(line -> {
-                db.execSQL(line);
+                try {
+                    db.execSQL(line);
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Log.i("Error BD","Error al insertar datos. linea: " + line);
+                }
                 Log.i("BBDD", "Insert completada: " + line);
             });
 
