@@ -1,5 +1,6 @@
 package com.example.if_iv.Interfaz;
 
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,8 @@ import com.example.if_iv.model.Capitulo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import me.jagar.mindmappingandroidlibrary.Views.Item;
 import me.jagar.mindmappingandroidlibrary.Views.ItemLocation;
@@ -23,14 +26,12 @@ import me.jagar.mindmappingandroidlibrary.Views.MindMappingView;
 
 public class CapitulosMain extends AppCompatActivity {
 
-    private HashMap<TextView,TextView> caps = new HashMap<TextView,TextView>();
+    private HashMap<TextView,TextView> caps = new HashMap<>();
 
     private CapituloDao capituloDao;
     private ArrayList<Capitulo> capitulos;
-
+    private HashMap<String,Item> capitulosInterfaz;
     private MindMappingView mindMap;
-    private HashMap<Item, Capitulo> items;
-    private ArrayList<Item> colocados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +40,23 @@ public class CapitulosMain extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-
-        //caps.put(findViewById(R.id.cap0),findViewById(R.id.cap0));
-//        caps.put(findViewById(R.id.cap1),findViewById(R.id.bloqCap1));
-//        caps.put(findViewById(R.id.cap2_1),findViewById(R.id.bloqCap2_1));
-//        caps.put(findViewById(R.id.cap2_2),findViewById(R.id.bloqCap2_2));
-
-        capitulos=new ArrayList<Capitulo>();
-        capituloDao= new CapituloDao(this.getBaseContext());
+        // Recoger capitulos de la BD
+        capitulos = new ArrayList<>();
+        capituloDao = new CapituloDao(this.getBaseContext());
         cargarCapitulos();
 
-        colocados=new ArrayList<Item>();
-        mindMap= findViewById(R.id.mindMap);
-        items= new HashMap<Item, Capitulo>();
-        cargarMindMap();
+        // Por cada capitulo, crear un item de interfaz y asociarlo al nombre
+        capitulosInterfaz = new HashMap<>();
+        capitulos.forEach(c -> capitulosInterfaz.put(c.getNombre(),item(c)));
 
-        comprobarBloqueos();
+        //crea padre fake
+        Item padre = item(new Capitulo("-1","",false,"",""));
+        capitulosInterfaz.put("-1",padre);
+
+        // Dibujar el mindmap
+        mindMap = findViewById(R.id.mindMap);
+        cargarMindMap();
+        //comprobarBloqueos();
     }
 
     public void comprobarBloqueos()
@@ -67,6 +69,7 @@ public class CapitulosMain extends AppCompatActivity {
             cap.setTextColor(ContextCompat.getColor(this,R.color.white));
 
             String nom = cap.getText().toString();  // nombre del capitulo  ej:(Cap0)
+
             //consulta si el capitulo esta bloqueado
             String sql = "";
 
@@ -92,73 +95,81 @@ public class CapitulosMain extends AppCompatActivity {
 
     private void cargarCapitulos()
     {
-        this.capitulos= capituloDao.findAll();
+        this.capitulos = capituloDao.findAll();
     }
 
     private void cargarMindMap()
     {
+        // Settings del mindmap
         mindMap.setConnectionCircRadius(0);
         mindMap.setConnectionArgSize(0);
-        Capitulo c=capituloDao.find(new Capitulo("0"));
-        Item root=item(c);
-        mindMap.addCentralItem(root, false);
+        mindMap.setConnectionArrowSize(0);
 
-        for (int i=1; i<capitulos.size();i++)
-        {
-            Item it=item(capitulos.get(i));
-            if(colocados.contains(it)==false)
-            {
-                colocados.add(it);
-                mindMap.addItem(it,root,100,15, ItemLocation.BOTTOM,false, null);
-                cargarHijos(root, it);
+        //crear root
+        Capitulo rootCap = capituloDao.find(new Capitulo("0"));
+        Item root = item(rootCap);
+        root.setVisibility(View.GONE);
+        mindMap.addCentralItem(root, false);
+        mindMap.setConnectionColor("#00000000");
+
+        //cargar hijos
+        capitulos.stream()
+                .filter(c -> "0".equals(c.getNombre()) == false)
+                .forEach(cap -> {
+            System.out.println(cap.getNombre());
+            if(cap.getNombre().length() == 1) {
+                System.out.println("Cargando hijo " + cap.getNombre());
+                Item padre = capitulosInterfaz.get(cap.getPadre());
+                cargarHijos(cap, padre, true);
             }
+
+        });
+
+    }
+
+    private void cargarHijos(Capitulo hijo, Item padre, boolean root){
+        Item itemHijo = capitulosInterfaz.get(hijo.getNombre());
+
+        int location = ItemLocation.RIGHT;
+
+        if(root) {
+            location = ItemLocation.LEFT;
         }
 
+
+        mindMap.addItem(itemHijo,padre,0,0, location,false, null);
+
+        List<Capitulo> nietos = hijo.getHijos();
+        if(nietos == null) {
+            return;
+        }
+
+        nietos.forEach(nieto -> {
+           cargarHijos(nieto,itemHijo,false);
+        });
     }
 
     private Item item(Capitulo capitulo)
     {
-        Item i=new Item(CapitulosMain.this, "Capitulo: "+capitulo.getNombre(), "", true);
+        Item i=new Item(CapitulosMain.this, capitulo.getNombre(), "", true);
         i.setBackgroundResource(R.drawable.shape_titulos);
+        i.setMinimumWidth(200);
+
         i.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Item i= (Item) v;
-                Capitulo c= items.get(i);
+                Capitulo c = capitulo;
                 Log.i("item",c.getNombre());
 
             }
         });
-        items.put(i,capitulo);
         return i;
     }
 
-    private void cargarHijos(Item root, Item ite)
-    {
-        Capitulo c= items.get(root);
-        ArrayList<Capitulo> hijos= c.getHijos();
-        if(hijos!= null && hijos.size()>0)
-        {
-            Item last= null;
-            for (int j=0; j<hijos.size();j++)
-            {
-                Item it= item(hijos.get(j));
-                if(colocados.contains(it)==false)
-                {
-                    colocados.add(it);
-                    mindMap.addItem(it,root, 100,15, ItemLocation.BOTTOM, false, null);
-                }
-                last=it;
-            }
+    public void dibujarCapitulo(Capitulo c){
 
-            root=last;
-
-        }
-        else
-        {
-            root=ite;
-        }
     }
 
 }

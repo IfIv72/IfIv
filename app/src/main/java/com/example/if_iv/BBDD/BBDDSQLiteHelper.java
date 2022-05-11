@@ -11,66 +11,36 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class BBDDSQLiteHelper extends SQLiteOpenHelper
-{
-
-    //Strings para la creacion de las tablas de la BBDD
-    private final String createJugador="CREATE TABLE 'Jugador' ("+
-                                    	"'nombre'	TEXT,"+
-                                    	"'capitulo'	TEXT,"+
-                                    	"'comienzoCap'	TEXT,"+
-                                    	"'puntos'	INTEGER"+
-                                        "'preguntas' TEXT"+
-                                    ");";
-
-    private final String createDios="CREATE TABLE 'Dios' (" +
-            "'nombre' TEXT," +
-            "'afinidad' TEXT," +
-            "'info' TEXT," +
-            "'rutaImg' TEXT," +
-            "'mitologia' TEXT" +
-            ");";
-
-    private final String createCapitulo="CREATE TABLE 'Capitulo' (" +
-            "'nombre' TEXT," +
-            "'rutaFic' TEXT," +
-            "'hecho' INTEGER" +
-            ");";
-
-    private final String createMegaEleccion="CREATE TABLE 'MegaEleccion' (" +
-            "'decision' TEXT," +
-            "'hecha' INTEGER," +
-            "'rutaFic' TEXT" +
-            ");";
-
-    //ArrayList para guardar todos los SQLCrete
-    private ArrayList<String> creates;
+public class BBDDSQLiteHelper extends SQLiteOpenHelper {
 
     private Context context;
 
-    //Constructor, solo necesitas contexto lo demas no cambiara
+    /**
+     *   Constructor, solo necesitas contexto lo demas no cambiara
+     */
     public BBDDSQLiteHelper(@Nullable Context context) {
 
         super(context, "BBDD", null, 1);
         this.context=context;
-        creates= new ArrayList<String>();
-        creates.add(createCapitulo);
-        creates.add(createDios);
-        creates.add(createJugador);
-        creates.add(createMegaEleccion);
-
     }
 
-    //Creacion de la base de datos
-    //Path: data/data/com.example.if_iv/databases/BBDD
+    /**
+     *   Creacion de la base de datos
+     *   Path: data/data/com.example.if_iv/databases/BBDD
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         crearBBDD(db);
     }
 
-    //Si ha cambios en la BBDD
+    /**
+     *  Si ha cambios en la BBDD
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -85,43 +55,61 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
 
     }
 
-    //Metodo en el que se crean las tablas y les inserta los datos
+    /**
+     *   Metodo en el que se crean las tablas y les inserta los datos
+     */
     public void crearBBDD(SQLiteDatabase db)
     {
-        for (String create: creates)
-        {
-            db.execSQL(create);
+
+        Stream<String> sql = null;
+        try {
+            sql = new BufferedReader(
+                new InputStreamReader(
+                        this.context.getAssets().open("tables.sql"),
+                        StandardCharsets.UTF_8
+                )
+            ).lines().filter(l -> l.length() != 0);
+
+            sql.forEach(create -> {
+                db.execSQL(create);
+                Log.i("BBDD", "Tabla creada: " + create);
+            } );
+            insertData(db);
+        } catch (IOException e) {
+            Log.i("Error BD","La base de datos no se pudo crear.");
         }
-        insertData(db);
+
+
     }
 
-    //Metodo en el que se insertan los datos que esten en ela rchivo assets/data.sql
-    //Ese archivo tiene que estar en sql y no tener comentarios
+    /**
+     * Metodo en el que se insertan los datos que esten en la archivo assets/data.sql
+     * El archivo tiene que estar en sql y no tener comentarios
+     * @param db La conexión a la base de datos
+     */
     public void insertData(SQLiteDatabase db)
     {
         try
         {
-            //Lee el fichero
-            BufferedReader br= new BufferedReader(new InputStreamReader(this.context.getAssets().open("data.sql")));
+            //Lee el fichero y filtra las lineas en blanco
+            Stream<String> lines = new BufferedReader(
+                    new InputStreamReader(this.context.getAssets().open("data.sql"))
+            ).lines().filter(l-> l.length() != 0);
+
             //Prepara la bbdd
             db.beginTransaction();
-            String line= br.readLine();
-            while(line!=null)
-            {
-                if(line.length()>0)
-                {
-                    //ejecuta la linea leida en el fichero en la bbdd
-                    db.execSQL(line);
-                }
-                line=br.readLine();
-            }
+            lines.forEach(line -> {
+                db.execSQL(line);
+                Log.i("BBDD", "Insert completada: " + line);
+            });
+
             //cierra la bbdd
             db.setTransactionSuccessful();
             db.endTransaction();
         }
         catch (IOException e)
         {
-            Log.i("errrorBD",e.getMessage());
+            Log.i("errorBD",e.getMessage());
         }
 
     }

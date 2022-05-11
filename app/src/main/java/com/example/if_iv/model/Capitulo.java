@@ -1,6 +1,7 @@
 package com.example.if_iv.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Capitulo
@@ -10,49 +11,44 @@ public class Capitulo
     private String rutaFic;
     private boolean hecho;
 
-    private ArrayList<Capitulo> hijos;
+    private List<Capitulo> hijos;
+    private String siguiente;
+    private String padre;
 
-    public Capitulo(String nombre, String rutaFic, boolean hecho) {
+    public Capitulo(String nombre, String rutaFic, boolean hecho, String siguiente, String padre) {
         this.nombre = nombre;
         this.rutaFic = rutaFic;
         this.hecho = hecho;
+        this.siguiente = siguiente;
+        this.padre = padre;
     }
 
-    public Capitulo(String nombre)
-    {
-        this.nombre= nombre;
+    public Capitulo(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public List<Capitulo> getHijos() {
+        return hijos;
+    }
+
+    public void setHijos(List<Capitulo> hijos) {
+        this.hijos = hijos;
+    }
+
+    public String getSiguiente() {
+        return siguiente;
     }
 
     public String getRutaFic() {
         return rutaFic;
     }
 
-    public void setRutaFic(String rutaFic) {
-        this.rutaFic = rutaFic;
-    }
-
-    public boolean isHecho() {
-        return hecho;
-    }
-
-    public void setHecho(boolean hecho) {
-        this.hecho = hecho;
-    }
-
-    public ArrayList<Capitulo> getHijos() {
-        return hijos;
-    }
-
-    public void setHijos(ArrayList<Capitulo> hijos) {
-        this.hijos = hijos;
+    public String getPadre() {
+        return padre;
     }
 
     @Override
@@ -66,5 +62,10 @@ public class Capitulo
     @Override
     public int hashCode() {
         return Objects.hash(nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "Capitulo " + nombre + "{ hijos : [" + ( hijos == null ? "" : hijos) + "], siguiente : '" + siguiente + "'}";
     }
 }
