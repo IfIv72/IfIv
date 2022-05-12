@@ -42,12 +42,6 @@ public class CapitulosMain extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-
-        //caps.put(findViewById(R.id.cap0),findViewById(R.id.cap0));
-//        caps.put(findViewById(R.id.cap1),findViewById(R.id.bloqCap1));
-//        caps.put(findViewById(R.id.cap2_1),findViewById(R.id.bloqCap2_1));
-//        caps.put(findViewById(R.id.cap2_2),findViewById(R.id.bloqCap2_2));
-
         capitulos=new ArrayList<Capitulo>();
         capituloDao= new CapituloDao(this.getBaseContext());
         cargarCapitulos();
