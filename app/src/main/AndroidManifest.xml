@@ -33,6 +33,12 @@
         <activity
             android:name=".Interfaz.CapitulosMain"
             android:exported="false" />
+        <activity
+            android:name=".Interfaz.AjustesMain"
+            android:exported="false" />
+        <activity
+            android:name=".Interfaz.CreditosMain"
+            android:exported="false" />
 
         <activity
             android:name=".Minijuegos.CofresMinijuego"

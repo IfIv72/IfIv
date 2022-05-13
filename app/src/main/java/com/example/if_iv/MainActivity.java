@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
+import com.example.if_iv.Interfaz.AjustesMain;
 import com.example.if_iv.Interfaz.CapitulosMain;
 import com.example.if_iv.Interfaz.JuegoMain;
 import com.example.if_iv.Interfaz.MinijuegosMain;
@@ -23,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         BBDDSQLiteHelper bbdd=new BBDDSQLiteHelper(getBaseContext());
 
+    }
+
+    public void irAjustes(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, AjustesMain.class);
+        startActivity(intent);
     }
 
     public void irMinijuegos(View v)
