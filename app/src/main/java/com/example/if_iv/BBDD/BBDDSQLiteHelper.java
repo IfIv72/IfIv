@@ -26,8 +26,9 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
      */
     public BBDDSQLiteHelper(@Nullable Context context) {
 
-        super(context, "BBDD", null, 1);
+        super(context, "BBDD", null, 2);
         this.context=context;
+
     }
 
     /**
@@ -37,7 +38,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db) {
         crearBBDD(db);
-    }
+    } 
 
     /**
      *  Si ha cambios en la BBDD
@@ -100,7 +101,13 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
             //Prepara la bbdd
             db.beginTransaction();
             lines.forEach(line -> {
-                db.execSQL(line);
+                try {
+                    db.execSQL(line);
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Log.i("Error BD","Error al insertar datos. linea: " + line);
+                }
                 Log.i("BBDD", "Insert completada: " + line);
             });
 

@@ -11,7 +11,6 @@ import com.example.if_iv.Interfaz.CapitulosMain;
 import com.example.if_iv.Interfaz.JuegoMain;
 import com.example.if_iv.Interfaz.MinijuegosMain;
 import com.example.if_iv.Interfaz.PersonajesMain;
-import com.example.if_iv.dao.DiosDao;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
-        BBDDSQLiteHelper bbdd=new BBDDSQLiteHelper(getBaseContext());
-
     }
 
     public void irMinijuegos(View v)
