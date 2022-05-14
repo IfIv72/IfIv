@@ -4,21 +4,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners
-        android:radius="20dp"/>
+        android:radius="5dp"/>
 
-    <gradient
+
+    <solid
+        android:color="@color/fondo_shape_2"
+    />
+
+    <stroke
+        android:color="#606060"
+        android:width="4dp"
+        />
+
+    <!--
+   <gradient
         android:angle="0"
         android:endColor="@color/fondo_shape"
         android:startColor="@color/fondo_shape"
-        android:type="radial"
-        android:gradientRadius="60"
-        />
+    />
 
     <stroke
         android:color="@color/capitulo"
-        android:width="4dp"/>
+        android:width="6dp"
+        />
 
-    <size/><!--
+    <size/>
         android:width="150dp"
         android:height="50dp"
      -->

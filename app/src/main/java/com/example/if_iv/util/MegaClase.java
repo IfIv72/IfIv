@@ -149,9 +149,7 @@ public class MegaClase extends AppCompatActivity {
 
     public static Integer gestionBoolean(Boolean boo)
     {
-        if(boo)
-            return 1;
-        return 0;
+        return boo ? 1 : 0;
     }
 
     //Fechas

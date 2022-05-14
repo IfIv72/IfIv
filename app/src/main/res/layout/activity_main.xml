@@ -64,18 +64,6 @@
             android:onClick="irPersonajes"
             android:text="Personajes" />
 
-        <Button
-            android:id="@+id/btnPersonajes2"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnCapitulo"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="205dp"
-            android:layout_marginBottom="7dp"
-            android:onClick="irCapitulosPro"
-            android:text="CAPITULOS PRO" />
     </RelativeLayout>
 
     <Button

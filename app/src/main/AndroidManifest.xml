@@ -33,9 +33,6 @@
         <activity
             android:name=".Interfaz.CapitulosMain"
             android:exported="false" />
-        <activity
-            android:name=".Interfaz.CapitulosMainPro"
-            android:exported="false" />
 
         <activity
             android:name=".Minijuegos.CofresMinijuego"

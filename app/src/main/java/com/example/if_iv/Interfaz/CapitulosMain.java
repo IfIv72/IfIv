@@ -1,66 +1,60 @@
 package com.example.if_iv.Interfaz;
 
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.R;
 import com.example.if_iv.dao.CapituloDao;
+import com.example.if_iv.lib.BluePrint;
+import com.example.if_iv.lib.ChapterMap;
+import com.example.if_iv.lib.LineView;
 import com.example.if_iv.model.Capitulo;
+import com.example.if_iv.util.AtomicInteger;
+import com.example.if_iv.util.ResponsiveTools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import me.jagar.mindmappingandroidlibrary.Views.Item;
-import me.jagar.mindmappingandroidlibrary.Views.ItemLocation;
 import me.jagar.mindmappingandroidlibrary.Views.MindMappingView;
-import me.jagar.mindmappingandroidlibrary.Zoom.ZoomApi;
-import me.jagar.mindmappingandroidlibrary.Zoom.ZoomLayout;
 
 public class CapitulosMain extends AppCompatActivity {
 
     private HashMap<TextView,TextView> caps = new HashMap<>();
-
-    private CapituloDao capituloDao;
-    private ArrayList<Capitulo> capitulos;
-    private HashMap<String,Item> capitulosInterfaz;
-    private MindMappingView mindMap;
+    private BBDDSQLiteHelper bdHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capitulos_main);
-
         getSupportActionBar().hide();
 
-        // Recoger capitulos de la BD
-        capitulos = new ArrayList<>();
-        capituloDao = new CapituloDao(this.getBaseContext());
-        cargarCapitulos();
+        this.bdHelper = new BBDDSQLiteHelper(getBaseContext());
 
-        // Por cada capitulo, crear un item de interfaz y asociarlo al nombre
-        capitulosInterfaz = new HashMap<>();
-        capitulos.forEach(c -> capitulosInterfaz.put(c.getNombre(),item(c)));
-        //crea padre fake
-        Item padre = item(new Capitulo("-1","",false,"",""));
-        capitulosInterfaz.put("-1",padre);
+        // Recoger capitulos de la BD
+        final CapituloDao dao = new CapituloDao(bdHelper);
+        final ArrayList<Capitulo> capitulos = (ArrayList<Capitulo>) cargarCapitulos(dao);
+
+        // Crear mindmmap
+        final BluePrint<Capitulo> print = ChapterMap.createMapBlueprint(capitulos);
+        final  BluePrint<Button> buttonPrint = new BluePrint<Button>();
 
         // Dibujar el mindmap
-        mindMap = findViewById(R.id.mindMap);
-        cargarMindMap();
+        ConstraintLayout view = findViewById(R.id.map);
+        cargarMindMap(print.getLayers(), buttonPrint, view);
 
         //crear lineas de conexion
-        crearLineas();
+        crearLineas(buttonPrint.getLayers(), view);
 
         //comprobarBloqueos();
     }
@@ -68,154 +62,74 @@ public class CapitulosMain extends AppCompatActivity {
     /**
      * Comprobar que capitulos estan bloqueados
      */
-    public void comprobarBloqueos()
-    {
-        GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_nombre);
-        draw.setCornerRadius(15);
-
-        for(TextView cap : caps.keySet())
-        {
-            cap.setTextColor(ContextCompat.getColor(this,R.color.white));
-
-            String nom = cap.getText().toString();  // nombre del capitulo  ej:(Cap0)
-
-            //consulta si el capitulo esta bloqueado
-            String sql = "";
-
-            TextView bloqueo = caps.get(cap);  // se muestra si el capitulo esta bloqueado
-            draw.setColor(ContextCompat.getColor(this,R.color.bloqueado));
-            bloqueo.setBackground(draw);
-            bloqueo.setOnClickListener(view -> {
-                Toast.makeText(CapitulosMain.this,"Bloqueado",Toast.LENGTH_SHORT).show();
-            });
-
-            boolean bloqueado = true;
-            if(bloqueado == false)
-            {
-                bloqueo.setVisibility(View.GONE);
-                cap.setTextColor(ContextCompat.getColor(this,R.color.black));
-                cap.setOnClickListener(view -> {
-                    Toast.makeText(CapitulosMain.this, cap.getText().toString(), Toast.LENGTH_SHORT).show();
-                });
-            }
-        }
+    public void comprobarBloqueos() {
     }
 
     /**
      * Carga los capitulos de la BD
+     * @return
      */
-    private void cargarCapitulos()
+    private static List<Capitulo> cargarCapitulos(CapituloDao dao)
     {
-        this.capitulos = capituloDao.findAll();
+       return dao.findAll();
     }
 
     /**
      * Crea el mapa de capitulos
+     * @param capas Las capas del mapa
+     * @param view La vista del mapa
      */
-    private void cargarMindMap()
-    {
-        // Settings del mindmap
-        mindMap.setConnectionCircRadius(0);
-        mindMap.setConnectionArgSize(0);
-        mindMap.setConnectionArrowSize(0);
+    private void cargarMindMap(List<List<Capitulo>> capas, BluePrint<Button> buttonPrint,ConstraintLayout view) {
 
-        //crear root
-        Capitulo rootCap = capituloDao.find(new Capitulo("0"));
-        Item root = item(rootCap);
-        root.setVisibility(View.GONE);
-        mindMap.addCentralItem(root, false);
-        mindMap.setConnectionColor("#00000000");
+        final int DEFAULT_WIDTH = 300;
+        final int DEFAULT_HEIGHT = 200;
+        final int DEFAULT_Y_OFFSET = 100;
+        final int DEFAULT_X_PADDING = 50;
+        final int DEFAULT_Y_PADDING = 50;
 
-        //cargar hijos
-        capitulos.stream()
-                .filter(c -> "0".equals(c.getNombre()) == false)
-                .forEach(cap -> {
-            System.out.println(cap.getNombre());
-            if(cap.getNombre().length() == 1) {
-                System.out.println("Cargando hijo " + cap.getNombre());
-                Item padre = capitulosInterfaz.get(cap.getPadre());
-                cargarHijos(cap, padre, true);
-            }
+        view.setBackgroundResource(R.drawable.defaultfondoblur);
 
+        AtomicInteger contadorY = new AtomicInteger(0);
+        capas.forEach(capa -> {
+
+            AtomicInteger contadorX = new AtomicInteger(0);
+            capa.forEach(capitulo -> {
+
+                // Crear capitulo button
+                Button boton = new Button(this);
+                boton.setText("" + capitulo.getCodigo());
+                boton.setBackgroundResource(R.drawable.shape_bordes_redondos);
+                boton.setPadding(DEFAULT_X_PADDING,DEFAULT_Y_PADDING,DEFAULT_X_PADDING,DEFAULT_Y_PADDING);
+                boton.setWidth(DEFAULT_WIDTH - DEFAULT_X_PADDING);
+                boton.setAlpha(.65f);
+
+                // Coordenadas del boton
+                final int displayWidth = ResponsiveTools.getDisplayWidth(view);
+                boton.setX(contadorX.getValue() * DEFAULT_WIDTH + displayWidth/2 - (DEFAULT_WIDTH/2) * capa.size());
+                boton.setY(contadorY.getValue() * DEFAULT_HEIGHT + DEFAULT_Y_OFFSET);
+
+                // funciones de boton
+                boton.setOnClickListener(v -> {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Click en capitulo " + capitulo.getCodigo(),Toast.LENGTH_SHORT);
+                    toast.show();
+                });
+
+                buttonPrint.addToLayer(contadorY.getValue(),boton);
+
+                view.addView(boton, contadorX.getValue());
+                contadorX.add();
+            });
+
+            contadorY.add();
         });
+
 
     }
 
     /**
-     * Carga los hijos de un capitulo
-     * @param hijo capitulo a cargar
-     * @param padre padre del capitulo
-     * @param root si es el root o no
+     * Crear las lineas entre capitulos
      */
-    private void cargarHijos(Capitulo hijo, Item padre, boolean root){
-        Item itemHijo = capitulosInterfaz.get(hijo.getNombre());
-
-        int location = ItemLocation.RIGHT;
-
-        if(root) {
-            location = ItemLocation.LEFT;
-        }
-
-
-        mindMap.addItem(itemHijo,padre,100,20, location,false, null);
-
-        List<Capitulo> nietos = hijo.getHijos();
-        if(nietos == null) {
-            return;
-        }
-
-        nietos.forEach(nieto -> {
-           cargarHijos(nieto,itemHijo,false);
-        });
-    }
-
-    /**
-     * Crea un item de interfaz para un capitulo
-     * @param capitulo capitulo a crear
-     * @return item de interfaz
-     */
-    private Item item(Capitulo capitulo)
-    {
-        Item i=new Item(CapitulosMain.this, capitulo.getNombre(),"", false);
-        i.setBackgroundResource(R.drawable.shape_titulos);
-        i.setMinimumWidth(150);
-        i.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-
-        i.setBackgroundResource(R.drawable.shape_dialogo);
-        i.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Item i= (Item) v;
-                Capitulo c = capitulo;
-                Log.i("item",c.getNombre());
-
-            }
-        });
-        return i;
-    }
-
-
-    public void crearLineas(){
-
-        capitulos.forEach(capitulo -> {
-            Item cap = capitulosInterfaz.get(capitulo.getNombre());
-            Item siguiente = capitulosInterfaz.get(capitulo.getSiguiente());
-
-            //crear linea de conexion
-            if(siguiente != null && !capitulo.getNombre().equals("-1") && !capitulo.getNombre().equals("0")) {
-
-                if(capitulo.getNombre().length() == 1) {
-                    System.out.println("Conexion creada de " + capitulo.getNombre() + " a " + capitulo.getSiguiente());
-                    mindMap.addCustomConnection(cap, ItemLocation.BOTTOM,siguiente,ItemLocation.TOP,null,10,"#000000",0,0);
-                    return;
-                }
-
-                mindMap.addCustomConnection(cap, ItemLocation.LEFT,siguiente,ItemLocation.RIGHT,null,10,"#000000",0,0);
-
-            }
-        });
-
+    public void crearLineas(List<List<Button>> capas, ConstraintLayout view) {
 
     }
 

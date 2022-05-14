@@ -7,20 +7,16 @@ import java.util.Objects;
 public class Capitulo
 {
 
+    private String codigo;
     private String nombre;
     private String rutaFic;
     private boolean hecho;
 
-    private List<Capitulo> hijos;
-    private String siguiente;
-    private String padre;
-
-    public Capitulo(String nombre, String rutaFic, boolean hecho, String siguiente, String padre) {
+    public Capitulo(String codigo, String nombre, String rutaFic, boolean hecho) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.rutaFic = rutaFic;
         this.hecho = hecho;
-        this.siguiente = siguiente;
-        this.padre = padre;
     }
 
     public Capitulo(String nombre) {
@@ -31,24 +27,12 @@ public class Capitulo
         return nombre;
     }
 
-    public List<Capitulo> getHijos() {
-        return hijos;
-    }
-
-    public void setHijos(List<Capitulo> hijos) {
-        this.hijos = hijos;
-    }
-
-    public String getSiguiente() {
-        return siguiente;
-    }
-
     public String getRutaFic() {
         return rutaFic;
     }
 
-    public String getPadre() {
-        return padre;
+    public String getCodigo() {
+        return codigo;
     }
 
     @Override
@@ -66,6 +50,6 @@ public class Capitulo
 
     @Override
     public String toString() {
-        return "Capitulo " + nombre + "{ hijos : [" + ( hijos == null ? "" : hijos) + "], siguiente : '" + siguiente + "'}";
+        return "Capitulo [" + codigo + "] : " + nombre;
     }
 }
