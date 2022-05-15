@@ -23,9 +23,9 @@
         android:layout_marginLeft="17dp"
         android:background="@drawable/shape_nombre"
         android:paddingTop="11dp"
+        android:text="Dionisio"
         android:textAlignment="center"
-        android:textSize="16dp"
-        android:text="Dionisio"/>
+        android:textSize="16dp" />
 
     <LinearLayout
         android:id="@+id/layPadre"

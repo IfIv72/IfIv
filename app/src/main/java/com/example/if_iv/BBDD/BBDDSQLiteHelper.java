@@ -27,7 +27,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
 
     private final String createDios="CREATE TABLE 'Dios' (" +
             "'nombre' TEXT," +
-            "'afinidad' TEXT," +
+            "'afinidad' NUMBER," +
             "'info' TEXT," +
             "'rutaImg' TEXT," +
             "'mitologia' TEXT" +
