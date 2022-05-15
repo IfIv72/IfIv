@@ -186,7 +186,7 @@ public class CofresMinijuego extends AppCompatActivity
                             @Override
                             public void run() {
                                 Intent intent= new Intent(CofresMinijuego.this, MinijuegosMain.class);
-                                intent.putExtra("puntos",100);
+                                intent.putExtra("puntos",50);
                                 setResult(RESULT_OK,intent);
                                 finish();
                             }

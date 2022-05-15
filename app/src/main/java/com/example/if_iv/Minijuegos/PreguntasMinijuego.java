@@ -1,5 +1,6 @@
 package com.example.if_iv.Minijuegos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.if_iv.Interfaz.MinijuegosMain;
 import com.example.if_iv.R;
 import com.example.if_iv.dao.JugadorDao;
 import com.example.if_iv.model.Pregunta;
@@ -32,7 +34,6 @@ public class PreguntasMinijuego extends AppCompatActivity {
     private int aciertos, cantPregun;
     private TextView lblEnun,lblOp1,lblOp2,lblOp3;
     private Context context;
-    private JugadorDao jugadorDao;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,8 +42,6 @@ public class PreguntasMinijuego extends AppCompatActivity {
 
         getSupportActionBar().hide();
         context = this.getBaseContext();
-
-        jugadorDao= new JugadorDao(context);
 
         cantPregun = 1;
         aciertos = 0;
@@ -150,10 +149,10 @@ public class PreguntasMinijuego extends AppCompatActivity {
 
     public void terminarJuego()
     {
-//        Toast.makeText(PreguntasMinijuego.this,"Aciertos: "+aciertos,Toast.LENGTH_SHORT).show();
-        jugadorDao.updatePreguntas(new Date());
+        Intent intent= new Intent(PreguntasMinijuego.this, MinijuegosMain.class);
+        intent.putExtra("puntos",100);
+        setResult(RESULT_OK,intent);
         finish();
-        //////   AQUIIIIII
     }
 
     public void llenarPreguntas()

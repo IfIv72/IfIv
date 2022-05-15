@@ -94,7 +94,7 @@ public class MinijuegosMain extends AppCompatActivity {
         preguntasJugado=jugadorDao.jugadoHoyPreguntas();
         if(preguntasJugado)
         {
-            Toast.makeText(this, "Ya has jugado al minijuego preguntas hoy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No podras volver a jugar a preguntas por hoy", Toast.LENGTH_SHORT).show();
             YoYo.with(Techniques.Shake).duration(500).repeat(1).playOn(btnPreguntas);
             btnPreguntas.setEnabled(false);
             bloqPreguntas.setVisibility(View.VISIBLE);
@@ -140,8 +140,7 @@ public class MinijuegosMain extends AppCompatActivity {
             else
             {
                 Intent intento = new Intent(MinijuegosMain.this, PreguntasMinijuego.class);
-                startActivity(intento);
-                preguntasJugado = true;
+                startActivityForResult(intento,1278);
             }
         });
         btnCasino.setOnClickListener(view -> {
@@ -200,21 +199,33 @@ public class MinijuegosMain extends AppCompatActivity {
                 int mas=data.getExtras().getInt("puntos");
                 if(this.puntosGanados+mas<=TOPE) {
                     puntosGanados=puntosGanados+mas;
-                    recargarPuntos();
                 }
+                else
+                {
+                    puntosGanados=TOPE;
+                }
+                recargarPuntos();
             }
 
             //Preguntas
             if(requestCode==1278 && resultCode==RESULT_OK)
             {
                 this.jugadorDao.updatePreguntas(new Date());
+                preguntasJugado=true;
                 int mas=data.getExtras().getInt("puntos");
                 if(this.puntosGanados+mas<=TOPE) {
-                    recargarPuntos();
+                    puntosGanados=puntosGanados+mas;
                 }
+                else
+                {
+                    puntosGanados=TOPE;
+                }
+                recargarPuntos();
+
             }
 
             gestionarBotones();
+            gestionarBloqueos();
         }
 
     }
