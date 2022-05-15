@@ -13,10 +13,11 @@
         android:id="@+id/btnAjustes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ajustes"
-        android:background="@drawable/shape_relleno"/>
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/shape_relleno"
+        android:onClick="irAjustes"
+        android:src="@drawable/ajustes" />
 
     <!-- Botones: Minijuegos, Personajes y Capituloa -->
     <RelativeLayout

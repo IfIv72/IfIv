@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.if_iv.BBDD.BBDDSQLiteHelper;
+import com.example.if_iv.Interfaz.AjustesMain;
 import com.example.if_iv.Interfaz.CapitulosMain;
 import com.example.if_iv.Interfaz.JuegoMain;
 import com.example.if_iv.Interfaz.MinijuegosMain;
@@ -49,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
     public void abrirPrueba(View v)
     {
         Intent intent = new Intent(MainActivity.this, prubasFechas.class);
+        startActivity(intent);
+    }
+
+    public void irAjustes(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, AjustesMain.class);
         startActivity(intent);
     }
 }

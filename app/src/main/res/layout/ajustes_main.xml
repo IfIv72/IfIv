@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <!-- Puntos -->
+    <RelativeLayout
+        android:id="@+id/layContador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="26dp"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:id="@+id/layPuntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/lblPuntos"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <TextView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:text="P"
+                android:background="@drawable/shape_btn_redondo"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layLlavess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/layPuntos"
+            android:layout_marginLeft="46dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/lblLlaves"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/llave"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/layPuntos"
+            android:text="200 puntos -> 1 llave capitulo"/>
+    </RelativeLayout>
+
+    <!-- Modo oscuro -->
+    <LinearLayout
+        android:id="@+id/layDark"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layContador"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modo Oscuro"/>
+        <Switch
+            android:id="@+id/swDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+    <!-- Cambiar nombre -->
+    <Button
+        android:id="@+id/btnSetNom"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layDark"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp"
+        android:text="Cambiar nombre"/>
+
+    <!-- Borrar proceso -->
+    <Button
+        android:id="@+id/btnReinicio"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSetNom"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp"
+        android:text="Borrar proceso"/>
+
+    <!-- Tutorial -->
+    <Button
+        android:id="@+id/btnTutorial"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnReinicio"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp"
+        android:text="Tutorial"/>
+
+    <!-- Creditos -->
+    <Button
+        android:id="@+id/btnCreditos"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTutorial"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="3dp"
+        android:text="Creditos"/>
+
+</RelativeLayout>
