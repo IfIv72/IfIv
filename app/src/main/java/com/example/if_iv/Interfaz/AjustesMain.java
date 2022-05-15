@@ -10,11 +10,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.if_iv.R;
 import com.example.if_iv.dao.JugadorDao;
 
-public class AjustesMain extends AppCompatActivity {
+public class AjustesMain extends AppCompatActivity implements DialogoNombre.DialogoNombreListener{
 
     private JugadorDao jugador;
     private Switch modoOscuro;
@@ -46,31 +47,37 @@ public class AjustesMain extends AppCompatActivity {
 
     public void colocarPuntos()
     {
-        lblPuntos.setText('d');
-        lblLlaves.setText('d');
+        lblPuntos.setText("10");
+        lblLlaves.setText("0");
     }
 
     public void gestionarEventos()
     {
-        if(modoOscuro.isChecked())
-        {
-            Toast.makeText(this, "on", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(this, "off", Toast.LENGTH_SHORT).show();
-        }
-
         //Puntos
         layPuntos.setOnClickListener(view -> {
             //dialogo confirmacion
 
         });
 
+        //modo Oscuro
+        modoOscuro.setOnClickListener(view -> {
+            if(modoOscuro.isChecked())
+            {
+                Toast.makeText(this, "on", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(this, "off", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         //Cambiar nombre
         btnCambioNom.setOnClickListener(view -> {
             // conseguir nombre
-            Toast.makeText(this,"Sin Implementar", Toast.LENGTH_SHORT).show();
+            DialogoNombre dn= new DialogoNombre();
+            FragmentManager fragmentManager= getSupportFragmentManager();
+            dn.show(fragmentManager,"Dialogo nombre");
         });
 
         //Creditos
@@ -88,6 +95,19 @@ public class AjustesMain extends AppCompatActivity {
         btnReinicio.setOnClickListener(view -> {
             Toast.makeText(this,"Sin Implementar", Toast.LENGTH_SHORT).show();
         });
+
+    }
+
+
+
+    //Interfaz Dialogo NO BORRAR AUN QUE ESTEN VACIOS
+    @Override
+    public void onPossitiveButtonClick() {
+        Toast.makeText(this, "Nombre actualizado", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNegativeButtonClick() {
 
     }
 }

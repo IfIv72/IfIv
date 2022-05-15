@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -94,19 +93,17 @@ public class PersonajesMain extends AppCompatActivity {
 
 
             // barra afinidad (fondo)
-            GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_bordes_redondos);
-
+            int anchoImg = item.findViewById(R.id.imgPer).getWidth();
             TextView lblProgresoFondo = item.findViewById(R.id.lblEntero);
             int anchoPantalla = getResources().getDisplayMetrics().widthPixels;
-            int anchoFondo = anchoPantalla - 100 - 45 ; // ancho_pantalla - (ancho_imagen + margen)
+            int anchoFondo = anchoPantalla - anchoImg - 10; // ancho_pantalla - (ancho_imagen + margen)
             lblProgresoFondo.setWidth(anchoFondo);
-            lblProgresoFondo.setBackground(draw);
 
             // barra afinidad (relleno)
             TextView lblProgreso = item.findViewById(R.id.lblProgreso);
             int progreso = (d.getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
             lblProgreso.setWidth(progreso);  // varia segun la afinidad con el dios
-            draw = (GradientDrawable) getDrawable(R.drawable.shape_relleno);
+            GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_afinidad);
             draw.setColor(meg.colorSegun(d.getNombre(),context));
             lblProgreso.setBackgroundColor(meg.colorSegun(d.getNombre(),context));
 
