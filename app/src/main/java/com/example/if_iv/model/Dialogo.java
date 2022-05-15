@@ -44,4 +44,7 @@ public class Dialogo {
 
     public Respuesta getResp3() { return resp3; }
 
+    public void setCodSiguiente(String codSiguiente) {
+        this.codSiguiente = codSiguiente;
+    }
 }

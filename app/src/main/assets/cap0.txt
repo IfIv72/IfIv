@@ -1,0 +1,42 @@
+0-1-1;d;Ivory;normal;¿Cómo te llamas?;0-1-2
+0-1-2;e;IV;...;a;nombre;0-1-3; ; ; ; ; ; ; ; ;
+0-1-3;d;IV;normal;Como si no lo supieras ya, me llamo ;0-1-4
+0-1-4;d;IV;normal;Ivory, que lleva toda la vida conmigo y necesita preguntarme el nombre para su estupido test sobre qué personaje de vikingos soy. De hecho a mi…;0-1-5
+0-1-5;e;IV;me encanta Vikingos! Es una pasada!;b;update Dios set afinidad=5 where nombre='Freya' or nombre='Loki';0-1-6;me gusta algo más como Percy Jackson…;b;update Dios set afinidad=5 where nombre='Dionisio' or nombre='Apolo';0-1-6;no me gusta nada el sofa! Lo que a mi me gusta es ir de fiesta sin duda alguna.;b;update Dios set afinidad=5 where nombre='Dionisio' or nombre='Freya';0-1-6
+0-1-6;d;IV;normal;Señoras y señores, esto es a lo que te obliga la universidad con sus extensos descansos entre clase y clase.;0-1-7
+0-1-7;d;IV;normal;Nuestra rutina de cada viernes a las 15:00, Ivory rellenando tests inservibles mientras come cualquier comida rápida que haya conseguido en el camino hasta el parque.;0-1-8
+0-1-8;d;IV;normal;Es nuestro segundo año estudiando la carrera…;0-1-9
+0-1-9;e;IV;Veterinaria;b;update Dios set afinidad=afinidad+5 where nombre='Freya';0-1-10;Administración y dirección de empresas;b;update Dios set afinidad=afinidad+5 where nombre='Dionisio';0-1-10;No me acuerdo bien…;c;cap0be.txt;0-0-0
+0-1-10;d;Ivory;normal;Empieza a hacer frío, ¿verdad? Con el buen día que había salido a la mañana.;0-1-11
+0-1-11;d;IV;normal;Ivory tenía toda la razón, nos habíamos sentado con los rayos del sol iluminando el cielo pero ahora estábamos bajo un cielo nublado que anunciaba una gran tormenta de finales de verano.;0-1-12
+0-1-12;d;IV;normal;Tal vez, la ropa no era la más adecuada. Tal vez, debí coger un paraguas, por si acaso. Tal vez, tenga que escurrir la ropa al llegar al apartamento.;0-1-13
+0-1-13;d;Ivory;normal;Creo que me voy a ir a casa antes de que diluvie y nos vayamos en barca.;0-1-14
+0-1-14;d;IV;normal;No deberías hacerlo, no es bueno saltarse clases.;0-1-15
+0-1-15;d;IV;normal;A Ivory le hizo reír algo de lo que había dicho.;0-1-16
+0-1-16;d;Ivory;normal;Por favor, me he saltado una clase por mucho menos.;0-1-17
+0-1-17;d;IV;normal;Yo ya te he avisado, ahora haz lo que gustes.;0-1-18
+0-1-18;d;IV;normal;En cuanto nos despedimos, Ivory me abandonó a merced de las nubes. La primera gota de agua llegó más deprisa de lo esperado. Y todas las que llegaron después de esta cayeron con más fuerza.;0-1-19
+0-1-19;d;IV;normal;(change a parque lluvia o ciudad lluvia i dont care);0-1-20
+0-1-20;d;IV;normal;Salí en busca de refugio pero era demasiado tarde para mi, me había convertido en un río andante. Definitivamente no habría clase para mí tampoco. Al cruzar la calle, algo me llamó la atención.;0-1-21
+0-1-21;d;IV;normal;A lo lejos había, alguien? Si, definitivamente era un alguien. Llevaba un paraguas que me hubiese venido tan bien.;0-1-22
+0-1-22;d;IV;normal;De hecho el paraguas llamaba demasiado mi atención. Algo brillaba en el que no me dejaba mirar a ningún otro lugar.;0-1-23
+0-1-23;d;IV;normal;La persona poseedora de aquel paraguas paró a 1 metro de distancia. Me paré de golpe. ¿No quería dejarme avanzar? Dio un paso hacia delante acortando el espacio entre nosotros. Sus ojos…;0-1-1
+0-1-24;d;IV;normal;rojos como el vino no dejaban de mirarme. ¿Tenía algo mal? ¿Se me había despeinado el pelo? ¿Tenía la bragueta bajada? Por favor, que no fuese la bragueta.;0-1-25
+0-1-25;d;Dionisio;feliz;Vámonos de fiesta!;0-1-36
+0-1-26;d;IV;normal;eran morados, ¿eran lentillas?;0-1-27
+0-1-27;d;IV;normal;Al mirarle a los ojos se puso nervioso. Comenzó a rascarse como si fuese algún tipo de tik.;0-1-28
+0-1-28;d;Loki;triste;Siento llevarte conmigo de esta manera. No te preocupes por nada estarás 	Bien. Aunque me estés volviendo loco…;0-1-36
+0-1-29;d;IV;normal;me recordaban a los de un gato apunto de atacar.;0-1-30
+0-1-30;d;Freya;normal;Vendrás conmigo tu eliges si a las buenas o a las malas.;0-1-31
+0-1-31;e;IV;...A las buenas?;b;update Dios set afinidad=afinidad+5 where nombre='Apolo';0-1-36;(salir corriendo);c;cap0be.txt;0-0-0;¿Y si echamos un pulso?;b;update Dios set afinidad=afinidad+5 where nombre='Freya';0-1-36
+0-1-32;d;IV;normal;llamaban mi atención al igual que el paraguas. Tenía dos portales mostrando la vía láctea en sus ojos. Simplemente me quedé en el sitio sin saber muy bien qué hacer.;0-1-33
+0-1-33;d;Apolo;feliz;Veo que incluso en los días más grises te puedes encontrar con la mejor de	las flores.;0-1-34
+0-1-34;d;IV;normal;Apoyó su mano en mi hombro en un gesto que podría describirse como dulce.;0-1-35
+0-1-35;d;Apolo;feliz;Necesito que vengas conmigo. No servirá de nada decirte esto pero no te 	asustes, florecilla.;0-1-36
+0-1-36;d;IV;normal;En un abrir y cerrar de ojos deje de sentir la ropa mojada pegada a mi piel. No veía nada a mi alrededor. Me daba vueltas la cabeza. Perdí toda fuerza en mis extremidades y caí en lo que parecía en unos brazos.;0-1-37
+0-1-37;d;Isis;normal;Pobre, no le ha sentado bien el viaje.;0-1-38
+0-1-38;d;IV;normal;Fuera quien fuese me echo en una mullida superficie, probablemente algún sofa.;0-1-39
+0-1-39;d;Hermes;triste;No es el único ser al que le ha sentado mal que viaje.;0-1-40
+0-1-40;d;IV;normal;Apenas escuchaba las voces, había muchas. Podía identificar como alguien vomitaba a tan solo unos metros de mi.;0-1-41
+0-1-41;d;Anubis;normal;Calmaros todos. La Matadioses ya está con nosotros. Mientras esté bajo nuestro recaudo no le ocurrirá nada. Es normal que a un humano le sienten mal los teletransportes, no están acostumbrados.;0-1-42
+0-1-42;d;ino;normal;Has terminado el capitulo 0;0-0-0

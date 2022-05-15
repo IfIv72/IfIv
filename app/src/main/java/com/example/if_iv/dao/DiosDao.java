@@ -71,6 +71,25 @@ public class DiosDao
         return dios;
     }
 
+    public Dios findMayorA()
+    {
+        Dios dios=null;
+        Cursor c=db.rawQuery("select nombre,afinidad,info,rutaImg,mitologia from Dios where afinidad=(select max(afinidad) from Dios)", null);
+        if(c.moveToFirst())
+        {
+            String nombre=c.getString(0);
+            int afinidad=c.getInt(1);
+            String info=c.getString(2);
+            String rutaImg=c.getString(3);
+            String mitologia=c.getString(1);
+
+            dios= new Dios(nombre,afinidad,info,rutaImg,mitologia);
+
+        }
+
+        return dios;
+    }
+
     //Se le establecera al Dios que tenga el mismo nombre que el que se le pasa como parametro la afinidad de este
     public void updateAfinidad(Dios d)
     {

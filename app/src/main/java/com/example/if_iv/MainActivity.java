@@ -59,9 +59,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void irAjustes(View v)
-    {
-        Intent intent = new Intent(MainActivity.this, AjustesMain.class);
-        startActivity(intent);
-    }
 }

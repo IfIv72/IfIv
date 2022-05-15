@@ -31,7 +31,7 @@ public class JugadorDao
     {
 
         Jugador jugador=null;
-        Cursor c=db.rawQuery("select nombre, capitulo, comienzoCap, puntos, preguntas from Usuario", null);
+        Cursor c=db.rawQuery("select nombre,capitulo,comienzoCap,puntos,preguntas from Jugador", null);
 
         if(c.moveToFirst())
         {
@@ -74,19 +74,20 @@ public class JugadorDao
 
     public void updatePreguntas(Date preguntas)
     {
-        String query="update Jugador set preguntas="+MegaClase.deFechaAString(preguntas);
+        String query="update Jugador set preguntas='"+MegaClase.deFechaAString(preguntas)+"'";
         db.execSQL(query);
     }
 
     public void updatePreguntas(String preguntas)
     {
-        String query="update Jugador set preguntas="+preguntas;
+        String query="update Jugador set preguntas='"+preguntas+"'";
         db.execSQL(query);
     }
 
-    public void updateNombre()
+    public void updateNombre(String nombre)
     {
-
+        String query="update Jugador set nombre='"+nombre+"'";
+        db.execSQL(query);
     }
 
     public void updatePuntos()

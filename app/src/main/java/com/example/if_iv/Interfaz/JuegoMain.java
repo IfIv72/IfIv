@@ -11,9 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.if_iv.R;
+import com.example.if_iv.dao.DiosDao;
+import com.example.if_iv.dao.EleccionesDao;
+import com.example.if_iv.dao.JugadorDao;
 import com.example.if_iv.model.Dialogo;
+import com.example.if_iv.model.Dios;
 import com.example.if_iv.model.Respuesta;
 import com.example.if_iv.util.MegaClase;
 
@@ -25,15 +30,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class JuegoMain extends AppCompatActivity {
+public class JuegoMain extends AppCompatActivity implements DialogoNombre.DialogoNombreListener{
 
     private LinearLayout layDialogo, layEleccion, layContenedor;
     private TextView lblNombre, lblDialogo, lblResp1, lblResp2, lblResp3;
     private ImageView imgDios;
     private HashMap<String, Dialogo> conversacion;
     private Dialogo actual;
+    private Dios mayorA;
     private Context context;
     private MegaClase meg = new MegaClase();
+
+    private JugadorDao jugadorDao;
+    private EleccionesDao eleccionesDao;
+    private DiosDao diosDao;
+    private String nombreJugador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,10 @@ public class JuegoMain extends AppCompatActivity {
         getSupportActionBar().hide();
 
         context = this.getBaseContext();
+        jugadorDao= new JugadorDao(context);
+        eleccionesDao=new EleccionesDao(context);
+        diosDao=new DiosDao(context);
+        nombreJugador=jugadorDao.find().getNombre();
 
         layContenedor = findViewById(R.id.layPadre);
         lblNombre = findViewById(R.id.lblNombre);
@@ -96,7 +111,7 @@ public class JuegoMain extends AppCompatActivity {
             prepararDialogo();
         });
 
-        llenarConversacion("pruebaDialogo");
+        llenarConversacion("cap0.txt");
         prepararDialogo();
     }
 
@@ -173,6 +188,11 @@ public class JuegoMain extends AppCompatActivity {
     public void prepararDialogo()
     {
         String nomDios = actual.getHablante();
+        if(nomDios.equals("IV"))
+        {
+            nombreJugador=jugadorDao.find().getNombre();
+            nomDios=nombreJugador;
+        }
         lblNombre.setText(nomDios);
 
         // cambiar color segun el dios
@@ -188,6 +208,42 @@ public class JuegoMain extends AppCompatActivity {
         {
             layEleccion.setVisibility(View.GONE);
             layDialogo.setVisibility(View.VISIBLE);
+
+            switch (actual.getCod())
+            {
+                case "0-1-3":
+                    lblDialogo.setText(actual.getTexto()+nomDios);
+                    break;
+                case "0-1-23":
+                    mayorA = diosDao.findMayorA();
+                    switch (mayorA.getNombre()) {
+                        case "Dionisio":
+                            actual.setCodSiguiente("0-1-24");
+                            break;
+                        case "Freya":
+                            actual.setCodSiguiente("0-1-29");
+                            break;
+                        case "Loki":
+                            actual.setCodSiguiente("0-1-27");
+                            break;
+                        case "Apolo":
+                            actual.setCodSiguiente("0-1-32");
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "0-1-41":
+                    lblDialogo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(context, "Enhorabuena! Has terminado el primer capitulo", Toast.LENGTH_SHORT).show();
+                            //Actualizacion de la BBDD
+                            finish();
+                        }
+                    });
+                    break;
+            }
             lblDialogo.setText(actual.getTexto());
             imgDios.setImageResource(MegaClase.imgSegunDios(nomDios,actual.getEstado()));
         }
@@ -198,7 +254,21 @@ public class JuegoMain extends AppCompatActivity {
             lblResp1.setText(actual.getResp1().getTexto());
             lblResp2.setText(actual.getResp2().getTexto());
             lblResp3.setText(actual.getResp3().getTexto());
+            if(actual.getResp1().getConsecuencia().equals("nombre"))
+            {
+                lblResp2.setVisibility(View.GONE);
+                lblResp3.setVisibility(View.GONE);
+                DialogoNombre dn= new DialogoNombre();
+                FragmentManager fragmentManager= getSupportFragmentManager();
+                dn.show(fragmentManager,"Dialogo nombre");
+            }
+            else
+            {
+                lblResp2.setVisibility(View.VISIBLE);
+                lblResp3.setVisibility(View.VISIBLE);
+            }
         }
+
     }
 
 
@@ -210,6 +280,7 @@ public class JuegoMain extends AppCompatActivity {
         }
         if(tipoCon == 'b') // actualiza la bbdd
         {
+            eleccionesDao.hacerUpdate(con);
             Toast.makeText(JuegoMain.this,"bbdd: "+con,Toast.LENGTH_LONG).show();
         }
         if(tipoCon == 'c')  // carga un fichero nuevo
@@ -228,4 +299,19 @@ public class JuegoMain extends AppCompatActivity {
         }
     }
 
+    //Interfaz Dialogo NO BORRAR AUN QUE ESTEN VACIOS
+    @Override
+    public void onPossitiveButtonClick() {
+        nombreJugador=jugadorDao.find().getNombre();
+        lblResp1.setText(nombreJugador);
+        lblNombre.setText(nombreJugador);
+
+    }
+
+    @Override
+    public void onNegativeButtonClick() {
+        nombreJugador=jugadorDao.find().getNombre();
+        lblResp1.setText(nombreJugador);
+        lblNombre.setText(nombreJugador);
+    }
 }
