@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    public void irAjustes(View v)
+    {
+        Intent intent = new Intent(MainActivity.this, AjustesMain.class);
+        startActivity(intent);
+    }
+
     public void irMinijuegos(View v)
     {
         Intent intent = new Intent(MainActivity.this, MinijuegosMain.class);
