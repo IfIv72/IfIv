@@ -22,6 +22,15 @@ public class ChapterMap {
             System.out.println("Last code length: " + atomicLength);
             System.out.println("Counter: " + atomicCounter);
 
+            
+            if(codeLength == 1){
+                atomicCounter.add();
+                bluePrint.addToLayer(atomicCounter.getValue(),chapter);
+                atomicLength.setValue(codeLength);
+                return;
+            }
+
+
             // subchilds
             if(codeLength > atomicLength.getValue() || codeLength < atomicLength.getValue()) {
                 atomicCounter.add();

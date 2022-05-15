@@ -13,5 +13,6 @@ insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('0','Lluvia','cap0
 insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('0.1','Final del Comienzo','cap0be.txt',0);
 insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('0.2','Final del Comienzo','cap0be.txt',0);
 insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('1','x1','cap1.txt',0);
+insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('2','x2','cap2.txt',0);
 
 insert into MegaEleccion (decision, hecha, rutaFic) values ('d1',0,'raw.d1');
