@@ -14,12 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.if_iv.R;
+import com.example.if_iv.dao.JugadorDao;
 import com.example.if_iv.model.Pregunta;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class PreguntasMinijuego extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class PreguntasMinijuego extends AppCompatActivity {
     private int aciertos, cantPregun;
     private TextView lblEnun,lblOp1,lblOp2,lblOp3;
     private Context context;
+    private JugadorDao jugadorDao;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class PreguntasMinijuego extends AppCompatActivity {
 
         getSupportActionBar().hide();
         context = this.getBaseContext();
+
+        jugadorDao= new JugadorDao(context);
 
         cantPregun = 1;
         aciertos = 0;
@@ -145,7 +150,8 @@ public class PreguntasMinijuego extends AppCompatActivity {
 
     public void terminarJuego()
     {
-        Toast.makeText(PreguntasMinijuego.this,"Aciertos: "+aciertos,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(PreguntasMinijuego.this,"Aciertos: "+aciertos,Toast.LENGTH_SHORT).show();
+        jugadorDao.updatePreguntas(new Date());
         finish();
         //////   AQUIIIIII
     }

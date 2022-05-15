@@ -37,7 +37,7 @@ public class CapitulosMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capitulos_main);
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Capitulos");
 
         this.bdHelper = new BBDDSQLiteHelper(getBaseContext());
 
@@ -87,7 +87,7 @@ public class CapitulosMain extends AppCompatActivity {
         final int DEFAULT_X_PADDING = 50;
         final int DEFAULT_Y_PADDING = 50;
 
-        view.setBackgroundResource(R.drawable.defaultfondoblur);
+//        view.setBackgroundResource(R.drawable.defaultfondoblur);
 
         AtomicInteger contadorY = new AtomicInteger(0);
         capas.forEach(capa -> {

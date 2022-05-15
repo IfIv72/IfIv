@@ -9,13 +9,9 @@ insert into Dios(nombre, afinidad, info, rutaImg, mitologia) values ('Isis',0,'T
 insert into Dios(nombre, afinidad, info, rutaImg, mitologia) values ('Loki',0,'Quien diría que el famoso Loki está lleno de inseguridades y baja autoestima. No encuentra su lugar en el mundo, además de sentirse apartado por sus compañeros. A todos esto nos resulta raro porque es astuto e ingenioso a niveles inimaginables. Sigue haciendo favores, pero por un precio justo. De todas maneras, de lo que más disfruta es ayudar a Freya en su campamento enseñando hípica. ¡ Para montar en caballo, tienes que sentir el caballo, tienes que ser el caballo!','drawable/loki.png','nordica');
 insert into Dios(nombre, afinidad, info, rutaImg, mitologia) values ('Iv',0,'Ivinfo','IvImfruta','none');
 
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('1','','raw.C1',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('1.1','','raw.C1',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('1.2','','raw.C1',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('1.3','','raw.C1',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('2','','raw.C2',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('2.1','','raw.C3',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('2.2','','raw.C3',0);
-insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('3','','raw.C4',0);
+insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('0','Lluvia','cap0.txt',0);
+insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('0.1','Final del Comienzo','cap0be.txt',0);
+insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('0.2','Final del Comienzo','cap0be.txt',0);
+insert into Capitulo (codigo, nombre, rutaFic, hecho) values ('1','x1','cap1.txt',0);
 
 insert into MegaEleccion (decision, hecha, rutaFic) values ('d1',0,'raw.d1');

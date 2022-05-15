@@ -9,18 +9,19 @@
         android:topLeftRadius="5dp"
         android:topRightRadius="5dp"/>
 
-    <!--
+
     <gradient
         android:angle="0"
         android:endColor="@color/fondo_shape"
         android:startColor="#959E9E9E"
         android:type="radial"
         android:gradientRadius="50"
-        />-->
+        />
+
     <solid android:color="#f1f1f1"/>
 
     <stroke
-        android:color="#404040"
+        android:color="@color/capitulo"
         android:width="4dp"/>
 
     <size/><!--
