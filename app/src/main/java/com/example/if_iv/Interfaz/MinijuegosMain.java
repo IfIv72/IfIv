@@ -3,6 +3,7 @@ package com.example.if_iv.Interfaz;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -94,9 +95,14 @@ public class MinijuegosMain extends AppCompatActivity {
         preguntasJugado=jugadorDao.jugadoHoyPreguntas();
         if(preguntasJugado)
         {
-            Toast.makeText(this, "No podras volver a jugar a preguntas por hoy", Toast.LENGTH_SHORT).show();
-            YoYo.with(Techniques.Shake).duration(500).repeat(1).playOn(btnPreguntas);
-            btnPreguntas.setEnabled(false);
+            btnPreguntas.setEnabled(true);
+            btnPreguntas.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getBaseContext(), "No podras volver a jugar a preguntas por hoy", Toast.LENGTH_SHORT).show();
+                    YoYo.with(Techniques.Shake).duration(500).repeat(1).playOn(btnPreguntas);
+                }
+            });
             bloqPreguntas.setVisibility(View.VISIBLE);
         }
         else
@@ -235,4 +241,10 @@ public class MinijuegosMain extends AppCompatActivity {
         lblPuntos.setText(puntosGanados+" puntos de "+TOPE);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        jugadorDao.updatePuntos(puntosGanados);
+        Log.i("puntosBD",jugadorDao.find().getPuntos()+"");
+    }
 }

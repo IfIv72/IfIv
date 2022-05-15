@@ -12,12 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.if_iv.BBDD.BBDDSQLiteHelper;
 import com.example.if_iv.R;
 import com.example.if_iv.dao.JugadorDao;
+import com.example.if_iv.model.Jugador;
 
 public class AjustesMain extends AppCompatActivity implements DialogoNombre.DialogoNombreListener{
 
-    private JugadorDao jugador;
+    private JugadorDao jugadorDao;
     private Switch modoOscuro;
     private Button btnReinicio, btnCambioNom, btnTutorial, btnCreditos;
     private RelativeLayout layPuntos;
@@ -31,6 +33,8 @@ public class AjustesMain extends AppCompatActivity implements DialogoNombre.Dial
         getSupportActionBar().hide();
 
         //context = this.getBaseContext();
+
+        jugadorDao= new JugadorDao(getBaseContext());
 
         layPuntos = findViewById(R.id.layContador);
         lblPuntos = findViewById(R.id.lblPuntos);
@@ -47,7 +51,8 @@ public class AjustesMain extends AppCompatActivity implements DialogoNombre.Dial
 
     public void colocarPuntos()
     {
-        lblPuntos.setText("10");
+        Jugador j=jugadorDao.find();
+        lblPuntos.setText(String.valueOf(j.getPuntos()));
         lblLlaves.setText("0");
     }
 
@@ -94,6 +99,9 @@ public class AjustesMain extends AppCompatActivity implements DialogoNombre.Dial
         //Reiniciar
         btnReinicio.setOnClickListener(view -> {
             Toast.makeText(this,"Sin Implementar", Toast.LENGTH_SHORT).show();
+            BBDDSQLiteHelper bd=new BBDDSQLiteHelper(getBaseContext());
+            bd.onUpgrade(bd.getWritableDatabase(),0,0);
+            colocarPuntos();
         });
 
     }

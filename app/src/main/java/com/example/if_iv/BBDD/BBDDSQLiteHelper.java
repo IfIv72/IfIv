@@ -41,7 +41,7 @@ public class BBDDSQLiteHelper extends SQLiteOpenHelper
     } 
 
     /**
-     *  Si ha cambios en la BBDD
+     *  Si hay cambios en la BBDD
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

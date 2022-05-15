@@ -90,9 +90,10 @@ public class JugadorDao
         db.execSQL(query);
     }
 
-    public void updatePuntos()
+    public void updatePuntos(int puntos)
     {
-
+        String query="update Jugador set puntos=puntos+"+puntos;
+        db.execSQL(query);
     }
 
     public void updateCapitulo()
