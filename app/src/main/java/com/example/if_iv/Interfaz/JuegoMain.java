@@ -26,6 +26,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class JuegoMain extends AppCompatActivity implements DialogoNombre.DialogoNombreListener{
 
@@ -119,46 +122,23 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
         conversacion = new HashMap<String, Dialogo>();
         try
         {
-            boolean primero = true;
-            InputStreamReader fraw = new InputStreamReader(this.context.getAssets().open(nomFich));
-            BufferedReader brin = new BufferedReader( fraw );
-            String linea = brin.readLine();
-            while (linea!=null)
-            {
-                Dialogo dialogo;
-                String[] aux = linea.split(";");
 
-                //construye el dialogo
-                String cod = aux[0];
-                char tipo = aux[1].charAt(0);
-                String hablante = aux[2];
+            //Lee el fichero y filtra las lineas en blanco
+            List<String> lines = new BufferedReader(new InputStreamReader(this.context.getAssets().open(nomFich)))
+                    .lines()
+                    .filter(l-> l.length() != 0)
+                    .collect(Collectors.toList());
 
-                if(tipo == 'd') // dialogo plano
-                {
-                    String estado = aux[3];
-                    String txt = aux[4];
-                    String siguiente = aux[5];
-                    dialogo = new Dialogo(cod,tipo,hablante,estado,txt,siguiente);
-                }
-                else // eleccion
-                {
-                    Respuesta resp1 = new Respuesta(aux[3],aux[4].charAt(0),aux[5], aux[6]);
-                    Respuesta resp2 = new Respuesta(aux[7],aux[8].charAt(0),aux[9], aux[10]);
-                    Respuesta resp3 = new Respuesta(aux[11],aux[12].charAt(0),aux[13], aux[14]);
-                    dialogo = new Dialogo(cod,tipo,hablante, resp1, resp2, resp3);
-                }
+            actual = contruirDialogo(lines.get(0));
+            conversacion.put(actual.getCod(),actual);
 
-                if(primero)  // guarda el primer dialogo
-                {
-                    actual = dialogo;
-                    primero = false;
-                }
+            lines = lines.subList(1,lines.size());
+            lines.forEach(linea -> {
+                Log.i("Fichero",linea);
+                Dialogo dialogo = contruirDialogo(linea);
+                conversacion.put(dialogo.getCod(),dialogo);  // aniade la linea convertida en Dialogo
+            });
 
-                conversacion.put(cod,dialogo);  // aniade la linea convertida en Dialogo
-                Log.i("pruebaFIc",linea);
-                linea = brin.readLine();  // lee la siguiente linea
-            }
-            fraw.close();
         }
         catch (IOException ex) {
             Log.e ("Ficheros", "ERROR!!! al LEER--> "+nomFich);
@@ -167,6 +147,42 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
         }
         return true;
     }
+
+    private Dialogo contruirDialogo(String linea){
+
+        Dialogo dialogo;
+        String[] aux = linea.split(";");
+
+        //Si la linea está mal construida se la salta
+        if (aux.length < 6) {
+            Log.i("Fichero", "Linea mal construida");
+            return null;
+        }
+
+        //construye el dialogo
+        String cod = aux[0];
+        char tipo = aux[1].charAt(0);
+        String hablante = aux[2];
+
+        if(tipo == 'd') // dialogo plano
+        {
+            String estado = aux[3];
+            String txt = aux[4];
+            String siguiente = aux[5];
+            dialogo = new Dialogo(cod,tipo,hablante,estado,txt,siguiente);
+        }
+        else // eleccion
+        {
+            Respuesta resp1 = new Respuesta(aux[3],aux[4].charAt(0),aux[5], aux[6]);
+            Respuesta resp2 = new Respuesta(aux[7],aux[8].charAt(0),aux[9], aux[10]);
+            Respuesta resp3 = new Respuesta(aux[11],aux[12].charAt(0),aux[13], aux[14]);
+            dialogo = new Dialogo(cod,tipo,hablante, resp1, resp2, resp3);
+        }
+
+        return dialogo;
+
+    }
+
 
 
     public void prepararDialogo()

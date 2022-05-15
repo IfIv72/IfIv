@@ -13,10 +13,11 @@
         android:id="@+id/btnAjustes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ajustes"
-        android:background="@drawable/shape_relleno"/>
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/shape_relleno"
+        android:onClick="irAjustes"
+        android:src="@drawable/ajustes" />
 
     <!-- Botones: Minijuegos, Personajes y Capituloa -->
     <RelativeLayout
@@ -42,21 +43,28 @@
             android:id="@+id/btnCapitulo"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
-            android:text="Capitulos"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/btnMinijuego"
-            android:onClick="irCapitulos"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="7dp"
+            android:onClick="irCapitulos"
+            android:text="Capitulos" />
 
         <Button
             android:id="@+id/btnPersonajes"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_margin="7dp"
-            android:text="Personajes"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/btnCapitulo"
-            android:onClick="irPersonajes"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="7dp"
+            android:onClick="irPersonajes"
+            android:text="Personajes" />
+
     </RelativeLayout>
 
     <Button

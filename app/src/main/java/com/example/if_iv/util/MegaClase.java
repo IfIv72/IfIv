@@ -17,81 +17,78 @@ import java.util.ArrayList;
 import java.util.Date;
 
 // tiene metodos staticos que ayudaran al resto de clases para ahorrar lineas de codigo
-public class MegaClase extends AppCompatActivity
-{
-    public static final int[] diosesPremio={
+public class MegaClase extends AppCompatActivity {
+    public static final int[] diosesPremio = {
             R.drawable.isis_feliz,
             R.drawable.apolo_feliz,
             R.drawable.anubis_feliz,
             R.drawable.dionisio_feliz};
 
-  /////  IMAGENES
-    public static int imgSegunDios(String dios, String estado)
-    {// descomentar al añadir las imagenes
-        switch(dios)
-        {
+    /////  IMAGENES
+    public static int imgSegunDios(String dios, String estado) {// descomentar al añadir las imagenes
+        switch (dios) {
             case "Loki":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.loki_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.loki_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.loki_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.loki_normal;
             case "Freya":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.freya_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.freya_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.freya_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.freya_normal;
             case "Anubis":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.anubis_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.anubis_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.anubis_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.anubis_normal;
             case "Isis":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.isis_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.isis_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.isis_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.isis_normal;
             case "Apolo":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.apolo_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.apolo_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.apolo_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.apolo_normal;
             case "Hermes":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.hermes_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.hermes_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.hermes_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.hermes_normal;
             case "Dionisio":
-                if(estado.equals("feliz"))
+                if (estado.equals("feliz"))
                     return R.drawable.dionisio_feliz;
-                if(estado.equals("triste"))
+                if (estado.equals("triste"))
                     return R.drawable.dionisio_triste;
-                if(estado.equals("enfadado"))
+                if (estado.equals("enfadado"))
                     return R.drawable.dionisio_enfadado;
-                if(estado.equals("normal"))
+                if (estado.equals("normal"))
                     return R.drawable.dionisio_normal;
 //            case "iv":
 //                if(estado.equals("chibi"))
@@ -109,55 +106,50 @@ public class MegaClase extends AppCompatActivity
         }
     }
 
-   ///// COLORES
-    public int colorSegun(String dios, Context context)
-    {
-        switch(dios) {
+    ///// COLORES
+    public int colorSegun(String dios, Context context) {
+        switch (dios) {
             case "griega":
-                return ContextCompat.getColor(context,R.color.griega);
+                return ContextCompat.getColor(context, R.color.griega);
             case "nordica":
-                return ContextCompat.getColor(context,R.color.nordica);
+                return ContextCompat.getColor(context, R.color.nordica);
             case "egipcia":
-                return ContextCompat.getColor(context,R.color.egipcia);
+                return ContextCompat.getColor(context, R.color.egipcia);
             case "eleccion":
-                return ContextCompat.getColor(context,R.color.eleccion);
+                return ContextCompat.getColor(context, R.color.eleccion);
             case "Loki":
-                return ContextCompat.getColor(context,R.color.loki);
+                return ContextCompat.getColor(context, R.color.loki);
             case "Freya":
-                return ContextCompat.getColor(context,R.color.freya);
+                return ContextCompat.getColor(context, R.color.freya);
             case "Anubis":
-                return ContextCompat.getColor(context,R.color.anubis);
+                return ContextCompat.getColor(context, R.color.anubis);
             case "Isis":
-                return ContextCompat.getColor(context,R.color.isis);
+                return ContextCompat.getColor(context, R.color.isis);
             case "Apolo":
-                return ContextCompat.getColor(context,R.color.apolo);
+                return ContextCompat.getColor(context, R.color.apolo);
             case "Hermes":
-                return ContextCompat.getColor(context,R.color.hermes);
+                return ContextCompat.getColor(context, R.color.hermes);
             case "Dionisio":
-                return ContextCompat.getColor(context,R.color.dionisio);
+                return ContextCompat.getColor(context, R.color.dionisio);
             case "iv":
-                return ContextCompat.getColor(context,R.color.iv);
+                return ContextCompat.getColor(context, R.color.iv);
             default:
-                return ContextCompat.getColor(context,R.color.black);
+                return ContextCompat.getColor(context, R.color.black);
         }
     }
 
- ///// CONVERSORES (sqlite)
+    ///// CONVERSORES (sqlite)
 
     //Booleans
 //Esto nos va a dar problemas a la hora de hacer las pruebas por que siempre da un valor valido jeje
     public static boolean gestionInt(Integer inte)
     {
-        if(inte==0)
-            return false;
-        return true;
+        return inte != 0;
     }
 
     public static Integer gestionBoolean(Boolean boo)
     {
-        if(boo)
-            return 1;
-        return 0;
+        return boo ? 1 : 0;
     }
 
     //Fechas

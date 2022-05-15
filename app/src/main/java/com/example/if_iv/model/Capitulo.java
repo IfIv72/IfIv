@@ -1,58 +1,38 @@
 package com.example.if_iv.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Capitulo
 {
 
+    private String codigo;
     private String nombre;
     private String rutaFic;
     private boolean hecho;
 
-    private ArrayList<Capitulo> hijos;
-
-    public Capitulo(String nombre, String rutaFic, boolean hecho) {
+    public Capitulo(String codigo, String nombre, String rutaFic, boolean hecho) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.rutaFic = rutaFic;
         this.hecho = hecho;
     }
 
-    public Capitulo(String nombre)
-    {
-        this.nombre= nombre;
+    public Capitulo(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getRutaFic() {
         return rutaFic;
     }
 
-    public void setRutaFic(String rutaFic) {
-        this.rutaFic = rutaFic;
-    }
-
-    public boolean isHecho() {
-        return hecho;
-    }
-
-    public void setHecho(boolean hecho) {
-        this.hecho = hecho;
-    }
-
-    public ArrayList<Capitulo> getHijos() {
-        return hijos;
-    }
-
-    public void setHijos(ArrayList<Capitulo> hijos) {
-        this.hijos = hijos;
+    public String getCodigo() {
+        return codigo;
     }
 
     @Override
@@ -66,5 +46,10 @@ public class Capitulo
     @Override
     public int hashCode() {
         return Objects.hash(nombre);
+    }
+
+    @Override
+    public String toString() {
+        return "Capitulo [" + codigo + "] : " + nombre;
     }
 }
