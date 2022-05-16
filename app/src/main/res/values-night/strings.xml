@@ -2,4 +2,9 @@
 <resources>
     <string name="codicion_tope_puntos">Solo se pueden ganar un máximo de 200 puntos por dia. Aunque llegues podrás seguir jugando los minijuegos</string>
     <string name="tope_alcanzado">Ya no sumarás más puntos por hoy. /n Diviertete jugando!!!</string>
+    <string name="desc_val">Alive es la diosa de la vida como su nombre indica. Nunca perderá la ilusión de vivir y aprender algo nuevo. Cuando menos te lo esperas está inventando un nuevo destino en tu paso por este lugar o te está poniendo condiciones para poder seguir adelante. Deberás esforzarte para tenerla de buen humor, todo esfuerzo tendrá su recompensa. O no…</string>
+    <string name="desc_ele">desc_ele</string>
+    <string name="intro_creditos">Estas son las diosas creadoras que con esfuerzo, determinació y ayuda de los grandiosos héroes lograron construir este proyecto</string>
+    <string name="desc_ra">desc_ra</string>
+    <string name="desc_aket">Aunque su nombre sea Azteka no tiene nada que ver con la civilización azteca. Fue un héroe que ayudó a las diosas con sus conocimientos. Es sorprendente lo dispuesto que está a echar una mano allí donde haya algo que programar, aunque más sorprendente es la cantidad ingente de café que toma. No tenemos muy claro si sus ojeras se deben al café o a que se pasa la noche programando o ambas pero si sabemos que gracias a él las diosas pueden manipular un poquito mejor tu vida aquí…</string>
 </resources>
