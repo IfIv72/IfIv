@@ -3,32 +3,118 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:orientation="vertical">
 
-    <!-- Razon -->
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/lblRazon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/intro_creditos"/>
+
+    <!-- Creadoras -->
+    <RelativeLayout
+        android:id="@+id/layVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgVal"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
+            android:src="@drawable/alive"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imgVal"
+            android:text="@string/desc_val"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layEle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgEle"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/alive"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/imgEle"
+            android:text="@string/desc_ele"/>
+    </RelativeLayout>
+
+    <!-- Colaboradores -->
+    <RelativeLayout
+        android:id="@+id/layAkt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgAkt"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
+            android:src="@drawable/azteka"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imgAkt"
+            android:text="@string/desc_aket"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layRa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgRa"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ra"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/imgRa"
+            android:text="@string/desc_ra"/>
+    </RelativeLayout>
+
+    <!-- Footer -->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
             android:layout_width="110dp"
             android:layout_height="100dp"
+            android:layout_toLeftOf="@+id/lblGra"
             android:src="@drawable/logo"/>
         <TextView
-            android:id="@+id/lblRazon"
+            android:id="@+id/lblGra"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Este mundo fue alzado desde las profundidades
-de los mares de caos e incertidumbre gracias al esfuerzo y la determinación
-(tambien por la necesidad de un TFG...) de las diosas creadoras y con las
-azañas de los héroes míticos. "/>
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:text="Gracias por jugar!!!"/>
         <ImageView
             android:layout_width="110dp"
             android:layout_height="100dp"
+            android:layout_toRightOf="@id/lblGra"
             android:src="@drawable/hoguera"/>
-    </LinearLayout>
-
-
-
+    </RelativeLayout>
 </LinearLayout>
