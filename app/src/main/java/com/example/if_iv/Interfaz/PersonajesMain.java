@@ -32,10 +32,9 @@ public class PersonajesMain extends AppCompatActivity {
     private DiosDao diosDao;
     private ArrayList<Dios> dioses;
     private DialogoPersonajes dialogo;
-    private MegaClase meg = new MegaClase(); //A Ainara esto no le gusta
+    private MegaClase meg;  //A Ainara esto no le gusta
     private Context context;
 
-    private final int MAX_AFINIDAD = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +43,8 @@ public class PersonajesMain extends AppCompatActivity {
 
         getSupportActionBar().hide();
         context = this.getBaseContext();
+
+        meg = new MegaClase();
 
         diosDao= new DiosDao(getBaseContext());
         dioses =  diosDao.findAll();
@@ -64,6 +65,7 @@ public class PersonajesMain extends AppCompatActivity {
             }
         });
     }
+
 
     class AdaptadorDioses extends ArrayAdapter <Dios>
     {
@@ -91,18 +93,31 @@ public class PersonajesMain extends AppCompatActivity {
             ImageView img = (ImageView) item.findViewById(R.id.imgPer);
             img.setImageResource(MegaClase.imgSegunDios(d.getNombre(),"normal"));
 
+            //calcular tamaño total
+            ImageView imgAux = item.findViewById(R.id.imgPer);
 
-            // barra afinidad (fondo)
-            int anchoImg = item.findViewById(R.id.imgPer).getWidth();
-            TextView lblProgresoFondo = item.findViewById(R.id.lblEntero);
             int anchoPantalla = getResources().getDisplayMetrics().widthPixels;
-            int anchoFondo = anchoPantalla - anchoImg - 10; // ancho_pantalla - (ancho_imagen + margen)
-            lblProgresoFondo.setWidth(anchoFondo);
+            int anchoImg = imgAux.getWidth();
+            int paddingImg = imgAux.getPaddingRight();
+            int paddingLay = item.findViewById(R.id.layPer).getPaddingLeft() + item.findViewById(R.id.layPer).getPaddingRight();
+            int anchoMaxBarra = anchoPantalla - (anchoImg + paddingImg + paddingLay);
+            Log.i("Pantalla",""+anchoPantalla);
+
+            //barra afinidad (borde/entero)
+            TextView lblFondo = item.findViewById(R.id.lblEntero);
+            lblFondo.setWidth(anchoMaxBarra);
+            Log.i("Dios", d.getNombre());
+            Log.i("Fondo",""+anchoMaxBarra);
+
 
             // barra afinidad (relleno)
+            // tamano segun la afinidad
             TextView lblProgreso = item.findViewById(R.id.lblProgreso);
-            int progreso = (d.getAfinidad()*anchoFondo) / MAX_AFINIDAD; // afinidad * anchoTotal / MAX_AFINIDAD
-            lblProgreso.setWidth(progreso);  // varia segun la afinidad con el dios
+            int progreso = (int) Math.round( anchoMaxBarra * ( d.getAfinidad()/ 100.0)); //  anchoTotal * afinidad  / 100
+            lblProgreso.setWidth(progreso);
+            Log.i("Afinidad",""+d.getAfinidad());
+            Log.i("Medida",""+progreso);
+            //color segun el dios
             GradientDrawable draw = (GradientDrawable) getDrawable(R.drawable.shape_afinidad);
             draw.setColor(meg.colorSegun(d.getNombre(),context));
             lblProgreso.setBackgroundColor(meg.colorSegun(d.getNombre(),context));

@@ -4,15 +4,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners
-        android:radius="5dp"/>
+        android:radius="7dp"/>
 
 
-    <solid
-        android:color="@color/fondo_shape_2"
-    />
+    <solid />
+        <!--
+        android:color="@color/fondo_shape_2" -->
 
     <stroke
-        android:color="#606060"
+        android:color="@color/capitulo"
         android:width="4dp"
         />
 

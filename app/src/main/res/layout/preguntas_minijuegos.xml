@@ -31,14 +31,14 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:textColor="@color/gray"
-            android:textSize="15dp"/>
+            android:textSize="17dp"/>
         <TextView
             android:id="@+id/resp3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:textColor="@color/gray"
-            android:textSize="15dp"/>
+            android:textSize="17dp"/>
 
     </LinearLayout>
 </RelativeLayout>

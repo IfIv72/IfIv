@@ -40,7 +40,7 @@ public class MinijuegosMain extends AppCompatActivity {
     private int TOPE = 200;
     private int puntosGanados=0;
 
-    private boolean bloqueado = true;
+    private boolean aparecido = false;
     private boolean preguntasJugado;  // guardado como variable o cambiara segun el ultimo dia completado o asi
 
     private JugadorDao jugadorDao;
@@ -138,6 +138,8 @@ public class MinijuegosMain extends AppCompatActivity {
             Intent intento = new Intent(MinijuegosMain.this, CofresMinijuego.class);
 //            startActivity(intento);
             startActivityForResult(intento, 1277);
+
+
         });
 
         btnPreguntas.setOnClickListener(view -> {
@@ -170,7 +172,11 @@ public class MinijuegosMain extends AppCompatActivity {
         }
         else
         {
-            abrirDialogo();
+            if(aparecido == false)
+            {
+                aparecido = true;
+                abrirDialogo();
+            }
 
             for (int i=0; i<btns.size(); i++)
             {
@@ -183,13 +189,11 @@ public class MinijuegosMain extends AppCompatActivity {
     // aviso si los puntos superan o llegan al tope
     public void abrirDialogo()
     {
-        if(puntosGanados<TOPE)
-        {
-            String texto = getString(R.string.tope_alcanzado);
-            int img = MegaClase.imgSegunDios("Loki","normal");
-            dialogoAviso = new DialogoAviso(texto,"Tope alcanzado", img);
-            dialogoAviso.show(getSupportFragmentManager(), "dialogo_tope_alcanzado");
-        }
+        String texto = getString(R.string.tope_alcanzado);
+        int img = MegaClase.imgSegunDios("Loki","normal");
+        dialogoAviso = new DialogoAviso(texto,"Tope alcanzado", img);
+        dialogoAviso.show(getSupportFragmentManager(), "dialogo_tope_alcanzado");
+
     }
 
     @Override
