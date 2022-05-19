@@ -12,8 +12,8 @@
         />
 
     <stroke
-        android:color="@color/nada"
-        android:width="4dp" />
+        android:color="#235C5C5C"
+        android:width="3dp" />
 
     <size/><!--
         android:width="150dp"

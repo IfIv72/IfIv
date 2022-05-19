@@ -110,7 +110,7 @@ public class PreguntasMinijuego extends AppCompatActivity {
 
     public void comprobarRespuesta(String resp, TextView op) {
         Log.i("cant:"," "+cantPregun);
-        if(actual.getCorrecta().equals(resp))
+        if(actual.getCorrecta().equals(resp))  // acierta
         {
             op.setTextColor(getColor(R.color.hermes));
             aciertos++;
@@ -129,13 +129,15 @@ public class PreguntasMinijuego extends AppCompatActivity {
                 }
             }, 1200); // tiempo de la animacion
         }
-        else
+        else   //falla
         {
+            op.setTextColor(getColor(R.color.dionisio));
             YoYo.with(Techniques.Shake).duration(1000).repeat(0).playOn(op);
             Handler handler= new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    op.setTextColor(getColor(R.color.gray));
                     //cuando pase el tiempo de bajo
                     if(cantPregun < 3)  // responde 3 preguntas
                         mostrarPregunta();
@@ -150,7 +152,8 @@ public class PreguntasMinijuego extends AppCompatActivity {
     public void terminarJuego()
     {
         Intent intent= new Intent(PreguntasMinijuego.this, MinijuegosMain.class);
-        intent.putExtra("puntos",100);
+        int puntosGanados = aciertos * 25;  //1 acierto = 25 puntos
+        intent.putExtra("puntos",puntosGanados);
         setResult(RESULT_OK,intent);
         finish();
     }
