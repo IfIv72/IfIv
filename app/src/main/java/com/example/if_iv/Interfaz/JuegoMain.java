@@ -28,7 +28,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class JuegoMain extends AppCompatActivity implements DialogoNombre.DialogoNombreListener{
 
@@ -129,13 +128,13 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
                     .filter(l-> l.length() != 0)
                     .collect(Collectors.toList());
 
-            actual = contruirDialogo(lines.get(0));
+            actual = construirDialogo(lines.get(0));
             conversacion.put(actual.getCod(),actual);
 
             lines = lines.subList(1,lines.size());
             lines.forEach(linea -> {
                 Log.i("Fichero",linea);
-                Dialogo dialogo = contruirDialogo(linea);
+                Dialogo dialogo = construirDialogo(linea);
                 conversacion.put(dialogo.getCod(),dialogo);  // aniade la linea convertida en Dialogo
             });
 
@@ -148,7 +147,7 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
         return true;
     }
 
-    private Dialogo contruirDialogo(String linea){
+    private Dialogo construirDialogo(String linea){
 
         Dialogo dialogo;
         String[] aux = linea.split(";");
@@ -212,7 +211,8 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
             switch (actual.getCod())
             {
                 case "0-1-3":
-                    lblDialogo.setText(actual.getTexto()+nomDios);
+                    nombreJugador=jugadorDao.find().getNombre();
+                    lblDialogo.setText(actual.getTexto()+nombreJugador);
                     break;
                 case "0-1-23":
                     mayorA = diosDao.findMayorA();
@@ -245,7 +245,16 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
                     break;
             }
             lblDialogo.setText(actual.getTexto());
-            imgDios.setImageResource(MegaClase.imgSegunDios(nomDios,actual.getEstado()));
+            ///
+            if(actual.getHablante().equals("IV"))
+            {
+                imgDios.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                imgDios.setVisibility(View.VISIBLE);
+                imgDios.setImageResource(MegaClase.imgSegunDios(nomDios,actual.getEstado()));
+            }
         }
         else  // eleccion
         {
@@ -311,7 +320,5 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
     @Override
     public void onNegativeButtonClick() {
         nombreJugador=jugadorDao.find().getNombre();
-        lblResp1.setText(nombreJugador);
-        lblNombre.setText(nombreJugador);
     }
 }
