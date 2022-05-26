@@ -56,7 +56,7 @@ public class DialogoPersonajes extends DialogFragment {
         lblNombre.setText(dios.getNombre());
 
         lblMito = v.findViewById(R.id.lblMito);
-        lblMito.setText("dios "+dios.getMitologia());
+        lblMito.setText("Afinidad: "+dios.getMitologia());
         lblMito.setTextColor(meg.colorSegun(dios.getMitologia(),context));
 
         lblTexto = v.findViewById(R.id.lblTexto);

@@ -66,14 +66,15 @@ public class AjustesMain extends AppCompatActivity implements DialogoNombre.Dial
 
         //modo Oscuro
         modoOscuro.setOnClickListener(view -> {
-            if(modoOscuro.isChecked())
+            /*if(modoOscuro.isChecked())
             {
                 Toast.makeText(this, "on", Toast.LENGTH_SHORT).show();
             }
             else
             {
                 Toast.makeText(this, "off", Toast.LENGTH_SHORT).show();
-            }
+            }*/
+            Toast.makeText(this,"Sin Implementar", Toast.LENGTH_SHORT).show();
         });
 
 
@@ -98,7 +99,7 @@ public class AjustesMain extends AppCompatActivity implements DialogoNombre.Dial
 
         //Reiniciar
         btnReinicio.setOnClickListener(view -> {
-            Toast.makeText(this,"Sin Implementar", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,"Sin Implementar", Toast.LENGTH_SHORT).show();
             BBDDSQLiteHelper bd=new BBDDSQLiteHelper(getBaseContext());
             bd.onUpgrade(bd.getWritableDatabase(),0,0);
             colocarPuntos();

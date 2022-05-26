@@ -285,12 +285,12 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
     {
         if(tipoCon == 'a') // llama a un metodo
         {
-            Toast.makeText(JuegoMain.this,"metodo: "+con,Toast.LENGTH_LONG).show();
+            //Toast.makeText(JuegoMain.this,"metodo: "+con,Toast.LENGTH_LONG).show();
         }
         if(tipoCon == 'b') // actualiza la bbdd
         {
             eleccionesDao.hacerUpdate(con);
-            Toast.makeText(JuegoMain.this,"bbdd: "+con,Toast.LENGTH_LONG).show();
+            //Toast.makeText(JuegoMain.this,"bbdd: "+con,Toast.LENGTH_LONG).show();
         }
         if(tipoCon == 'c')  // carga un fichero nuevo
         {
