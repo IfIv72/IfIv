@@ -212,7 +212,7 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
             {
                 case "0-1-3":
                     nombreJugador=jugadorDao.find().getNombre();
-                    lblDialogo.setText(actual.getTexto()+nombreJugador);
+                    actual.setTexto(actual.getTexto()+nombreJugador);
                     break;
                 case "0-1-23":
                     mayorA = diosDao.findMayorA();
@@ -314,6 +314,7 @@ public class JuegoMain extends AppCompatActivity implements DialogoNombre.Dialog
         nombreJugador=jugadorDao.find().getNombre();
         lblResp1.setText(nombreJugador);
         lblNombre.setText(nombreJugador);
+        Log.i("name",nombreJugador);
 
     }
 
